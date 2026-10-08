@@ -70,7 +70,7 @@ desbloquea más análisis.
 | Historial de ventas | Sí | El pronóstico de demanda |
 | Inventario actual | No | Cuánto pedir, cuándo, y las alertas de quiebre |
 | Recetas de tus productos | No | El plan de materiales explotado |
-| Materiales e insumos | No | Vida útil, MOQ y fechas de compra reales |
+| Materiales e insumos | No | Vida útil, MOQ, proveedor y fechas de compra reales |
 
 **Hay una plantilla.** Botón *Descargar plantilla Excel*: un libro con una hoja
 por archivo, las columnas correctas, filas de ejemplo llenas y una hoja de
@@ -99,11 +99,42 @@ coma o con punto, y separadores `,` `;` `tab` `|`. Si un encabezado no se
 reconoce, revisa los valores: una columna de fechas ISO es una columna de fechas
 se llame como se llame.
 
+**El lead time viaja con cada fila, no con la herramienta.** El archivo de
+inventario trae `Lead Time Dias` por producto y el de materiales lo trae por
+insumo, junto con `Proveedor`, `Variabilidad Lead Time`, `Vida Util Dias` y
+`MOQ`. Es deliberado: un emprendimiento con producción le compra las cajas a uno,
+el azúcar a otro y la crema a un tercero, y ninguno entrega en el mismo plazo ni
+con la misma vida útil. Un lead time promedio sobre esa realidad no describe a
+ningún proveedor — adelanta las compras de los rápidos y atrasa las de los
+lentos, que es exactamente el error que se quería evitar.
+
+| Columna de materiales | Para qué se usa |
+|---|---|
+| `Proveedor` | Agrupa las compras: una orden por proveedor, no una por insumo |
+| `Lead Time Dias` | Fija la fecha de colocación de **esa** compra |
+| `Variabilidad Lead Time` | Es lo único que genera colchón de material |
+| `Vida Util Dias` | Convierte una compra grande en merma cuantificada |
+| `MOQ` y `Multiplo Compra` | Redondean la compra, y revelan cuándo el culpable es el proveedor |
+
 ### Paso 2 — Parametrizar
 
-Horizonte, lead time, variabilidad del lead time, nivel de servicio, frecuencia
-de pedido y umbral de sobreinventario. Si cargaste recetas, aparece además la
-cobertura por compra de materiales.
+Aquí viven **solo las decisiones que son tuyas**: horizonte de planificación,
+nivel de servicio objetivo, cada cuánto revisas y colocas pedidos, y el umbral de
+sobreinventario. Cuatro campos.
+
+Los lead times no se piden aquí. La herramienta lee lo que tus archivos ya traen
+y te lo declara: *«8 de 8 productos con lead time propio · 10 de 10 materiales
+con lead time propio · 5 proveedores distintos»*, y la consecuencia —
+*«tus lead times van de 2 a 25 días, con 9 valores distintos; cada compra se
+programa contra el suyo, no contra un promedio»*. Si están todos cubiertos, el
+campo editable **no aparece**: no hay nada que preguntar.
+
+Solo cuando faltan aparece un campo, y se llama lo que es: un **respaldo** para
+las filas sin dato, no una política global. Si no cargaste ni inventario ni
+materiales, es lo único disponible y la herramienta lo dice así.
+
+Si cargaste recetas, aparece además la cobertura por compra de materiales — cada
+cuántos días de consumo quieres cubrir con una orden.
 
 ### Paso 3 — Recibir
 
@@ -123,9 +154,11 @@ estacionales, intermitentes, erráticos) e inventario con quiebres y
 sobreinventarios reales. Compra y revende: no hay producción ni materiales.
 
 **Emprendimiento con producción** — una chocolatería artesanal de tamaño
-Instagram: 8 productos, 14 meses de historial, recetas completas y 9 insumos con
-vida útil, MOQ y lead time. Aquí el plan de demanda se explota solo a plan de
-materiales, con dos conflictos de vida útil sembrados a propósito porque son los
+Instagram: 8 productos, 14 meses de historial, recetas completas y 10 insumos
+repartidos entre **5 proveedores distintos**, cada uno con su propia vida útil,
+MOQ y lead time — de 3 días para la crema a 25 para las cajas impresas. Aquí el
+plan de demanda se explota solo a plan de materiales y las compras se agrupan por
+proveedor, con dos conflictos de vida útil sembrados a propósito porque son los
 que cualquier productor pequeño enfrenta de verdad.
 
 ---
@@ -318,6 +351,35 @@ proveedor distinto, no un ajuste al plan.
 Mantequilla que se vende en bloques de 25 kg a un productor que usa 300 g al día
 es el ejemplo exacto: ninguna política de inventario arregla eso.
 
+### Paso 5 — Las compras se agrupan por proveedor
+
+Un plan de materiales ordenado por insumo no es ejecutable. Nadie coloca once
+órdenes de compra; coloca una por proveedor con todas sus líneas adentro. Así que
+el plan se reagrupa:
+
+```
+Para cada proveedor:
+    líneas, valor total, rango de lead times de ese proveedor,
+    fecha de colocación más temprana, líneas ya atrasadas
+```
+
+Los grupos se ordenan por **urgencia real**, no alfabéticamente: primero los que
+ya tienen líneas atrasadas, luego por fecha de colocación más temprana, y entre
+empates por valor. El resultado se lee como una lista de llamadas pendientes:
+
+> **Empaques Litoral** · 1 línea · entrega en 21 días · USD 468.00 · *debió
+> colocarse ya*
+> **Cacao Andino** · 2 líneas · entrega en 14 días · USD 2,613 · *colocar a más
+> tardar el 6 oct 2026*
+> **Lácteos del Valle** · 3 líneas · entregas de 3 a 4 días · USD 491.00
+
+Cuando un proveedor entrega sus insumos en plazos distintos, el rango se muestra
+tal cual (*«entregas de 3 a 4 días»*) en lugar de promediarlo, por la misma razón
+por la que no hay un lead time global.
+
+Si un material no declara proveedor, no se inventa uno: cae en un grupo *sin
+proveedor asignado* y la validación lo marca como dato faltante, no como error.
+
 ### Stock de seguridad de materiales: la postura
 
 **A los materiales no les agregamos colchón por incertidumbre de demanda.**
@@ -483,7 +545,7 @@ Siete decisiones donde la práctica común está equivocada:
 7. **Modelos estacionales para todo producto con historial suficiente** → el
    patrón de demanda restringe qué modelos compiten.
 
-Y tres más, del lado de materiales:
+Y cuatro más, del lado de materiales:
 
 8. **Explotar la demanda en vez del programa de producción** → se explota el
    programa, que sí considera el stock que ya tienes y los lotes reales.
@@ -492,6 +554,12 @@ Y tres más, del lado de materiales:
 10. **Stock de seguridad en cada componente** → eliminado para incertidumbre de
     demanda, porque duplica un colchón que ya existe en el producto terminado.
     Se conserva solo contra variabilidad del lead time del proveedor.
+11. **Un lead time y una variabilidad globales para todo el negocio** → el lead
+    time es un atributo del par proveedor-insumo, no de la herramienta. Cada
+    fila trae el suyo y cada compra se programa contra ese, no contra un
+    promedio que no describe a ningún proveedor. El paso 2 quedó solo con las
+    decisiones que de verdad son tuyas, y las compras se agrupan por proveedor
+    porque así es como se colocan.
 
 Y una transversal: **la precisión del pronóstico y la disponibilidad de inventario
 se mantienen separadas**. Un pronóstico perfecto sin stock sigue siendo un quiebre,
@@ -519,6 +587,7 @@ y un WAPE de 40% en un artículo C bien amortiguado no es un problema.
 - Página de detalle por producto con qué / por qué / impacto, metodología,
   métricas y los métodos que compitieron
 - Interfaz completa en español e inglés, incluidas las recomendaciones generadas
+- Marca *Datanova Forecast* en Poppins, interfaz en Archivo, pie *Datanova Studio*
 - Responsive hasta 390px, foco visible por teclado, respeta `prefers-reduced-motion`
 
 **Materiales (cuando hay recetas)**
@@ -527,7 +596,10 @@ y un WAPE de 40% en un artículo C bien amortiguado no es un problema.
 - Editor de recetas y de materiales dentro de la herramienta, sin archivo
 - Programa de producción derivado del pronóstico y la política de inventario
 - Explosión de recetas con merma como divisor de rendimiento
-- Neteo contra stock, lot sizing por MOQ y múltiplo, desfase por lead time
+- Neteo contra stock, lot sizing por MOQ y múltiplo, desfase por el lead time
+  propio de cada par proveedor-insumo
+- Compras agrupadas por proveedor, ordenadas por atraso, fecha y valor, con el
+  rango de plazos de cada uno
 - Detección de compras atrasadas con los días de atraso
 - Conflictos de vida útil cuantificados en unidades y dinero, distinguiendo
   cuándo el culpable es el MOQ del proveedor
@@ -541,8 +613,11 @@ y un WAPE de 40% en un artículo C bien amortiguado no es un problema.
   se pierde el análisis. Es la consecuencia de que todo corra en el navegador.
 - **Cobro.** No hay planes ni pagos.
 - **Integraciones** con ERP, Shopify, QuickBooks o SAP.
-- **Órdenes de compra y proveedores.** Las cantidades se calculan pero no hay a
-  dónde enviarlas.
+- **Emisión de órdenes de compra.** El plan ya te dice qué pedirle a cada
+  proveedor, cuánto, por cuánto y hasta cuándo puedes esperar — pero no emite el
+  documento ni lo envía. La orden se arma afuera, con esa lista a la vista.
+- **Maestro de proveedores.** El proveedor se lee del archivo de materiales como
+  texto; no hay ficha con contacto, condiciones de pago ni historial de entregas.
 - **Recetas de varios niveles.** Un producto explota a sus insumos directos. Si
   fabricas un semi-elaborado que a su vez tiene receta, hay que aplanarla a mano.
 - **Capacidad de producción.** El programa asume que puedes producir el lote que

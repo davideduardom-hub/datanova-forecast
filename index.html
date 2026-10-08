@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M2 5h5v5h5v5h5v5h5' stroke='%230e3b34' stroke-width='2.1' fill='none'/%3E%3Ccircle cx='19.5' cy='4.5' r='2.5' fill='%23b45309'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
 <style>
 /* ===========================================================================
    Datanova Forecast — design tokens
@@ -28,6 +28,7 @@
   --excess:#3f3d9e;  --excess-soft:#ececf9;
   --ok:#697672;      --ok-soft:#eef1f0;
   --sans:"Archivo",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --brand:"Poppins","Archivo",ui-sans-serif,system-ui,sans-serif;
   --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
 }
 *{box-sizing:border-box;border-color:var(--g-100)}
@@ -65,8 +66,11 @@ table{border-collapse:collapse}
   backdrop-filter:blur(8px);border-bottom:1px solid var(--g-100)}
 .hdr-in{display:flex;align-items:center;gap:22px;height:56px}
 .brand{display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0}
-.brand b{color:var(--ink-800);font-weight:600;letter-spacing:-.02em}
-.brand span{color:var(--g-500);font-weight:500;letter-spacing:-.02em}
+/* The wordmark is set in Poppins to sit alongside the Datanova Studio mark,
+   which uses the same geometric sans. Everything else stays in Archivo. */
+.wordmark{font-family:var(--brand)}
+.brand b{color:var(--ink-800);font-weight:600;letter-spacing:-.015em}
+.brand span{color:var(--g-500);font-weight:500;letter-spacing:-.015em}
 .nav{display:flex;gap:2px;margin-left:4px}
 .nav button{background:none;border:0;border-radius:6px;padding:6px 12px;font-size:13.5px;
   font-weight:500;color:var(--g-500);white-space:nowrap}
@@ -298,7 +302,7 @@ table.edit input:focus,table.edit select:focus{border-color:var(--ink-700);outli
         <path d="M2 5h5v5h5v5h5v5h5" stroke="var(--ink-800)" stroke-width="2.1" stroke-linecap="square"/>
         <circle cx="19.5" cy="4.5" r="2.5" fill="var(--warning)"/>
       </svg>
-      <span class="bw" style="font-size:15px;white-space:nowrap"><b>Datanova</b> <span>Forecast</span></span>
+      <span class="bw wordmark" style="font-size:15.5px;white-space:nowrap"><b>Datanova</b> <span>Forecast</span></span>
     </a>
     <div class="hdr-right">
       <button class="btn btn-g btn-sm hidden" id="btnRestart" onclick="restart()">
@@ -427,6 +431,12 @@ table.edit input:focus,table.edit select:focus{border-color:var(--ink-700);outli
           grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px"></div>
       </div>
 
+      <div class="card hidden" id="cfLtCard" style="margin-top:16px">
+        <div class="pgrp-h" id="cfLtH"></div>
+        <div class="grid" id="cfLtGrid" style="padding:18px 20px;
+          grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px"></div>
+      </div>
+
       <div class="card hidden" id="cfMatCard" style="margin-top:16px">
         <div class="pgrp-h" id="cfMatH"></div>
         <div class="grid" id="cfMatGrid" style="padding:18px 20px;
@@ -522,7 +532,7 @@ table.edit input:focus,table.edit select:focus{border-color:var(--ink-700);outli
   <div class="wrap" style="padding:28px 20px;display:flex;flex-wrap:wrap;gap:20px;
       align-items:center;justify-content:space-between">
     <div>
-      <p style="font-size:13px;color:var(--g-700)"><b style="color:var(--ink-800)">Datanova</b> Forecast</p>
+      <p class="wordmark" style="font-size:14px;color:var(--g-700)"><b style="color:var(--ink-800)">Datanova</b> Forecast</p>
       <p id="footTag" style="margin-top:2px;font-size:12.5px;color:var(--g-500)"></p>
     </div>
     <div style="display:flex;align-items:center;gap:12px">
@@ -2143,7 +2153,8 @@ var DF = (() => {
     materialName: ["material name", "nombre material", "nombre insumo", "descripcion material", "descripci\xF3n material", "ingredient name", "nombre ingrediente", "insumo nombre"],
     qtyPerUnit: ["qty per unit", "quantity per unit", "cantidad por unidad", "cantidad unitaria", "consumo por unidad", "cantidad receta", "qty", "cantidad", "consumo unitario", "por unidad"],
     unit: ["unit", "unidad", "uom", "unidad de medida", "medida", "unit of measure"],
-    scrap: ["scrap", "scrap %", "merma", "merma %", "desperdicio", "waste", "waste %", "perdida", "p\xE9rdida", "yield loss"]
+    scrap: ["scrap", "scrap %", "merma", "merma %", "desperdicio", "waste", "waste %", "perdida", "p\xE9rdida", "yield loss"],
+    supplier: ["supplier", "proveedor", "vendor", "fabricante", "suplidor", "nombre proveedor", "supplier name", "distribuidor"]
   };
   var FIELD_LABELS = {
     date: { en: "Date", es: "Fecha" },
@@ -2164,7 +2175,8 @@ var DF = (() => {
     materialName: { en: "Material name", es: "Nombre del material" },
     qtyPerUnit: { en: "Quantity per unit", es: "Cantidad por unidad" },
     unit: { en: "Unit of measure", es: "Unidad de medida" },
-    scrap: { en: "Scrap %", es: "Merma %" }
+    scrap: { en: "Scrap %", es: "Merma %" },
+    supplier: { en: "Supplier", es: "Proveedor" }
   };
   var SYNONYM_INDEX = (() => {
     const out = {};
@@ -2345,6 +2357,7 @@ var DF = (() => {
       wanted: [
         "material",
         "materialName",
+        "supplier",
         "unit",
         "shelfLife",
         "leadTime",
@@ -3003,6 +3016,7 @@ var DF = (() => {
       [
         "material",
         "materialName",
+        "supplier",
         "unit",
         "shelfLife",
         "leadTime",
@@ -3045,6 +3059,7 @@ var DF = (() => {
       rows.push({
         code,
         name: matches.materialName ? String(r[matches.materialName.header] ?? "").trim() || code : code,
+        supplier: matches.supplier ? String(r[matches.supplier.header] ?? "").trim() || null : null,
         unit: matches.unit ? String(r[matches.unit.header] ?? "").trim() || "u" : "u",
         shelfLifeDays: shelf !== null && shelf > 0 ? shelf : null,
         leadTimeDays: lead !== null && lead >= 0 ? lead : 7,
@@ -3084,8 +3099,20 @@ var DF = (() => {
         count: noLead,
         title: `${noLead} materials have no lead time`,
         titleEs: `${noLead} materiales no tienen lead time`,
-        detail: "We assumed 7 days. A wrong lead time moves every purchase date, so this is worth filling in.",
-        detailEs: "Asumimos 7 d\xEDas. Un lead time equivocado mueve todas las fechas de compra, as\xED que vale la pena llenarlo."
+        detail: "We fell back to 7 days for those. Every supplier delivers on its own schedule, and the lead time is what sets each purchase date \u2014 so this column is worth filling in per material.",
+        detailEs: "Para esos usamos 7 d\xEDas como respaldo. Cada proveedor entrega en su propio plazo, y el lead time es lo que fija la fecha de cada compra \u2014 as\xED que vale la pena llenar esta columna material por material."
+      });
+    }
+    const noSupplier = rows.filter((r) => !r.supplier).length;
+    if (noSupplier && noSupplier < rows.length) {
+      issues.push({
+        code: "no_supplier",
+        severity: "info",
+        count: noSupplier,
+        title: `${noSupplier} materials have no supplier`,
+        titleEs: `${noSupplier} materiales no tienen proveedor`,
+        detail: "They are grouped as unassigned in the purchase plan. Filling this in lets the plan be read as one order per supplier, which is how purchases are actually placed.",
+        detailEs: "Quedan agrupados como sin asignar en el plan de compras. Llenarlo permite leer el plan como una orden por proveedor, que es como realmente se colocan las compras."
       });
     }
     if (negStock) {
@@ -3855,6 +3882,7 @@ function planMaterial(mat, byDate, drivers, opts) {
   return {
     code: mat.code,
     name: mat.name || mat.code,
+    supplier: mat.supplier || null,
     unit: mat.unit || "u",
     shelfLifeDays: shelf,
     leadTimeDays: L,
@@ -4062,9 +4090,43 @@ function run(plans, seriesBySku, boms, materials, opts) {
   var productionOrders = 0;
   skusWithRecipe.forEach(function (s) { productionOrders += schedules[s].length; });
 
+  // A purchase order goes to ONE supplier and covers every material you buy
+  // from them. Planning material by material and leaving the user to regroup
+  // by hand is how a material plan stops getting used.
+  var bySupplier = {};
+  out.forEach(function (m) {
+    if (!m.orders.length) return;
+    var key = m.supplier || "__none__";
+    var g = bySupplier[key] || (bySupplier[key] = {
+      supplier: m.supplier, materials: [], value: 0, lines: 0,
+      earliestRelease: null, lateLines: 0, leadTimes: {},
+    });
+    g.materials.push(m);
+    g.value += m.totalCost;
+    g.lines += m.orders.length;
+    g.lateLines += m.lateOrders;
+    g.leadTimes[m.leadTimeDays] = true;
+    m.orders.forEach(function (o) {
+      if (!g.earliestRelease || o.releaseDate < g.earliestRelease) g.earliestRelease = o.releaseDate;
+    });
+  });
+  var supplierGroups = Object.keys(bySupplier).map(function (k) {
+    var g = bySupplier[k];
+    g.leadTimeRange = Object.keys(g.leadTimes).map(Number).sort(function (a, b) { return a - b; });
+    delete g.leadTimes;
+    return g;
+  }).sort(function (a, b) {
+    if ((b.lateLines > 0) !== (a.lateLines > 0)) return b.lateLines - a.lateLines;
+    if (a.earliestRelease !== b.earliestRelease) {
+      return (a.earliestRelease || "9999") < (b.earliestRelease || "9999") ? -1 : 1;
+    }
+    return b.value - a.value;
+  });
+
   return {
     ok: true,
     materials: out,
+    supplierGroups: supplierGroups,
     schedules: schedules,
     summary: {
       materialCount: out.length,
@@ -4074,6 +4136,7 @@ function run(plans, seriesBySku, boms, materials, opts) {
       wasteValue: round2(sum(function (m) { return m.shelfRisk ? m.shelfRisk.wasteValue : 0; })),
       shelfRiskCount: out.filter(function (m) { return !!m.shelfRisk; }).length,
       productionOrders: productionOrders,
+      supplierCount: supplierGroups.filter(function (g) { return !!g.supplier; }).length,
       skusWithRecipe: skusWithRecipe.length,
       unknownMaterials: unknownMaterials,
       startDate: startDate, endDate: endDate,
@@ -4511,7 +4574,7 @@ function demandChart(hist, fc, h) {
       slotRecipe: "Recetas de tus productos",
       slotRecipeD: "La lista de materiales: qué insumos consume cada producto y cuánto. Con esto, tu plan de demanda explota automáticamente a plan de materiales.",
       slotMat: "Materiales e insumos",
-      slotMatD: "Vida útil, lead time, MOQ y costo de cada insumo. La vida útil es lo que evita que compres más de lo que alcanzas a usar.",
+      slotMatD: "Proveedor, vida útil, lead time, MOQ y costo de cada insumo. Cada proveedor entrega distinto, y esta tabla es donde esa diferencia entra al plan.",
       required: "OBLIGATORIO", optional: "OPCIONAL",
       slotUpload: "Subir archivo", slotReplace: "Reemplazar", slotClear: "Quitar",
       slotEdit: "Crear a mano", slotView: "Ver y editar",
@@ -4535,11 +4598,11 @@ function demandChart(hist, fc, h) {
 
       // ── step 2 ──
       s2Title: "Define tus parámetros",
-      s2Sub: "Estos son los datos que te pediría un Demand Planner antes de calcular nada.",
+      s2Sub: "Solo te pedimos lo que es una decisión tuya. Lo que es dato de tus proveedores — lead times, vida útil, MOQ — ya viene de tus archivos.",
       cfDemandH: "Demanda e inventario de producto terminado",
-      cfDemandHd: "Cómo quieres planificar lo que vendes.",
+      cfDemandHd: "Decisiones que son tuyas, no de tus proveedores.",
       cfMatH: "Compra de materiales",
-      cfMatHd: "Cómo quieres planificar lo que compras para producir. Solo aplica porque cargaste recetas.",
+      cfMatHd: "Tu ritmo de compra. El lead time de cada insumo ya viene de tu maestro de materiales.",
       purchaseCover: "Cobertura por compra",
       purchaseCoverHelp: "Cuántos días de consumo quieres cubrir con cada compra de material. La vida útil de cada insumo recorta este número automáticamente cuando hace falta.",
       s2Back: "Volver a datos",
@@ -4592,6 +4655,32 @@ function demandChart(hist, fc, h) {
       shelfLifeFg: "Vida útil del producto",
       overstockByShelf: "umbral por vida útil",
       sheetUsed: "Tu archivo tiene {n} hojas; leímos «{s}», que es la que contiene los datos.",
+      review: "Cada cuánto revisas y produces",
+      reviewHelp: "Tu ritmo de trabajo: cada cuánto miras el stock y haces un lote o colocas pedidos. Determina cuánto debe cubrir cada orden.",
+      leadTime: "Lead time de referencia",
+      leadTimeHelp: "Días entre colocar una orden y recibirla. Si no estás seguro, empieza con 7 — y llena la columna en tus archivos apenas puedas, porque cada proveedor es distinto.",
+      cfLtH: "Lead times de tus proveedores",
+      cfLtNoData: "Cuánto tarda cada proveedor en entregarte. Es un dato de ellos, no tuyo, y cada uno es distinto: el de cajas puede tardar tres semanas y el de lácteos tres días.",
+      cfLtAllCovered: "Ya vienen de tus archivos, uno por uno. No hay nada que definir aquí.",
+      cfLtPartial: "Vienen de tus archivos. Faltan {n} filas sin dato: para esas usaremos el respaldo de abajo.",
+      leadTimeFallback: "Respaldo para las filas sin lead time",
+      leadTimeFallbackHelp: "Solo se aplica donde el archivo no trae el dato. Lo correcto es llenar la columna en el archivo, porque cada proveedor entrega distinto.",
+      ltFromInv: "{a} de {b} productos con lead time propio",
+      ltFromMat: "{a} de {b} materiales con lead time propio",
+      ltSuppliers: "{n} proveedores distintos",
+      ltSingle: "Todos tus lead times son de {d} días.",
+      ltRange: "Tus lead times van de {min} a {max} días, con {n} valores distintos — cada compra se programa contra el suyo, no contra un promedio.",
+      matBySupplier: "Compras por proveedor",
+      matBySupplierSub: "Una orden de compra va a un proveedor y cubre todo lo que le compras. Así es como se coloca, así se agrupa.",
+      supNone: "Sin proveedor asignado",
+      supLines: "{n} línea(s)",
+      supOrderBy: "Colocar a más tardar el {d}",
+      supLate: "Debió colocarse ya",
+      supLeadOne: "entrega en {d} días",
+      supLeadRange: "entregas de {min} a {max} días",
+      cSupplier: "Proveedor",
+      edSupplier: "Proveedor",
+      matSupplierCount: "Proveedores",
     },
     en: {
       restart: "Start over",
@@ -4613,7 +4702,7 @@ function demandChart(hist, fc, h) {
       slotRecipe: "Your product recipes",
       slotRecipeD: "The bill of materials: which inputs each product consumes and how much. With this, your demand plan explodes automatically into a material plan.",
       slotMat: "Materials and ingredients",
-      slotMatD: "Shelf life, lead time, MOQ and cost per input. Shelf life is what stops you buying more than you can use.",
+      slotMatD: "Supplier, shelf life, lead time, MOQ and cost per input. Every supplier delivers differently, and this table is where that difference enters the plan.",
       required: "REQUIRED", optional: "OPTIONAL",
       slotUpload: "Upload file", slotReplace: "Replace", slotClear: "Remove",
       slotEdit: "Create by hand", slotView: "View and edit",
@@ -4635,11 +4724,11 @@ function demandChart(hist, fc, h) {
       demoLoad: "Load this case", demoCancel: "Cancel",
 
       s2Title: "Set your parameters",
-      s2Sub: "These are the inputs a demand planner would ask you for before calculating anything.",
+      s2Sub: "We only ask for what is your decision. What belongs to your suppliers \u2014 lead times, shelf life, MOQ \u2014 already comes from your files.",
       cfDemandH: "Finished-goods demand and inventory",
-      cfDemandHd: "How you want to plan what you sell.",
+      cfDemandHd: "Decisions that are yours, not your suppliers\u2019.",
       cfMatH: "Material purchasing",
-      cfMatHd: "How you want to plan what you buy to produce. Shown because you loaded recipes.",
+      cfMatHd: "Your purchasing rhythm. Each input\u2019s lead time already comes from your material master.",
       purchaseCover: "Coverage per purchase",
       purchaseCoverHelp: "How many days of consumption each material purchase should cover. Each input's shelf life trims this automatically when needed.",
       s2Back: "Back to data",
@@ -4689,6 +4778,32 @@ function demandChart(hist, fc, h) {
       shelfLifeFg: "Product shelf life",
       overstockByShelf: "threshold from shelf life",
       sheetUsed: "Your file has {n} sheets; we read \u201c{s}\u201d, which is the one holding the data.",
+      review: "How often you review and produce",
+      reviewHelp: "Your working rhythm: how often you look at stock and make a batch or place orders. Drives how much each order has to cover.",
+      leadTime: "Reference lead time",
+      leadTimeHelp: "Days between placing an order and receiving it. If unsure start with 7 \u2014 and fill the column in your files as soon as you can, because every supplier is different.",
+      cfLtH: "Your suppliers\u2019 lead times",
+      cfLtNoData: "How long each supplier takes to deliver. That is their attribute, not yours, and every one is different: the box maker may take three weeks and the dairy three days.",
+      cfLtAllCovered: "They already come from your files, one by one. There is nothing to set here.",
+      cfLtPartial: "They come from your files. {n} rows have none: those will use the fallback below.",
+      leadTimeFallback: "Fallback for rows with no lead time",
+      leadTimeFallbackHelp: "Applied only where the file is silent. The right fix is to fill the column in the file, because every supplier delivers differently.",
+      ltFromInv: "{a} of {b} products with their own lead time",
+      ltFromMat: "{a} of {b} materials with their own lead time",
+      ltSuppliers: "{n} different suppliers",
+      ltSingle: "All your lead times are {d} days.",
+      ltRange: "Your lead times run from {min} to {max} days, across {n} distinct values — each purchase is scheduled against its own, not against an average.",
+      matBySupplier: "Purchases by supplier",
+      matBySupplierSub: "A purchase order goes to one supplier and covers everything you buy from them. That is how it is placed, so that is how it is grouped.",
+      supNone: "No supplier assigned",
+      supLines: "{n} line(s)",
+      supOrderBy: "Place no later than {d}",
+      supLate: "Should already have been placed",
+      supLeadOne: "delivers in {d} days",
+      supLeadRange: "delivers in {min}–{max} days",
+      cSupplier: "Supplier",
+      edSupplier: "Supplier",
+      matSupplierCount: "Suppliers",
     },
   };
   ["es", "en"].forEach(function (L) {
@@ -4804,12 +4919,14 @@ var TEMPLATES = {
         d: { es: "Código del insumo, igual que en recetas.", en: "Input code, same as in recipes." } },
       { h: { es: "Nombre", en: "Name" }, req: false,
         d: { es: "Nombre legible.", en: "Readable name." } },
+      { h: { es: "Proveedor", en: "Supplier" }, req: false,
+        d: { es: "A quién le compras este insumo. Las órdenes se agrupan por proveedor, que es como realmente se colocan.", en: "Who you buy this input from. Purchases are grouped by supplier, which is how they are actually placed." } },
       { h: { es: "Unidad", en: "Unit" }, req: false,
         d: { es: "Unidad de medida de compra y consumo.", en: "Unit of purchase and consumption." } },
       { h: { es: "Vida Util Dias", en: "Shelf Life Days" }, req: false,
         d: { es: "Días que el insumo dura. Déjalo vacío si no caduca.", en: "Days the input lasts. Leave empty if it does not expire." } },
       { h: { es: "Lead Time Dias", en: "Lead Time Days" }, req: false,
-        d: { es: "Días que tarda el proveedor. Si falta, asumimos 7.", en: "Days the supplier takes. If missing we assume 7." } },
+        d: { es: "Días que tarda ESTE proveedor con ESTE insumo. Cada proveedor es distinto: esta columna es la que fija la fecha de cada compra.", en: "Days THIS supplier takes with THIS input. Every supplier is different: this column is what sets each purchase date." } },
       { h: { es: "Variabilidad Lead Time", en: "Lead Time Variability" }, req: false,
         d: { es: "Cuántos días suele adelantarse o atrasarse. Solo esto genera colchón de material.", en: "How many days it typically runs early or late. Only this generates a material buffer." } },
       { h: { es: "MOQ", en: "MOQ" }, req: false,
@@ -4822,13 +4939,13 @@ var TEMPLATES = {
         d: { es: "Cuánto tienes hoy de ese insumo.", en: "How much of that input you hold today." } },
     ],
     rows: [
-      ["MAT-CHOC", "Chocolate cobertura 70%", "g", 365, 14, 3, 10000, 5000, 0.016, 18000],
-      ["MAT-CREMA", "Crema de leche UHT", "ml", 21, 3, 0, 24000, 1000, 0.0045, 6000],
-      ["MAT-CAJA12", "Caja presentación 12u", "u", "", 20, 0, 500, 100, 0.78, 240],
+      ["MAT-CHOC", "Chocolate cobertura 70%", "Cacao Andino", "g", 365, 14, 3, 10000, 5000, 0.016, 18000],
+      ["MAT-CREMA", "Crema de leche fresca", "Lácteos del Valle", "ml", 14, 3, 0, 24000, 1000, 0.0045, 6000],
+      ["MAT-CAJA12", "Caja presentación 12u", "Empaques Litoral", "u", "", 21, 5, 500, 100, 0.78, 240],
     ],
     note: {
-      es: "La vida útil y el MOQ juntos son el par más caro del archivo. Un MOQ de 24 litros sobre una crema que vence en 21 días significa comprar más de lo que alcanzas a usar: la herramienta te lo dice con el monto, y te dice que eso se arregla con el proveedor, no con el plan.",
-      en: "Shelf life and MOQ together are the most expensive pair in this file. A 24-litre MOQ on a cream that expires in 21 days means buying more than you can use: the tool tells you so with the money attached, and tells you that is fixed with the supplier, not with the plan.",
+      es: "Una línea por insumo, no una por proveedor: cada insumo trae su propio lead time, su propia vida útil y su propio MOQ, porque cada proveedor es distinto. Las cajas pueden tardar 21 días y la crema 3; el plan lo respeta y agrupa las compras por proveedor para que coloques una orden por cada uno.\n\nLa vida útil y el MOQ juntos son el par más caro del archivo. Un MOQ de 24 litros sobre una crema que vence en 14 días significa comprar más de lo que alcanzas a usar: la herramienta te lo dice con el monto, y te dice que eso se arregla con el proveedor, no con el plan.",
+      en: "One line per input, not per supplier: each input carries its own lead time, its own shelf life and its own MOQ, because every supplier is different. Boxes may take 21 days and cream 3; the plan respects that and groups purchases by supplier so you place one order per supplier.\n\nShelf life and MOQ together are the most expensive pair in this file. A 24-litre MOQ on a cream that expires in 14 days means buying more than you can use: the tool tells you so with the money attached, and tells you that is fixed with the supplier, not with the plan.",
     },
   },
 };
@@ -5229,6 +5346,39 @@ window.clearSlot = function (key) {
 };
 
 // ───────────────────────── step 2 · parameters ─────────────────────────
+/**
+ * What the loaded data already says about lead times.
+ *
+ * Lead time is a supplier attribute, not a company-wide setting: the box maker
+ * takes three weeks, the dairy takes three days. It belongs per row in the
+ * data, and the global field is only a fallback for rows that do not carry
+ * one. This works out how much of it the data already covers, so step 2 can
+ * ask for the fallback only when something is actually missing.
+ */
+function leadTimeCoverage() {
+  var inv = state.inventory || [];
+  var mats = state.materials || [];
+  var invWith = inv.filter(function (r) { return r.leadTimeDays != null && r.leadTimeDays > 0; });
+  var matWith = mats.filter(function (r) { return r.leadTimeDays != null && r.leadTimeDays > 0; });
+
+  var values = {};
+  invWith.forEach(function (r) { values[r.leadTimeDays] = true; });
+  matWith.forEach(function (r) { values[r.leadTimeDays] = true; });
+  var distinct = Object.keys(values).map(Number).sort(function (a, b) { return a - b; });
+
+  var suppliers = {};
+  mats.forEach(function (r) { if (r.supplier) suppliers[r.supplier] = true; });
+
+  return {
+    invTotal: inv.length, invWith: invWith.length,
+    matTotal: mats.length, matWith: matWith.length,
+    missing: (inv.length - invWith.length) + (mats.length - matWith.length),
+    total: inv.length + mats.length,
+    distinct: distinct,
+    supplierCount: Object.keys(suppliers).length,
+  };
+}
+
 function renderStep2() {
   $("s2Title").textContent = t("s2Title");
   $("s2Sub").textContent = t("s2Sub");
@@ -5244,6 +5394,7 @@ function renderStep2() {
   $("cfMatH").innerHTML = "<h3>" + esc(t("cfMatH")) + "</h3><p>" + esc(t("cfMatHd")) + "</p>";
 
   var p = state.params;
+  var lt = leadTimeCoverage();
   var sel = function (id, label, help, opts, val) {
     return '<div class="field"><label for="' + id + '">' + esc(label) + "</label>" +
       '<select class="ctrl" id="' + id + '" onchange="setParam(\'' + id + '\',this.value)">' +
@@ -5260,16 +5411,38 @@ function renderStep2() {
       (help ? '<p class="help">' + esc(help) + "</p>" : "") + "</div>";
   };
 
+  // Only the decisions that are genuinely yours live here.
   $("cfGrid").innerHTML =
     sel("horizonDays", t("horizon"), t("horizonHelp"),
       [[7, "7 " + t("days")], [30, "30 " + t("days")], [60, "60 " + t("days")], [90, "90 " + t("days")]], p.horizonDays) +
     sel("serviceLevel", t("service"), t("serviceHelp"),
       [[0.9, "90%"], [0.95, "95%"], [0.98, "98%"], [0.99, "99%"]], p.serviceLevel) +
-    inp("leadTimeDays", t("leadTime"), t("leadTimeHelp"), p.leadTimeDays, 1, 180) +
-    inp("leadTimeSdDays", t("leadTimeSd"), t("leadTimeSdHelp"), p.leadTimeSdDays, 0, 90) +
     sel("reviewPeriodDays", t("review"), t("reviewHelp"),
       [[1, t("daily")], [7, t("weekly")], [14, t("biweekly")], [30, t("monthly")]], p.reviewPeriodDays) +
     inp("overstockDays", t("overstock"), t("overstockHelp"), p.overstockDays, 7, 1000);
+
+  // Lead times: shown as what the data says, and only asked for where it is silent.
+  var ltCard = $("cfLtCard");
+  if (lt.total === 0) {
+    // Nothing loaded that could carry a lead time — the global one is all there is.
+    ltCard.classList.remove("hidden");
+    $("cfLtH").innerHTML = "<h3>" + esc(t("cfLtH")) + "</h3><p>" + esc(t("cfLtNoData")) + "</p>";
+    $("cfLtGrid").innerHTML =
+      inp("leadTimeDays", t("leadTime"), t("leadTimeHelp"), p.leadTimeDays, 1, 180) +
+      inp("leadTimeSdDays", t("leadTimeSd"), t("leadTimeSdHelp"), p.leadTimeSdDays, 0, 90);
+  } else if (lt.missing === 0) {
+    // Everything is covered by the files: state it and ask for nothing.
+    ltCard.classList.remove("hidden");
+    $("cfLtH").innerHTML = "<h3>" + esc(t("cfLtH")) + "</h3><p>" + esc(t("cfLtAllCovered")) + "</p>";
+    $("cfLtGrid").innerHTML = '<div style="grid-column:1/-1">' + ltSummary(lt) + "</div>";
+  } else {
+    ltCard.classList.remove("hidden");
+    $("cfLtH").innerHTML = "<h3>" + esc(t("cfLtH")) + "</h3><p>" +
+      esc(t("cfLtPartial", { n: lt.missing })) + "</p>";
+    $("cfLtGrid").innerHTML = '<div style="grid-column:1/-1">' + ltSummary(lt) + "</div>" +
+      inp("leadTimeDays", t("leadTimeFallback"), t("leadTimeFallbackHelp"), p.leadTimeDays, 1, 180) +
+      inp("leadTimeSdDays", t("leadTimeSd"), t("leadTimeSdHelp"), p.leadTimeSdDays, 0, 90);
+  }
 
   var hasRecipes = !!(state.recipes && state.recipes.length);
   $("cfMatCard").classList.toggle("hidden", !hasRecipes);
@@ -5279,6 +5452,25 @@ function renderStep2() {
         [[7, "7 " + t("days")], [14, "14 " + t("days")], [30, "30 " + t("days")],
          [60, "60 " + t("days")], [90, "90 " + t("days")]], p.purchaseCoverDays);
   }
+}
+
+/** A plain statement of the lead times the files already carry. */
+function ltSummary(lt) {
+  var bits = [];
+  if (lt.invTotal) bits.push(t("ltFromInv", { a: lt.invWith, b: lt.invTotal }));
+  if (lt.matTotal) bits.push(t("ltFromMat", { a: lt.matWith, b: lt.matTotal }));
+  var range = lt.distinct.length
+    ? (lt.distinct.length === 1
+        ? t("ltSingle", { d: lt.distinct[0] })
+        : t("ltRange", { min: lt.distinct[0], max: lt.distinct[lt.distinct.length - 1],
+                         n: lt.distinct.length }))
+    : "";
+  return '<div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">' +
+    bits.map(function (b) { return '<span class="chip">' + esc(b) + "</span>"; }).join("") +
+    (lt.supplierCount ? '<span class="chip">' + esc(t("ltSuppliers", { n: lt.supplierCount })) + "</span>" : "") +
+    "</div>" +
+    (range ? '<p style="margin-top:9px;font-size:12.5px;line-height:1.5;color:var(--g-500);max-width:74ch">' +
+      esc(range) + "</p>" : "");
 }
 window.setParam = function (k, v) {
   var n = Number(v);
@@ -5837,7 +6029,8 @@ function renderMaterialsTab() {
       (hint ? '<div class="hint">' + esc(hint) + "</div>" : "") + "</div></div>";
   };
   h += '<div class="grid" style="margin-top:16px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">' +
-    tile(t("matCount"), N(sm.materialCount), t("ofN", { n: sm.materialCount })) +
+    tile(t("matCount"), N(sm.materialCount),
+      sm.supplierCount ? t("matSupplierCount") + ": " + sm.supplierCount : "") +
     tile(t("matAtRisk"), N(sm.materialsAtRisk), "", sm.materialsAtRisk > 0 ? "var(--critical)" : null) +
     tile(t("matLate"), N(sm.lateOrders), "", sm.lateOrders > 0 ? "var(--critical)" : null) +
     tile(t("matPurchase"), C(sm.purchaseValue, true), "") +
@@ -5891,6 +6084,40 @@ function renderMaterialsTab() {
   }
   h += "</div>";
 
+  // ── purchases grouped the way they are actually placed: one order, one supplier ──
+  var groups = (m.supplierGroups || []).filter(function (g) { return g.lines > 0; });
+  if (groups.length) {
+    h += '<div class="card" style="margin-top:16px"><div style="padding:16px 20px 12px">' +
+      '<h3 style="font-size:15px">' + esc(t("matBySupplier")) + "</h3>" +
+      '<p style="margin-top:2px;font-size:13px;color:var(--g-500);max-width:74ch">' +
+      esc(t("matBySupplierSub")) + "</p></div>" +
+      '<ul style="margin:0;padding:0;list-style:none;border-top:1px solid var(--g-100)">' +
+      groups.map(function (g) {
+        var lead = g.leadTimeRange.length === 1
+          ? t("supLeadOne", { d: g.leadTimeRange[0] })
+          : t("supLeadRange", { min: g.leadTimeRange[0],
+                                max: g.leadTimeRange[g.leadTimeRange.length - 1] });
+        return '<li style="padding:14px 20px;border-bottom:1px solid var(--g-100)">' +
+          '<div style="display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center">' +
+          '<span style="font-size:14.5px;font-weight:600;color:var(--ink-800)">' +
+          esc(g.supplier || t("supNone")) + "</span>" +
+          '<span class="chip">' + esc(t("supLines", { n: g.lines })) + "</span>" +
+          '<span class="chip">' + esc(lead) + "</span>" +
+          '<span class="tnum" style="margin-left:auto;font-size:13.5px;font-weight:600">' +
+          esc(M(g.value)) + "</span></div>" +
+          '<p style="margin-top:6px;font-size:13px;font-weight:500;color:' +
+          (g.lateLines ? "var(--critical)" : "var(--g-700)") + '">' +
+          esc(g.lateLines ? t("supLate") : t("supOrderBy", { d: LD(g.earliestRelease) })) + "</p>" +
+          '<ul style="margin:8px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px">' +
+          g.materials.map(function (x) {
+            return '<li class="chip" style="background:var(--paper)">' + esc(x.name) + " · " +
+              esc(N(x.totalOrderQty)) + " " + esc(x.unit) +
+              (x.lateOrders ? ' <span style="color:var(--critical);font-weight:700">!</span>' : "") +
+              "</li>";
+          }).join("") + "</ul></li>";
+      }).join("") + "</ul></div>";
+  }
+
   // ── shelf life conflicts, called out on their own ──
   var conflicts = m.materials.filter(function (x) { return !!x.shelfRisk; });
   if (conflicts.length) {
@@ -5918,9 +6145,10 @@ function renderMaterialsTab() {
     'flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between">' +
     '<h3 style="font-size:15px">' + esc(t("matTblTitle")) + "</h3>" +
     '<button class="btn btn-s btn-sm" onclick="exportMaterialsCsv()">' + esc(t("exportCsv")) + "</button></div>" +
-    '<div class="tbl-scroll"><table class="data" style="min-width:1000px"><thead><tr>' +
+    '<div class="tbl-scroll"><table class="data" style="min-width:1140px"><thead><tr>' +
     '<th style="cursor:default">' + esc(t("cRisk")) + "</th>" +
     '<th style="cursor:default">' + esc(t("cMaterial")) + "</th>" +
+    '<th style="cursor:default">' + esc(t("cSupplier")) + "</th>" +
     '<th class="num" style="cursor:default">' + esc(t("cShelf")) + "</th>" +
     '<th class="num" style="cursor:default">' + esc(t("cOnHand")) + "</th>" +
     '<th class="num" style="cursor:default">' + esc(t("cNeed")) + "</th>" +
@@ -5939,6 +6167,10 @@ function renderMaterialsTab() {
         "</span></td>" +
         "<td>" + esc(x.name) +
         '<span style="display:block;font-size:11.5px;color:var(--g-500)">' + esc(x.code) + " · " + esc(x.unit) + "</span></td>" +
+        '<td style="font-size:12.5px">' + (x.supplier ? esc(x.supplier) :
+          '<span style="color:var(--g-300)">—</span>') +
+        '<span style="display:block;font-size:11.5px;color:var(--g-500)">' +
+          esc(t("supLeadOne", { d: x.leadTimeDays })) + "</span></td>" +
         '<td class="num tnum">' + (x.shelfLifeDays ? x.shelfLifeDays + " " + esc(t("days")) :
           '<span style="color:var(--g-300)">—</span>') + "</td>" +
         '<td class="num tnum">' + esc(N(x.onHand)) + "</td>" +
@@ -5996,12 +6228,12 @@ window.exportMaterialsCsv = function () {
   if (!m || !m.ok) return;
   var es = esNow();
   var H = es
-    ? ["Material", "Nombre", "Unidad", "Vida util dias", "Lead time dias", "MOQ", "Multiplo",
+    ? ["Material", "Nombre", "Proveedor", "Unidad", "Vida util dias", "Lead time dias", "MOQ", "Multiplo",
        "Costo unitario", "Stock actual", "Necesidad bruta", "Consumo diario", "Stock de seguridad",
        "Dias de cobertura", "Fecha de agotamiento", "Compras", "Cantidad total", "Costo total",
        "Primera colocacion", "Atrasada", "Merma por vida util", "Valor merma", "Riesgo",
        "Usado en", "Recomendacion", "Por que"]
-    : ["Material", "Name", "Unit", "Shelf life days", "Lead time days", "MOQ", "Pack size",
+    : ["Material", "Name", "Supplier", "Unit", "Shelf life days", "Lead time days", "MOQ", "Pack size",
        "Unit cost", "Current stock", "Gross requirement", "Daily use", "Safety stock",
        "Coverage days", "Run-out date", "Orders", "Total quantity", "Total cost",
        "First release", "Late", "Shelf-life waste", "Waste value", "Risk",
@@ -6014,7 +6246,7 @@ window.exportMaterialsCsv = function () {
   m.materials.forEach(function (x) {
     var rec = es ? x.recommendationEs : x.recommendationEn;
     var first = x.orders[0];
-    lines.push([x.code, x.name, x.unit, x.shelfLifeDays == null ? "" : x.shelfLifeDays,
+    lines.push([x.code, x.name, x.supplier || "", x.unit, x.shelfLifeDays == null ? "" : x.shelfLifeDays,
       x.leadTimeDays, x.moq, x.packSize, x.unitCost, x.onHand, x.grossRequirement,
       x.avgDailyUse, x.safetyStock, x.coverageDays == null ? "" : x.coverageDays,
       x.runOutDate || "", x.orderCount, x.totalOrderQty, x.totalCost,
@@ -6164,7 +6396,7 @@ function blankRecipeLine() {
   return { sku: "", material: "", materialName: "", qtyPerUnit: "", unit: "g", scrapPct: 0 };
 }
 function blankMaterial() {
-  return { code: "", name: "", unit: "g", shelfLifeDays: "", leadTimeDays: 7,
+  return { code: "", name: "", supplier: "", unit: "g", shelfLifeDays: "", leadTimeDays: 7,
            leadTimeSdDays: 0, moq: 0, packSize: 0, unitCost: 0, onHand: 0 };
 }
 
@@ -6259,9 +6491,9 @@ window.saveRecipes = function () {
     rows.forEach(function (r) {
       if (!known[r.material]) {
         known[r.material] = 1;
-        added.push({ code: r.material, name: r.materialName || r.material, unit: r.unit || "u",
-          shelfLifeDays: null, leadTimeDays: 7, leadTimeSdDays: 0, moq: 0, packSize: 0,
-          unitCost: 0, onHand: 0 });
+        added.push({ code: r.material, name: r.materialName || r.material, supplier: null,
+          unit: r.unit || "u", shelfLifeDays: null, leadTimeDays: 7, leadTimeSdDays: 0,
+          moq: 0, packSize: 0, unitCost: 0, onHand: 0 });
       }
     });
     if (added.length) state.materials = (state.materials || []).concat(added);
@@ -6280,6 +6512,7 @@ function renderMaterialEditor() {
         ' oninput="editMat(' + i + ',\'' + k + '\',this.value)"></td>';
     };
     return "<tr>" + f("code", "s", "104px", "MAT-001") + f("name", "s", null, "Chocolate") +
+      f("supplier", "s", null, "Cacao Andino") +
       f("unit", "s", "62px", "g") + f("shelfLifeDays", "n", "80px", "—") +
       f("leadTimeDays", "n", "74px") + f("moq", "n", "84px") + f("packSize", "n", "84px") +
       f("unitCost", "n", "86px") + f("onHand", "n", "92px") +
@@ -6292,7 +6525,7 @@ function renderMaterialEditor() {
     '<p style="margin-top:5px;font-size:13px;line-height:1.5;color:var(--g-500)">' + esc(t("edMatSub")) + "</p></div>" +
     '<div style="padding:12px 16px;max-height:52vh;overflow:auto">' +
     '<table class="edit"><thead><tr>' +
-    ["edCode", "edName", "edUnit", "edShelf", "edLead", "edMoq", "edPack", "edCost", "edStock"]
+    ["edCode", "edName", "edSupplier", "edUnit", "edShelf", "edLead", "edMoq", "edPack", "edCost", "edStock"]
       .map(function (k) { return "<th>" + esc(t(k)) + "</th>"; }).join("") +
     "<th></th></tr></thead><tbody>" + rows + "</tbody></table>" +
     '<button class="btn btn-g btn-sm" style="margin-top:10px" onclick="addMat()">+ ' +
@@ -6312,6 +6545,7 @@ window.saveMats = function () {
     return {
       code: String(m.code || "").trim(),
       name: String(m.name || "").trim() || String(m.code || "").trim(),
+      supplier: String(m.supplier || "").trim() || null,
       unit: String(m.unit || "").trim() || "u",
       shelfLifeDays: Number.isFinite(shelf) && shelf > 0 ? shelf : null,
       leadTimeDays: num(m.leadTimeDays, 7),
@@ -6592,35 +6826,46 @@ function buildChocolateDemo() {
     return { sku: r[0], material: r[1], materialName: null, qtyPerUnit: r[2], unit: r[3], scrapPct: r[4] };
   });
 
+  // Five suppliers, each with its own rhythm — which is the point. The
+  // chocolate importer takes two weeks, the dairy three days, the printer
+  // three to four weeks. A single company-wide lead time would be fiction.
   var materials = [
-    { code: "MAT-CHOC70", name: "Chocolate cobertura 70%", unit: "g", shelfLifeDays: 365,
-      leadTimeDays: 14, leadTimeSdDays: 3, moq: 10000, packSize: 5000, unitCost: 0.016, onHand: 128000 },
-    { code: "MAT-CHOCB", name: "Chocolate blanco cobertura", unit: "g", shelfLifeDays: 240,
-      leadTimeDays: 14, leadTimeSdDays: 2, moq: 5000, packSize: 1000, unitCost: 0.019, onHand: 11000 },
-    // The headline conflict: 21-day shelf life against a 24-litre minimum.
-    // Stock sits just under the reorder point so the purchase is due now and
-    // the MOQ problem surfaces with it.
-    { code: "MAT-CREMA", name: "Crema de leche fresca", unit: "ml", shelfLifeDays: 14,
-      leadTimeDays: 3, leadTimeSdDays: 1, moq: 24000, packSize: 1000, unitCost: 0.0045, onHand: 5200 },
+    { code: "MAT-CHOC70", name: "Chocolate cobertura 70%", supplier: "Cacao Andino", unit: "g",
+      shelfLifeDays: 365, leadTimeDays: 14, leadTimeSdDays: 3, moq: 10000, packSize: 5000,
+      unitCost: 0.016, onHand: 128000 },
+    { code: "MAT-CHOCB", name: "Chocolate blanco cobertura", supplier: "Cacao Andino", unit: "g",
+      shelfLifeDays: 240, leadTimeDays: 14, leadTimeSdDays: 2, moq: 5000, packSize: 1000,
+      unitCost: 0.019, onHand: 11000 },
+    { code: "MAT-CACAO", name: "Cacao en polvo", supplier: "Cacao Andino", unit: "g",
+      shelfLifeDays: 540, leadTimeDays: 12, leadTimeSdDays: 0, moq: 5000, packSize: 1000,
+      unitCost: 0.009, onHand: 16000 },
+    // Fresh cream: 14-day life against a 24-litre minimum from the dairy.
+    { code: "MAT-CREMA", name: "Crema de leche fresca", supplier: "Lácteos del Valle", unit: "ml",
+      shelfLifeDays: 14, leadTimeDays: 3, leadTimeSdDays: 1, moq: 24000, packSize: 1000,
+      unitCost: 0.0045, onHand: 5200 },
     // Butter wholesales in 25 kg blocks. A maker using a few hundred grams a
-    // day cannot finish one before it turns — the single most expensive line
-    // in this file, and nothing in the plan can fix it.
-    { code: "MAT-MANT", name: "Mantequilla sin sal", unit: "g", shelfLifeDays: 45,
-      leadTimeDays: 4, leadTimeSdDays: 0, moq: 25000, packSize: 2500, unitCost: 0.011, onHand: 7200 },
-    { code: "MAT-CACAO", name: "Cacao en polvo", unit: "g", shelfLifeDays: 540,
-      leadTimeDays: 12, leadTimeSdDays: 0, moq: 5000, packSize: 1000, unitCost: 0.009, onHand: 16000 },
-    { code: "MAT-AZUCAR", name: "Azúcar impalpable", unit: "g", shelfLifeDays: 720,
-      leadTimeDays: 5, leadTimeSdDays: 0, moq: 10000, packSize: 1000, unitCost: 0.002, onHand: 22000 },
-    // Packaging with a three-week lead time is the classic thing a small maker
-    // forgets until the boxes run out: left genuinely overdue on purpose.
-    { code: "MAT-CAJA12", name: "Caja presentación 12u", unit: "u", shelfLifeDays: null,
-      leadTimeDays: 21, leadTimeSdDays: 5, moq: 500, packSize: 100, unitCost: 0.78, onHand: 190 },
-    { code: "MAT-CAJA24", name: "Caja regalo 24u", unit: "u", shelfLifeDays: null,
-      leadTimeDays: 25, leadTimeSdDays: 6, moq: 250, packSize: 50, unitCost: 1.40, onHand: 340 },
-    { code: "MAT-LAZO", name: "Lazo satinado", unit: "u", shelfLifeDays: null,
-      leadTimeDays: 10, leadTimeSdDays: 0, moq: 1000, packSize: 500, unitCost: 0.12, onHand: 2200 },
-    { code: "MAT-ENVOL", name: "Envoltura metalizada", unit: "u", shelfLifeDays: null,
-      leadTimeDays: 12, leadTimeSdDays: 2, moq: 2000, packSize: 1000, unitCost: 0.07, onHand: 3400 },
+    // day cannot finish one before it turns — the most expensive line here,
+    // and nothing in the plan can fix it.
+    { code: "MAT-MANT", name: "Mantequilla sin sal", supplier: "Lácteos del Valle", unit: "g",
+      shelfLifeDays: 45, leadTimeDays: 4, leadTimeSdDays: 0, moq: 25000, packSize: 2500,
+      unitCost: 0.011, onHand: 7200 },
+    { code: "MAT-AZUCAR", name: "Azúcar impalpable", supplier: "Distribuidora La Granja", unit: "g",
+      shelfLifeDays: 720, leadTimeDays: 5, leadTimeSdDays: 0, moq: 10000, packSize: 1000,
+      unitCost: 0.002, onHand: 22000 },
+    // Printed packaging with a three-week lead time is the classic thing a
+    // small maker forgets until the boxes run out: left overdue on purpose.
+    { code: "MAT-CAJA12", name: "Caja presentación 12u", supplier: "Empaques Litoral", unit: "u",
+      shelfLifeDays: null, leadTimeDays: 21, leadTimeSdDays: 5, moq: 500, packSize: 100,
+      unitCost: 0.78, onHand: 190 },
+    { code: "MAT-CAJA24", name: "Caja regalo 24u", supplier: "Empaques Litoral", unit: "u",
+      shelfLifeDays: null, leadTimeDays: 25, leadTimeSdDays: 6, moq: 250, packSize: 50,
+      unitCost: 1.40, onHand: 340 },
+    { code: "MAT-ENVOL", name: "Envoltura metalizada", supplier: "Empaques Litoral", unit: "u",
+      shelfLifeDays: null, leadTimeDays: 12, leadTimeSdDays: 2, moq: 2000, packSize: 1000,
+      unitCost: 0.07, onHand: 3400 },
+    { code: "MAT-LAZO", name: "Lazo satinado", supplier: "Cintas y Detalles", unit: "u",
+      shelfLifeDays: null, leadTimeDays: 10, leadTimeSdDays: 0, moq: 1000, packSize: 500,
+      unitCost: 0.12, onHand: 2200 },
   ];
 
   sales.sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : (a.sku < b.sku ? -1 : 1); });
