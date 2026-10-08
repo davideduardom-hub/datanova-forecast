@@ -67,9 +67,12 @@ table{border-collapse:collapse}
 .hdr-in{display:flex;align-items:center;gap:22px;height:56px}
 .brand{display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0}
 /* The wordmark is set in Poppins to sit alongside the Datanova Studio mark,
-   which uses the same geometric sans. Everything else stays in Archivo. */
-.wordmark{font-family:var(--brand)}
-.brand b{color:var(--ink-800);font-weight:600;letter-spacing:-.015em}
+   which uses the same geometric sans at a single medium weight — so the
+   wordmark carries no bold either: the two words are told apart by color,
+   exactly as "Datanova" and "Studio" are in the logo. */
+.wordmark{font-family:var(--brand);font-weight:500}
+.wordmark b{font-weight:500}
+.brand b{color:var(--ink-800);font-weight:500;letter-spacing:-.015em}
 .brand span{color:var(--g-500);font-weight:500;letter-spacing:-.015em}
 .nav{display:flex;gap:2px;margin-left:4px}
 .nav button{background:none;border:0;border-radius:6px;padding:6px 12px;font-size:13.5px;
@@ -532,7 +535,7 @@ table.edit input:focus,table.edit select:focus{border-color:var(--ink-700);outli
   <div class="wrap" style="padding:28px 20px;display:flex;flex-wrap:wrap;gap:20px;
       align-items:center;justify-content:space-between">
     <div>
-      <p class="wordmark" style="font-size:14px;color:var(--g-700)"><b style="color:var(--ink-800)">Datanova</b> Forecast</p>
+      <p class="wordmark" style="font-size:14px;color:var(--g-500)"><span style="color:var(--ink-800)">Datanova</span> Forecast</p>
       <p id="footTag" style="margin-top:2px;font-size:12.5px;color:var(--g-500)"></p>
     </div>
     <div style="display:flex;align-items:center;gap:12px">
