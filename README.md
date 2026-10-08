@@ -55,34 +55,78 @@ Listo. Ese enlace funciona desde cualquier dispositivo y lo puedes compartir.
 
 ---
 
-## Cómo probarlo
+## El flujo: 1 cargar · 2 parametrizar · 3 recibir
 
-En la portada, **Probar con datos de ejemplo**. Genera 50 productos con 24 meses
-de historial diario y distintos patrones de demanda — estables, con tendencia,
-estacionales, intermitentes, erráticos — más un inventario con quiebres y
-sobreinventarios reales. Defines los parámetros, y en unos segundos tienes el
-tablero completo.
+La herramienta tiene tres pasos y se recorren en ese orden. El paso 3 no existe
+hasta que hay datos, y el paso 2 no existe hasta que hay ventas.
 
-Con tus propios datos, **Cargar mi archivo**. El archivo necesita tres columnas,
-en cualquier orden y con casi cualquier nombre:
+### Paso 1 — Cargar
+
+Cuatro archivos. **Solo el primero es obligatorio**; cada uno de los otros
+desbloquea más análisis.
+
+| Archivo | ¿Obligatorio? | Qué desbloquea |
+|---|---|---|
+| Historial de ventas | Sí | El pronóstico de demanda |
+| Inventario actual | No | Cuánto pedir, cuándo, y las alertas de quiebre |
+| Recetas de tus productos | No | El plan de materiales explotado |
+| Materiales e insumos | No | Vida útil, MOQ y fechas de compra reales |
+
+**Hay una plantilla.** Botón *Descargar plantilla Excel*: un libro con una hoja
+por archivo, las columnas correctas, filas de ejemplo llenas y una hoja de
+instrucciones que explica campo por campo qué va en cada uno. También se pueden
+bajar los cuatro CSV por separado.
+
+La plantilla es de ida y vuelta: la llenas, la vuelves a subir y la herramienta
+encuentra sola la hoja que corresponde a cada espacio — no lee la primera hoja a
+ciegas, sino la que contiene las columnas que ese archivo necesita.
+
+Las recetas y los materiales también se pueden **crear a mano** dentro de la
+herramienta, sin archivo, para quien recién arranca.
+
+El detector de columnas es tolerante. Para el historial de ventas basta con
+tres, en cualquier orden y con casi cualquier nombre:
 
 | Necesario | Lo reconocemos como |
 |---|---|
-| Fecha | Date, Fecha, Day, Order Date, Invoice Date, Periodo |
-| Código de producto | SKU, Product ID, Código, Item, Material, Article, UPC |
-| Cantidad | Units Sold, Qty, Cantidad, Unidades, Ventas, Demand |
+| Fecha | Fecha, Date, Day, Order Date, Invoice Date, Periodo |
+| Código de producto | SKU, Código, Product ID, Item, Material, Article, UPC |
+| Cantidad | Unidades, Units Sold, Qty, Cantidad, Ventas, Demand |
 
-Nombre del producto, categoría y precio unitario son opcionales pero mejoran el
-resultado — sin precio no hay cifra de ingresos ni análisis ABC por valor.
-
-Entiende `yyyy-mm-dd`, `dd/mm/yyyy`, `mm/dd/yyyy` (lo distingue revisando toda la
+Entiende `aaaa-mm-dd`, `dd/mm/aaaa`, `mm/dd/aaaa` (lo distingue revisando toda la
 columna en busca de un valor mayor a 12), fechas seriales de Excel, decimales con
 coma o con punto, y separadores `,` `;` `tab` `|`. Si un encabezado no se
 reconoce, revisa los valores: una columna de fechas ISO es una columna de fechas
 se llame como se llame.
 
-El archivo de inventario necesita código y stock actual. Lead time, costo,
-cantidad en pedido, MOQ y unidades por caja son opcionales.
+### Paso 2 — Parametrizar
+
+Horizonte, lead time, variabilidad del lead time, nivel de servicio, frecuencia
+de pedido y umbral de sobreinventario. Si cargaste recetas, aparece además la
+cobertura por compra de materiales.
+
+### Paso 3 — Recibir
+
+Tres pestañas: demanda e inventario, plan de materiales y análisis ABC. Cada una
+lidera con la decisión, no con el gráfico.
+
+---
+
+## Dos casos de ejemplo
+
+El botón *Probar con datos de ejemplo* ofrece dos modelos de negocio distintos,
+porque la herramienta sirve para ambos:
+
+**Distribuidora / Retail** — 50 productos de consumo masivo, 24 meses de
+historial diario, patrones de demanda variados (estables, con tendencia,
+estacionales, intermitentes, erráticos) e inventario con quiebres y
+sobreinventarios reales. Compra y revende: no hay producción ni materiales.
+
+**Emprendimiento con producción** — una chocolatería artesanal de tamaño
+Instagram: 8 productos, 14 meses de historial, recetas completas y 9 insumos con
+vida útil, MOQ y lead time. Aquí el plan de demanda se explota solo a plan de
+materiales, con dos conflictos de vida útil sembrados a propósito porque son los
+que cualquier productor pequeño enfrenta de verdad.
 
 ---
 
@@ -220,6 +264,82 @@ que todos los productos fallan en la misma dirección el mismo día.
 
 ---
 
+## Del plan de demanda al plan de materiales
+
+Un emprendimiento no puede pagar un Demand Planner y además un planificador de
+materiales. Si cargas la receta de cada producto, el pronóstico se explota solo.
+
+### Paso 1 — Primero el plan de producción, no la demanda
+
+MRP debe explotar el **programa de producción**, no la demanda cruda. Explotar la
+demanda directamente ignora el stock que ya tienes y los lotes en los que
+realmente produces, y así es como los planes de materiales terminan pidiéndote
+comprar cosas que todavía no necesitas.
+
+El programa sale de simular tu política de inventario sobre el pronóstico diario:
+revisión periódica con nivel objetivo — "cada lunes miro el stock y produzco un
+lote" —, que es como opera un negocio pequeño de verdad.
+
+### Paso 2 — La merma es pérdida de rendimiento, no un recargo
+
+```
+Necesidad = cantidad de receta ÷ (1 − merma)
+```
+
+Si la receta pide 100 g y declaras 5% de merma, hacen falta 100 ÷ 0.95 = 105.3 g,
+no 105 g. La diferencia parece trivial y deja de serlo en cuanto la merma sube:
+con 20% de merma son 125 g contra 120 g.
+
+### Paso 3 — Neteo y desfase por lead time
+
+Para cada material se recorre el horizonte día por día: se descuenta el consumo
+del stock disponible, y cuando el saldo cae por debajo del nivel de seguridad se
+genera una compra. La cantidad se redondea al múltiplo de compra y se eleva al
+MOQ. La **fecha de colocación** es la fecha de necesidad menos el lead time.
+
+Si esa fecha ya pasó, la compra está atrasada: la alerta más accionable que
+produce esta herramienta, y la que más seguido le falta a un negocio pequeño que
+no descubre el problema hasta que se le acaban las cajas.
+
+### Paso 4 — La vida útil entra en la decisión
+
+Cada compra planificada se contrasta contra la vida útil del material:
+
+```
+Si la cobertura de la compra > vida útil:
+    merma = cantidad comprada − consumo real antes del vencimiento
+```
+
+Y se distingue el caso importante: cuando el **MOQ del proveedor** es el que
+fuerza esa sobrecompra, el problema no es de planificación. La herramienta lo
+dice así, con el monto por ciclo, porque la solución es un empaque menor o un
+proveedor distinto, no un ajuste al plan.
+
+Mantequilla que se vende en bloques de 25 kg a un productor que usa 300 g al día
+es el ejemplo exacto: ninguna política de inventario arregla eso.
+
+### Stock de seguridad de materiales: la postura
+
+**A los materiales no les agregamos colchón por incertidumbre de demanda.**
+
+Esa incertidumbre ya está amortiguada en el producto terminado. Volver a
+amortiguarla en cada componente es el error clásico de doble colchón: infla el
+capital de trabajo sin mejorar el servicio ni un punto, porque es el mismo riesgo
+cubierto dos veces.
+
+Lo que sí queda descubierto es el **riesgo de suministro** — que el proveedor se
+atrase —, que es un riesgo distinto. Por eso el colchón de material solo aparece
+cuando declaras variabilidad en el lead time:
+
+```
+SS_material = z × consumo diario × σ_lead time
+```
+
+Y en un perecible se limita a media vida útil: más allá de eso el colchón se
+echa a perder más rápido de lo que protege.
+
+---
+
 ## Fórmulas de planificación de inventario
 
 ### Stock de seguridad
@@ -299,6 +419,13 @@ Hacia adelante, no una razón histórica. La fecha de quiebre proyectada sale de
 una **simulación de agotamiento día por día** contra el pronóstico diario, que es
 lo que produce "se quiebra en 4 días" en lugar de un número estático de cobertura.
 
+### Vida útil del producto terminado
+
+Si un producto declara vida útil, esa vida útil **reemplaza** el umbral genérico
+de sobreinventario. Tener 120 días de cobertura de algo que vence en 30 no es
+"capital inmovilizado": es pérdida programada, y la recomendación lo dice con esas
+palabras en lugar de hablar de capital ocioso.
+
 ### Clasificación de riesgo
 
 | Nivel | Condición |
@@ -356,9 +483,19 @@ Siete decisiones donde la práctica común está equivocada:
 7. **Modelos estacionales para todo producto con historial suficiente** → el
    patrón de demanda restringe qué modelos compiten.
 
-Y una más: **la precisión del pronóstico y la disponibilidad de inventario se
-mantienen separadas**. Un pronóstico perfecto sin stock sigue siendo un quiebre, y
-un WAPE de 40% en un artículo C bien amortiguado no es un problema.
+Y tres más, del lado de materiales:
+
+8. **Explotar la demanda en vez del programa de producción** → se explota el
+   programa, que sí considera el stock que ya tienes y los lotes reales.
+9. **Merma como recargo (×1.05)** → aplicada como divisor de rendimiento
+   (÷0.95), que es lo que realmente hay que comprar.
+10. **Stock de seguridad en cada componente** → eliminado para incertidumbre de
+    demanda, porque duplica un colchón que ya existe en el producto terminado.
+    Se conserva solo contra variabilidad del lead time del proveedor.
+
+Y una transversal: **la precisión del pronóstico y la disponibilidad de inventario
+se mantienen separadas**. Un pronóstico perfecto sin stock sigue siendo un quiebre,
+y un WAPE de 40% en un artículo C bien amortiguado no es un problema.
 
 ---
 
@@ -384,6 +521,20 @@ un WAPE de 40% en un artículo C bien amortiguado no es un problema.
 - Interfaz completa en español e inglés, incluidas las recomendaciones generadas
 - Responsive hasta 390px, foco visible por teclado, respeta `prefers-reduced-motion`
 
+**Materiales (cuando hay recetas)**
+- Plantilla descargable en Excel y CSV, con instrucciones campo por campo
+- Selección automática de la hoja correcta en libros de varias pestañas
+- Editor de recetas y de materiales dentro de la herramienta, sin archivo
+- Programa de producción derivado del pronóstico y la política de inventario
+- Explosión de recetas con merma como divisor de rendimiento
+- Neteo contra stock, lot sizing por MOQ y múltiplo, desfase por lead time
+- Detección de compras atrasadas con los días de atraso
+- Conflictos de vida útil cuantificados en unidades y dinero, distinguiendo
+  cuándo el culpable es el MOQ del proveedor
+- Colchón de material solo contra variabilidad de suministro, limitado a media
+  vida útil en perecibles
+- Exportación del plan de materiales a CSV
+
 ## Qué no está incluido
 
 - **Cuentas y persistencia.** No hay login ni base de datos; al cerrar la pestaña
@@ -392,6 +543,11 @@ un WAPE de 40% en un artículo C bien amortiguado no es un problema.
 - **Integraciones** con ERP, Shopify, QuickBooks o SAP.
 - **Órdenes de compra y proveedores.** Las cantidades se calculan pero no hay a
   dónde enviarlas.
+- **Recetas de varios niveles.** Un producto explota a sus insumos directos. Si
+  fabricas un semi-elaborado que a su vez tiene receta, hay que aplanarla a mano.
+- **Capacidad de producción.** El programa asume que puedes producir el lote que
+  haga falta el día que haga falta. No hay restricción de horas, horno ni
+  personas.
 - **Inventario multi-ubicación.** Una posición de stock por producto.
 - **Pronóstico causal y promocional.** No hay calendario de promociones ni
   elasticidad de precio. En un catálogo muy promocionado, toma la línea base como
@@ -434,4 +590,5 @@ defender ante su contador. "Nuestra IA predice 240" no lo es.
 
 ---
 
-Construido para el ecosistema de consultoría **Datanova**.
+Desarrollado por **Datanova Studio**, la unidad de desarrollo de herramientas y
+tecnología de solución empresarial de Datanova.

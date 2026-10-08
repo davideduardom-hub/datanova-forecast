@@ -179,17 +179,108 @@ table.data tbody tr:hover{background:var(--paper)}
 .steps .s.on{color:var(--ink-800)}
 .steps .s.done{color:var(--g-700)}
 .steps .sep{color:var(--g-200)}
+/* ── the 1-2-3 rail ── */
+.rail{position:sticky;top:56px;z-index:20;background:var(--raised);
+  border-bottom:1px solid var(--g-100)}
+.rail-in{display:flex;gap:4px;padding:0 20px;overflow-x:auto;scrollbar-width:none}
+.rail-in::-webkit-scrollbar{display:none}
+.rail-step{display:flex;align-items:center;gap:9px;padding:13px 16px 12px;border:0;background:none;
+  border-bottom:2px solid transparent;white-space:nowrap;color:var(--g-300);font-size:13.5px;
+  font-weight:500;transition:color .15s,border-color .15s}
+.rail-step:disabled{cursor:not-allowed}
+.rail-step .rn{display:flex;align-items:center;justify-content:center;width:21px;height:21px;
+  border-radius:99px;background:var(--g-100);color:var(--g-500);font-size:11.5px;font-weight:700;
+  flex-shrink:0}
+.rail-step.done{color:var(--g-700)}
+.rail-step.done .rn{background:var(--ink-100);color:var(--ink-800)}
+.rail-step.on{color:var(--ink-800);border-bottom-color:var(--ink-800);font-weight:600}
+.rail-step.on .rn{background:var(--ink-800);color:#fff}
+
+.step-head{display:flex;gap:14px;align-items:flex-start}
+.step-num{display:flex;align-items:center;justify-content:center;width:30px;height:30px;
+  border-radius:99px;background:var(--ink-800);color:#fff;font-size:14px;font-weight:700;
+  flex-shrink:0;margin-top:1px}
+
+/* ── parameter group header ── */
+.pgrp-h{padding:14px 20px 12px;border-bottom:1px solid var(--g-100)}
+.pgrp-h h3{font-size:14.5px}
+.pgrp-h p{margin-top:3px;font-size:12.5px;color:var(--g-500);max-width:70ch}
+
+/* ── data slots ── */
+.slot{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;background:var(--raised);
+  border:1px solid var(--g-100);border-radius:10px;transition:border-color .15s}
+.slot.filled{border-color:var(--ink-300)}
+.slot.over{border-color:var(--ink-700);background:rgba(216,228,225,.35)}
+.slot-ic{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;background:var(--sunken);color:var(--g-500)}
+.slot.filled .slot-ic{background:var(--ink-100);color:var(--ink-700)}
+.slot-b{flex:1;min-width:0}
+.slot-t{font-size:14px;font-weight:600;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.slot-d{margin-top:3px;font-size:12.5px;line-height:1.45;color:var(--g-500)}
+.slot-a{margin-top:9px;display:flex;gap:8px;flex-wrap:wrap}
+.req{font-size:10.5px;font-weight:700;letter-spacing:.03em;color:var(--critical);
+  background:var(--critical-soft);padding:1px 5px;border-radius:3px}
+.opt{font-size:10.5px;font-weight:600;color:var(--g-500);background:var(--sunken);
+  padding:1px 5px;border-radius:3px}
+
+/* ── tabs ── */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--g-100);overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{border:0;background:none;padding:9px 14px;font-size:13.5px;font-weight:500;
+  color:var(--g-500);border-bottom:2px solid transparent;white-space:nowrap}
+.tabs button:hover{color:var(--ink-800)}
+.tabs button[aria-selected=true]{color:var(--ink-800);font-weight:600;border-bottom-color:var(--ink-800)}
+.tabs .cnt{display:inline-flex;align-items:center;justify-content:center;min-width:17px;height:17px;
+  padding:0 4px;margin-left:6px;border-radius:99px;background:var(--critical);color:#fff;
+  font-size:10.5px;font-weight:700;vertical-align:middle}
+
+/* ── modal ── */
+.modal{position:fixed;inset:0;z-index:60;background:rgba(10,31,27,.45);display:flex;
+  align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto}
+.modal-box{background:var(--raised);border-radius:12px;width:100%;max-width:640px;
+  box-shadow:0 18px 48px rgba(10,31,27,.22);margin:auto 0}
+
+/* ── editor table ── */
+table.edit{width:100%;font-size:13px}
+table.edit th{text-align:left;padding:7px 8px;font-size:11.5px;font-weight:600;color:var(--g-500);
+  border-bottom:1px solid var(--g-100);white-space:nowrap}
+table.edit td{padding:4px 5px;border-bottom:1px solid var(--g-100);vertical-align:middle}
+table.edit input,table.edit select{width:100%;height:32px;border:1px solid var(--g-200);
+  border-radius:5px;padding:0 7px;font-size:12.5px;background:#fff;min-width:0}
+table.edit input:focus,table.edit select:focus{border-color:var(--ink-700);outline:0}
+.rm{border:0;background:none;color:var(--g-300);font-size:17px;line-height:1;padding:3px 6px;
+  border-radius:4px}
+.rm:hover{color:var(--critical);background:var(--critical-soft)}
+
+/* ── misc ── */
+.kv{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:9px 20px;
+  border-top:1px solid var(--g-100)}
+.kv dt{font-size:13px;color:var(--g-700)}
+.kv dd{margin:0;font-size:14px;font-weight:500}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:99px;
+  background:var(--sunken);font-size:12px;color:var(--g-700)}
+
 /* ── narrow screens ── */
 /* Once a run exists the nav appears, and brand + nav + language no longer fit
    on one row at phone width. Give the nav its own scrollable row instead of
    letting the header push the page sideways. */
 @media (max-width:760px){
-  .hdr-in{flex-wrap:wrap;height:auto;padding:8px 0;gap:8px 12px}
-  .brand{order:1}
-  .hdr-right{order:2;margin-left:auto}
-  .nav{order:3;width:100%;margin:0;overflow-x:auto;padding-bottom:2px;
-    -webkit-overflow-scrolling:touch;scrollbar-width:none}
-  .nav::-webkit-scrollbar{display:none}
+  .rail{top:56px}
+  .rail-step{padding:11px 11px 10px;font-size:12.5px;gap:7px}
+  .step-head{gap:10px}
+  .step-num{width:26px;height:26px;font-size:13px}
+  .modal{padding:12px 8px}
+}
+/* The header has to survive brand + action + language on a phone. Drop the
+   least informative pieces first: the restart label, then the wordmark. */
+@media (max-width:560px){
+  #btnRestart .rl{display:none}
+  #btnRestart{padding:0 9px}
+}
+@media (max-width:430px){
+  .brand .bw{display:none}
+  .lang{padding-left:6px}
+  .lang svg{display:none}
 }
 @media (max-width:420px){
   .brand span[style]{font-size:14px}
@@ -207,14 +298,14 @@ table.data tbody tr:hover{background:var(--paper)}
         <path d="M2 5h5v5h5v5h5v5h5" stroke="var(--ink-800)" stroke-width="2.1" stroke-linecap="square"/>
         <circle cx="19.5" cy="4.5" r="2.5" fill="var(--warning)"/>
       </svg>
-      <span style="font-size:15px;white-space:nowrap"><b>Datanova</b> <span>Forecast</span></span>
+      <span class="bw" style="font-size:15px;white-space:nowrap"><b>Datanova</b> <span>Forecast</span></span>
     </a>
-    <nav class="nav hidden" id="nav">
-      <button data-view="dashboard" onclick="go('dashboard')"></button>
-      <button data-view="abc" onclick="go('abc')"></button>
-      <button data-view="upload" onclick="go('upload')"></button>
-    </nav>
     <div class="hdr-right">
+      <button class="btn btn-g btn-sm hidden" id="btnRestart" onclick="restart()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M3 12a9 9 0 1 0 2.6-6.4M3 4v5h5" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg><span class="rl"></span></button>
       <div class="lang" role="group" id="langGroup">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
@@ -233,7 +324,7 @@ table.data tbody tr:hover{background:var(--paper)}
 
 <!-- ══════════════════════════ LANDING ══════════════════════════ -->
 <section id="v-landing" class="view">
-  <div class="wrap" style="padding-top:60px;padding-bottom:72px">
+  <div class="wrap" style="padding-top:56px;padding-bottom:64px">
     <div class="grid" id="heroGrid" style="align-items:center">
       <div>
         <h1 id="heroH1" style="font-size:clamp(2rem,5vw,3.2rem);line-height:1.05;
@@ -241,8 +332,8 @@ table.data tbody tr:hover{background:var(--paper)}
         <p id="heroSub" style="margin-top:20px;max-width:46ch;font-size:16.5px;
             line-height:1.6;color:var(--g-700)"></p>
         <div style="margin-top:30px;display:flex;flex-wrap:wrap;gap:12px">
-          <button class="btn btn-p btn-lg" id="heroCta" onclick="loadDemo()"></button>
-          <button class="btn btn-s btn-lg" id="heroCta2" onclick="go('upload')"></button>
+          <button class="btn btn-p btn-lg" id="heroCta" onclick="openDemoPicker()"></button>
+          <button class="btn btn-s btn-lg" id="heroCta2" onclick="go('work')"></button>
         </div>
         <p id="heroNote" style="margin-top:16px;font-size:13px;color:var(--g-500)"></p>
       </div>
@@ -255,116 +346,162 @@ table.data tbody tr:hover{background:var(--paper)}
   </div>
 
   <div style="background:var(--raised);border-top:1px solid var(--g-100);border-bottom:1px solid var(--g-100)">
-    <div class="wrap" style="padding:56px 20px">
+    <div class="wrap" style="padding:52px 20px">
       <p id="valueProp" style="max-width:34ch;font-size:clamp(1.3rem,3vw,1.9rem);font-weight:600;
           line-height:1.22;letter-spacing:-.025em;color:var(--ink-800)"></p>
     </div>
   </div>
 
-  <div class="wrap" style="padding:72px 20px">
+  <div class="wrap" style="padding:64px 20px">
     <h2 id="howTitle" style="font-size:22px;letter-spacing:-.025em"></h2>
     <ol id="howList" class="grid" style="margin-top:32px;padding:0;list-style:none;
         grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:36px 40px"></ol>
   </div>
 
   <div style="background:var(--raised);border-top:1px solid var(--g-100)">
-    <div class="wrap" style="padding:72px 20px">
-      <h2 id="methTitle" style="font-size:22px;letter-spacing:-.025em;max-width:24ch"></h2>
+    <div class="wrap" style="padding:64px 20px">
+      <h2 id="methTitle" style="font-size:22px;letter-spacing:-.025em;max-width:26ch"></h2>
       <div id="methList" class="grid" style="margin-top:34px;
           grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:36px 48px"></div>
     </div>
   </div>
 
   <div style="background:var(--ink-900)">
-    <div class="wrap" style="padding:60px 20px;display:flex;flex-wrap:wrap;gap:24px;
+    <div class="wrap" style="padding:56px 20px;display:flex;flex-wrap:wrap;gap:24px;
         align-items:center;justify-content:space-between">
       <p id="ctaLine" style="max-width:24ch;font-size:clamp(1.2rem,3vw,1.65rem);font-weight:600;
           line-height:1.2;letter-spacing:-.025em;color:#fff"></p>
-      <button class="btn btn-lg" id="ctaBtn" onclick="loadDemo()"
+      <button class="btn btn-lg" id="ctaBtn" onclick="openDemoPicker()"
         style="background:#fff;color:var(--ink-900)"></button>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════ UPLOAD ══════════════════════════ -->
-<section id="v-upload" class="view hidden">
-  <div class="wrap-narrow" style="padding:32px 20px 64px">
-    <h1 id="upTitle" style="font-size:24px;letter-spacing:-.025em"></h1>
-    <p id="upSub" style="margin-top:6px;max-width:60ch;font-size:14px;color:var(--g-500)"></p>
-    <div class="steps" id="upSteps" style="margin-top:24px"></div>
-    <div id="upNotices"></div>
-    <div id="upStage"></div>
+<!-- ══════════════════════════ WORKSPACE (1-2-3) ══════════════════════════ -->
+<section id="v-work" class="view hidden">
+  <!-- the three steps, always visible, always in order -->
+  <div class="rail">
+    <div class="wrap rail-in" id="rail"></div>
   </div>
-</section>
 
-<!-- ══════════════════════════ CONFIGURE ══════════════════════════ -->
-<section id="v-configure" class="view hidden">
-  <div class="wrap-narrow" style="padding:32px 20px 64px">
-    <h1 id="cfTitle" style="font-size:24px;letter-spacing:-.025em"></h1>
-    <p id="cfSub" style="margin-top:6px;max-width:60ch;font-size:14px;color:var(--g-500)"></p>
-    <p id="cfUsing" style="margin-top:14px;font-size:13px;color:var(--g-500)"></p>
-    <div id="cfNotice" style="margin-top:20px"></div>
-    <div class="card" style="margin-top:20px">
-      <div class="grid" id="cfGrid" style="padding:20px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px"></div>
-    </div>
-    <div style="margin-top:24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-      <button class="btn btn-p btn-lg" id="cfRun" onclick="runAnalysis()"></button>
-      <span id="cfProgress" style="font-size:13px;color:var(--g-500)"></span>
-    </div>
-  </div>
-</section>
+  <div class="wrap" style="padding:24px 20px 72px">
 
-<!-- ══════════════════════════ DASHBOARD ══════════════════════════ -->
-<section id="v-dashboard" class="view hidden">
-  <div class="wrap" style="padding:28px 20px 64px">
-    <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between">
-      <div>
-        <h1 id="dashTitle" style="font-size:24px;letter-spacing:-.025em"></h1>
-        <p id="dashMeta" style="margin-top:4px;font-size:13px;color:var(--g-500)"></p>
-      </div>
-      <button class="btn btn-s btn-sm" id="dashRecalc" onclick="go('configure')"></button>
-    </div>
-
-    <div id="dashNotices" style="margin-top:20px"></div>
-
-    <div class="grid" id="dashTop" style="margin-top:16px"></div>
-
-    <div class="card settle" style="margin-top:16px">
-      <div style="padding:16px 20px 12px">
-        <h3 id="triageTitle" style="font-size:15px"></h3>
-        <p id="triageSub" style="margin-top:2px;font-size:13px;color:var(--g-500)"></p>
-      </div>
-      <div id="triageList"></div>
-    </div>
-
-    <div class="card" style="margin-top:16px">
-      <div style="padding:16px 20px 12px">
-        <h3 id="chartTitle" style="font-size:15px"></h3>
-        <p id="chartSub" style="margin-top:2px;font-size:13px;color:var(--g-500)"></p>
-      </div>
-      <div id="dashChart" style="padding:0 12px 16px"></div>
-    </div>
-
-    <div class="card" style="margin-top:16px">
-      <div style="padding:16px 20px 12px"><h3 id="tableTitle" style="font-size:15px"></h3></div>
-      <div id="tableControls" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:0 20px 12px"></div>
-      <div class="tbl-scroll"><table class="data" id="riskTable"></table></div>
-      <div id="tableEmpty" style="padding:40px 20px;text-align:center;font-size:13.5px;color:var(--g-500)" class="hidden"></div>
-      <div id="tableMore" style="padding:12px 20px;text-align:center;border-top:1px solid var(--g-100)" class="hidden"></div>
-    </div>
-
-    <div class="grid" style="margin-top:16px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
-      <div class="card">
-        <div style="padding:16px 20px 12px">
-          <h3 id="modelMixTitle" style="font-size:15px"></h3>
-          <p id="modelMixSub" style="margin-top:2px;font-size:13px;color:var(--g-500)"></p>
+    <!-- ─────── STEP 1 · DATA ─────── -->
+    <div id="step-1" class="step">
+      <div class="step-head">
+        <span class="step-num">1</span>
+        <div>
+          <h2 id="s1Title" style="font-size:20px;letter-spacing:-.025em"></h2>
+          <p id="s1Sub" style="margin-top:4px;font-size:14px;color:var(--g-500);max-width:68ch"></p>
         </div>
-        <div id="modelMix" style="padding:0 20px 20px"></div>
       </div>
-      <div class="card">
-        <div style="padding:16px 20px 12px"><h3 id="patternMixTitle" style="font-size:15px"></h3></div>
-        <div id="patternMix" style="padding:0 20px 20px"></div>
+
+      <div id="tmplCard" class="card" style="margin-top:20px"></div>
+      <div id="dataNotices" style="margin-top:16px"></div>
+      <div id="dataSlots" class="grid" style="margin-top:16px;
+        grid-template-columns:repeat(auto-fit,minmax(300px,1fr))"></div>
+      <div id="dataDetail" style="margin-top:16px"></div>
+
+      <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+        <button class="btn btn-p btn-lg" id="s1Next" onclick="gotoStep(2)"></button>
+        <button class="btn btn-g" id="s1Demo" onclick="openDemoPicker()"></button>
       </div>
+    </div>
+
+    <!-- ─────── STEP 2 · PARAMETERS ─────── -->
+    <div id="step-2" class="step hidden">
+      <div class="step-head">
+        <span class="step-num">2</span>
+        <div>
+          <h2 id="s2Title" style="font-size:20px;letter-spacing:-.025em"></h2>
+          <p id="s2Sub" style="margin-top:4px;font-size:14px;color:var(--g-500);max-width:68ch"></p>
+        </div>
+      </div>
+
+      <p id="cfUsing" style="margin-top:16px;font-size:13px;color:var(--g-500)"></p>
+      <div id="cfNotice" style="margin-top:14px"></div>
+
+      <div class="card" style="margin-top:16px">
+        <div class="pgrp-h" id="cfDemandH"></div>
+        <div class="grid" id="cfGrid" style="padding:18px 20px;
+          grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px"></div>
+      </div>
+
+      <div class="card hidden" id="cfMatCard" style="margin-top:16px">
+        <div class="pgrp-h" id="cfMatH"></div>
+        <div class="grid" id="cfMatGrid" style="padding:18px 20px;
+          grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px"></div>
+      </div>
+
+      <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+        <button class="btn btn-p btn-lg" id="cfRun" onclick="runAnalysis()"></button>
+        <button class="btn btn-g" onclick="gotoStep(1)" id="s2Back"></button>
+        <span id="cfProgress" style="font-size:13px;color:var(--g-500)"></span>
+      </div>
+    </div>
+
+    <!-- ─────── STEP 3 · RESULTS ─────── -->
+    <div id="step-3" class="step hidden">
+      <div class="step-head">
+        <span class="step-num">3</span>
+        <div style="flex:1;min-width:0">
+          <h2 id="s3Title" style="font-size:20px;letter-spacing:-.025em"></h2>
+          <p id="dashMeta" style="margin-top:4px;font-size:13px;color:var(--g-500)"></p>
+        </div>
+        <button class="btn btn-s btn-sm" id="dashRecalc" onclick="gotoStep(2)"></button>
+      </div>
+
+      <div class="tabs" id="resTabs" style="margin-top:20px"></div>
+
+      <!-- tab: demand & inventory -->
+      <div id="tab-demand">
+        <div id="dashNotices" style="margin-top:16px"></div>
+        <div class="grid" id="dashTop" style="margin-top:16px"></div>
+
+        <div class="card settle" style="margin-top:16px">
+          <div style="padding:16px 20px 12px">
+            <h3 id="triageTitle" style="font-size:15px"></h3>
+            <p id="triageSub" style="margin-top:2px;font-size:13px;color:var(--g-500)"></p>
+          </div>
+          <div id="triageList"></div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <div style="padding:16px 20px 12px">
+            <h3 id="chartTitle" style="font-size:15px"></h3>
+            <p id="chartSub" style="margin-top:2px;font-size:13px;color:var(--g-500)"></p>
+          </div>
+          <div id="dashChart" style="padding:0 12px 16px"></div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <div style="padding:16px 20px 12px"><h3 id="tableTitle" style="font-size:15px"></h3></div>
+          <div id="tableControls" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:0 20px 12px"></div>
+          <div class="tbl-scroll"><table class="data" id="riskTable"></table></div>
+          <div id="tableEmpty" style="padding:40px 20px;text-align:center;font-size:13.5px;color:var(--g-500)" class="hidden"></div>
+          <div id="tableMore" style="padding:12px 20px;text-align:center;border-top:1px solid var(--g-100)" class="hidden"></div>
+        </div>
+
+        <div class="grid" style="margin-top:16px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
+          <div class="card">
+            <div style="padding:16px 20px 12px">
+              <h3 id="modelMixTitle" style="font-size:15px"></h3>
+              <p id="modelMixSub" style="margin-top:2px;font-size:13px;color:var(--g-500)"></p>
+            </div>
+            <div id="modelMix" style="padding:0 20px 20px"></div>
+          </div>
+          <div class="card">
+            <div style="padding:16px 20px 12px"><h3 id="patternMixTitle" style="font-size:15px"></h3></div>
+            <div id="patternMix" style="padding:0 20px 20px"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- tab: materials -->
+      <div id="tab-materials" class="hidden"><div id="matBody"></div></div>
+
+      <!-- tab: ABC -->
+      <div id="tab-abc" class="hidden"><div id="abcBody"></div></div>
     </div>
   </div>
 </section>
@@ -374,18 +511,24 @@ table.data tbody tr:hover{background:var(--paper)}
   <div class="wrap" style="padding:28px 20px 64px" id="skuBody"></div>
 </section>
 
-<!-- ══════════════════════════ ABC ══════════════════════════ -->
-<section id="v-abc" class="view hidden">
-  <div class="wrap" style="padding:28px 20px 64px" id="abcBody"></div>
-</section>
-
 </main>
 
-<footer style="border-top:1px solid var(--g-100);margin-top:0">
-  <div class="wrap" style="padding:28px 20px;display:flex;flex-wrap:wrap;gap:12px;
-      justify-content:space-between;font-size:12.5px;color:var(--g-500)">
-    <span><b style="color:var(--ink-800)">Datanova</b> Forecast</span>
-    <span id="footTag"></span>
+<!-- ══════════════════════════ MODAL ══════════════════════════ -->
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true" onclick="modalBackdrop(event)">
+  <div class="modal-box" id="modalBox"></div>
+</div>
+
+<footer style="border-top:1px solid var(--g-100);background:var(--raised)">
+  <div class="wrap" style="padding:28px 20px;display:flex;flex-wrap:wrap;gap:20px;
+      align-items:center;justify-content:space-between">
+    <div>
+      <p style="font-size:13px;color:var(--g-700)"><b style="color:var(--ink-800)">Datanova</b> Forecast</p>
+      <p id="footTag" style="margin-top:2px;font-size:12.5px;color:var(--g-500)"></p>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <span id="footBy" style="font-size:12.5px;color:var(--g-500)"></span>
+      <img id="footLogo" alt="Datanova Studio" style="height:30px;width:auto;display:block">
+    </div>
   </div>
 </footer>
 <script>
@@ -435,9 +578,9 @@ var DF = (() => {
   var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
   var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 
-  // node_modules/papaparse/papaparse.min.js
+  // ../datanova-forecast/node_modules/papaparse/papaparse.min.js
   var require_papaparse_min = __commonJS({
-    "node_modules/papaparse/papaparse.min.js"(exports, module) {
+    "../datanova-forecast/node_modules/papaparse/papaparse.min.js"(exports, module) {
       ((e, t) => {
         "function" == typeof define && define.amd ? define([], t) : "object" == typeof module && "undefined" != typeof exports ? module.exports = t() : e.Papa = t();
       })(exports, function r() {
@@ -834,7 +977,7 @@ var DF = (() => {
     }
   });
 
-  // ../static-build/xlsx-shim.js
+  // xlsx-shim.js
   var xlsx_shim_exports = {};
   __export(xlsx_shim_exports, {
     default: () => xlsx_shim_default,
@@ -847,7 +990,7 @@ var DF = (() => {
   }
   var utils, xlsx_shim_default;
   var init_xlsx_shim = __esm({
-    "../static-build/xlsx-shim.js"() {
+    "xlsx-shim.js"() {
       utils = {
         sheet_to_json: (...args) => globalThis.XLSX.utils.sheet_to_json(...args)
       };
@@ -855,7 +998,7 @@ var DF = (() => {
     }
   });
 
-  // ../static-build/entry.js
+  // entry.js
   var entry_exports = {};
   __export(entry_exports, {
     CAVEAT_LABEL: () => CAVEAT_LABEL,
@@ -868,6 +1011,7 @@ var DF = (() => {
     PLANS: () => PLANS,
     PLAN_ORDER: () => PLAN_ORDER,
     ParseError: () => ParseError,
+    SHEET_FIELDS: () => SHEET_FIELDS,
     addDays: () => addDays,
     buildDailySeries: () => buildDailySeries,
     buildPlan: () => buildPlan,
@@ -887,10 +1031,12 @@ var DF = (() => {
     shortDate: () => shortDate,
     translator: () => translator,
     validateInventory: () => validateInventory,
+    validateMaterials: () => validateMaterials,
+    validateRecipes: () => validateRecipes,
     validateSales: () => validateSales
   });
 
-  // src/lib/forecast/metrics.ts
+  // ../datanova-forecast/src/lib/forecast/metrics.ts
   var sum = (a) => a.reduce((s, v) => s + v, 0);
   var mean = (a) => a.length ? sum(a) / a.length : 0;
   function sd(a, ddof = 1) {
@@ -1024,7 +1170,7 @@ var DF = (() => {
     return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q / (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
   }
 
-  // src/lib/forecast/models.ts
+  // ../datanova-forecast/src/lib/forecast/models.ts
   var nn = (v) => Number.isFinite(v) && v > 0 ? v : 0;
   var rep = (v, h) => Array.from({ length: h }, () => nn(v));
   function sse(y, fitted) {
@@ -1321,7 +1467,7 @@ var DF = (() => {
     return locale === "es" ? m.labelEs : m.label;
   }
 
-  // src/lib/forecast/profile.ts
+  // ../datanova-forecast/src/lib/forecast/profile.ts
   var ADI_CUT = 1.32;
   var CV2_CUT = 0.49;
   function classify(adi, cv2) {
@@ -1409,7 +1555,7 @@ var DF = (() => {
     };
   }
 
-  // src/lib/forecast/engine.ts
+  // ../datanova-forecast/src/lib/forecast/engine.ts
   var DAY_MS = 864e5;
   var toISO = (d) => d.toISOString().slice(0, 10);
   var parseISO = (s) => /* @__PURE__ */ new Date(s + "T00:00:00Z");
@@ -1659,7 +1805,7 @@ var DF = (() => {
     };
   }
 
-  // src/lib/inventory/index.ts
+  // ../datanova-forecast/src/lib/inventory/index.ts
   var DEFAULT_PARAMS = {
     serviceLevel: 0.95,
     leadTimeDays: 7,
@@ -1762,7 +1908,10 @@ var DF = (() => {
     const unitCost = inv?.unitCost ?? unitPrice;
     const avgDaily = fc.avgDailyDemand;
     const daysOfSupply2 = hasInventoryData ? avgDaily > 1e-6 ? round(onHand / avgDaily) : null : null;
-    const excessUnits = hasInventoryData && daysOfSupply2 !== null && daysOfSupply2 > params.overstockDays ? round(onHand - avgDaily * params.overstockDays) : 0;
+    const shelfLife = inv?.shelfLifeDays && inv.shelfLifeDays > 0 ? inv.shelfLifeDays : null;
+    const overstockThresholdDays = shelfLife !== null ? Math.min(shelfLife, params.overstockDays) : params.overstockDays;
+    const overstockReason = shelfLife !== null && shelfLife < params.overstockDays ? "shelf_life" : "policy";
+    const excessUnits = hasInventoryData && daysOfSupply2 !== null && daysOfSupply2 > overstockThresholdDays ? round(onHand - avgDaily * overstockThresholdDays) : 0;
     let risk = "healthy";
     if (hasInventoryData) {
       if (daysToStockout !== null && daysToStockout <= leadTimeDays) risk = "critical";
@@ -1787,7 +1936,9 @@ var DF = (() => {
       excessUnits,
       params,
       confidence,
-      onHand
+      onHand,
+      overstockThresholdDays,
+      overstockReason
     });
     return {
       sku: fc.sku,
@@ -1809,6 +1960,9 @@ var DF = (() => {
       suggestedOrder,
       suggestedOrderRaw: round(suggestedRaw),
       daysOfSupply: daysOfSupply2,
+      shelfLifeDays: shelfLife,
+      overstockThresholdDays,
+      overstockReason,
       projectedStockoutDate,
       daysToStockout,
       daysToBelowSafetyStock: daysToBelowSS,
@@ -1865,14 +2019,16 @@ var DF = (() => {
       };
     }
     if (risk === "overstock") {
+      const perishable = a.overstockReason === "shelf_life";
+      const thr = a.overstockThresholdDays;
       return {
         action: "reduce",
-        headline: `Pause reordering \u2014 you hold ${Math.round(a.daysOfSupply ?? 0)} days of supply`,
-        headlineEs: `Pausa el reabastecimiento \u2014 tienes ${Math.round(a.daysOfSupply ?? 0)} d\xEDas de cobertura`,
-        why: `Current stock of ${Math.round(a.onHand)} units covers far more than the ${params.overstockDays}-day threshold at the forecast demand rate. Roughly ${Math.round(a.excessUnits)} units are excess.`,
-        whyEs: `El stock actual de ${Math.round(a.onHand)} unidades cubre mucho m\xE1s que el umbral de ${params.overstockDays} d\xEDas al ritmo de demanda pronosticado. Aproximadamente ${Math.round(a.excessUnits)} unidades son excedente.`,
-        impact: "Capital stays tied up and the stock ages. Consider promotion, reallocation or cancelling open orders.",
-        impactEs: "El capital queda inmovilizado y el stock envejece. Considera promoci\xF3n, reasignaci\xF3n o cancelar \xF3rdenes abiertas."
+        headline: perishable ? `${Math.round(a.excessUnits)} units will expire before you can sell them` : `Pause reordering \u2014 you hold ${Math.round(a.daysOfSupply ?? 0)} days of supply`,
+        headlineEs: perishable ? `${Math.round(a.excessUnits)} unidades vencer\xE1n antes de que puedas venderlas` : `Pausa el reabastecimiento \u2014 tienes ${Math.round(a.daysOfSupply ?? 0)} d\xEDas de cobertura`,
+        why: perishable ? `You hold ${Math.round(a.onHand)} units \u2014 ${Math.round(a.daysOfSupply ?? 0)} days of supply at the forecast rate \u2014 but this product only stays saleable for ${thr} days.` : `Current stock of ${Math.round(a.onHand)} units covers far more than the ${thr}-day threshold at the forecast demand rate. Roughly ${Math.round(a.excessUnits)} units are excess.`,
+        whyEs: perishable ? `Tienes ${Math.round(a.onHand)} unidades \u2014 ${Math.round(a.daysOfSupply ?? 0)} d\xEDas de cobertura al ritmo pronosticado \u2014 pero este producto solo se mantiene vendible ${thr} d\xEDas.` : `El stock actual de ${Math.round(a.onHand)} unidades cubre mucho m\xE1s que el umbral de ${thr} d\xEDas al ritmo de demanda pronosticado. Aproximadamente ${Math.round(a.excessUnits)} unidades son excedente.`,
+        impact: perishable ? "This is write-off, not idle capital. Move it with a promotion now, or cut the next production run." : "Capital stays tied up and the stock ages. Consider promotion, reallocation or cancelling open orders.",
+        impactEs: perishable ? "Esto es p\xE9rdida, no capital inmovilizado. Mu\xE9velo con una promoci\xF3n ahora, o recorta la pr\xF3xima producci\xF3n." : "El capital queda inmovilizado y el stock envejece. Considera promoci\xF3n, reasignaci\xF3n o cancelar \xF3rdenes abiertas."
       };
     }
     return {
@@ -1964,10 +2120,10 @@ var DF = (() => {
     };
   }
 
-  // src/lib/parse/index.ts
+  // ../datanova-forecast/src/lib/parse/index.ts
   var import_papaparse = __toESM(require_papaparse_min());
 
-  // src/lib/parse/columns.ts
+  // ../datanova-forecast/src/lib/parse/columns.ts
   var SYNONYMS = {
     date: ["date", "fecha", "day", "dia", "datetime", "order date", "fecha venta", "fecha de venta", "invoice date", "transaction date", "periodo", "period", "fec"],
     sku: ["sku", "product id", "productid", "codigo", "c\xF3digo", "cod", "item", "item code", "item id", "material", "article", "articulo", "art\xEDculo", "part number", "part no", "upc", "ean", "clave", "id producto", "codigo producto"],
@@ -1980,7 +2136,14 @@ var DF = (() => {
     leadTime: ["lead time", "leadtime", "lead time days", "tiempo de entrega", "lt", "plazo", "plazo entrega", "dias entrega", "d\xEDas de entrega", "supply days"],
     cost: ["unit cost", "cost", "costo", "coste", "costo unitario", "cogs", "purchase price", "precio compra"],
     moq: ["moq", "minimum order", "minimum order quantity", "cantidad minima", "cantidad m\xEDnima", "min order", "pedido minimo"],
-    casePack: ["case pack", "casepack", "pack size", "caja", "unidades por caja", "multiple", "m\xFAltiplo", "multiplo", "pallet", "inner pack"]
+    casePack: ["case pack", "casepack", "pack size", "caja", "unidades por caja", "multiple", "m\xFAltiplo", "multiplo", "pallet", "inner pack"],
+    shelfLife: ["shelf life", "shelf life days", "vida util", "vida \xFAtil", "vida util dias", "vida \xFAtil d\xEDas", "caducidad", "dias de vida", "d\xEDas de vida", "expiry days", "expiration days", "dias caducidad", "durabilidad"],
+    leadTimeSd: ["lead time sd", "lead time variability", "variabilidad lead time", "desviacion lead time", "desviaci\xF3n lead time", "lead time std", "variabilidad entrega"],
+    material: ["material", "material code", "codigo material", "c\xF3digo material", "insumo", "codigo insumo", "ingredient", "ingrediente", "component", "componente", "cod material", "sku material"],
+    materialName: ["material name", "nombre material", "nombre insumo", "descripcion material", "descripci\xF3n material", "ingredient name", "nombre ingrediente", "insumo nombre"],
+    qtyPerUnit: ["qty per unit", "quantity per unit", "cantidad por unidad", "cantidad unitaria", "consumo por unidad", "cantidad receta", "qty", "cantidad", "consumo unitario", "por unidad"],
+    unit: ["unit", "unidad", "uom", "unidad de medida", "medida", "unit of measure"],
+    scrap: ["scrap", "scrap %", "merma", "merma %", "desperdicio", "waste", "waste %", "perdida", "p\xE9rdida", "yield loss"]
   };
   var FIELD_LABELS = {
     date: { en: "Date", es: "Fecha" },
@@ -1994,8 +2157,24 @@ var DF = (() => {
     leadTime: { en: "Lead time (days)", es: "Lead time (d\xEDas)" },
     cost: { en: "Unit cost", es: "Costo unitario" },
     moq: { en: "Minimum order qty", es: "Cantidad m\xEDnima de pedido" },
-    casePack: { en: "Case pack", es: "Unidades por caja" }
+    casePack: { en: "Case pack", es: "Unidades por caja" },
+    shelfLife: { en: "Shelf life (days)", es: "Vida \xFAtil (d\xEDas)" },
+    leadTimeSd: { en: "Lead time variability (days)", es: "Variabilidad del lead time (d\xEDas)" },
+    material: { en: "Material code", es: "C\xF3digo del material" },
+    materialName: { en: "Material name", es: "Nombre del material" },
+    qtyPerUnit: { en: "Quantity per unit", es: "Cantidad por unidad" },
+    unit: { en: "Unit of measure", es: "Unidad de medida" },
+    scrap: { en: "Scrap %", es: "Merma %" }
   };
+  var SYNONYM_INDEX = (() => {
+    const out = {};
+    Object.keys(SYNONYMS).forEach((f) => {
+      SYNONYMS[f].forEach((syn) => {
+        out[syn] = true;
+      });
+    });
+    return out;
+  })();
   function normalise(s) {
     return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
   }
@@ -2133,7 +2312,7 @@ var DF = (() => {
     return Number.isFinite(n) ? n : null;
   }
 
-  // src/lib/parse/index.ts
+  // ../datanova-forecast/src/lib/parse/index.ts
   var MAX_FILE_BYTES = 25 * 1024 * 1024;
   var SUPPORTED_EXT = [".csv", ".xlsx", ".xls", ".tsv", ".txt"];
   var DEFAULT_CLEAN = {
@@ -2148,7 +2327,57 @@ var DF = (() => {
       __publicField(this, "code", code);
     }
   };
-  async function readTable(buffer, filename) {
+  var SHEET_FIELDS = {
+    sales: {
+      required: ["date", "sku", "quantity"],
+      wanted: ["date", "sku", "product", "category", "quantity", "price"]
+    },
+    inventory: {
+      required: ["sku", "stock"],
+      wanted: ["sku", "stock", "onOrder", "leadTime", "cost", "moq", "casePack", "shelfLife"]
+    },
+    recipes: {
+      required: ["sku", "material", "qtyPerUnit"],
+      wanted: ["sku", "product", "material", "materialName", "qtyPerUnit", "unit", "scrap"]
+    },
+    materials: {
+      required: ["material"],
+      wanted: [
+        "material",
+        "materialName",
+        "unit",
+        "shelfLife",
+        "leadTime",
+        "leadTimeSd",
+        "moq",
+        "casePack",
+        "cost",
+        "stock"
+      ]
+    }
+  };
+  function scoreSheet(headers, rowCount, sample, kind) {
+    if (!headers.length || rowCount < 1) return -1;
+    const spec = kind ? SHEET_FIELDS[kind] : void 0;
+    if (spec) {
+      const { matches } = detectColumns(headers, sample, spec.wanted);
+      const hasAllRequired = spec.required.every((f) => !!matches[f]);
+      const matched = spec.wanted.filter((f) => !!matches[f]).length;
+      const noise = Math.max(0, headers.length - matched);
+      return (hasAllRequired ? 1e5 : 0) + matched * 100 - noise * 10 + Math.min(rowCount, 80);
+    }
+    const known = headers.filter((h) => {
+      const n = normalise(h);
+      if (!n) return false;
+      return Object.keys(SYNONYM_INDEX).some((syn) => {
+        const sy = normalise(syn);
+        return n === sy || n.replace(/ /g, "") === sy.replace(/ /g, "") || n.startsWith(sy) || sy.startsWith(n);
+      });
+    }).length;
+    return known * 100 + Math.min(rowCount, 80);
+  }
+  async function readTable(buffer, filename, opts = {}) {
+    const { kind, preferSheet } = opts;
     const lower = filename.toLowerCase();
     const ext = SUPPORTED_EXT.find((e) => lower.endsWith(e));
     if (!ext) {
@@ -2181,15 +2410,29 @@ var DF = (() => {
           "corrupt_spreadsheet"
         );
       }
-      const sheetName = wb.SheetNames[0];
-      if (!sheetName) {
+      if (!wb.SheetNames.length) {
         throw new ParseError("That workbook has no sheets.", "Ese libro no tiene hojas.", "no_sheets");
       }
-      const json = XLSX.utils.sheet_to_json(wb.Sheets[sheetName], {
-        defval: "",
-        raw: true
-      });
-      table = { headers: Object.keys(json[0] ?? {}), rows: json };
+      let best = null;
+      for (const name of wb.SheetNames) {
+        if (preferSheet && name !== preferSheet) continue;
+        const json = XLSX.utils.sheet_to_json(wb.Sheets[name], {
+          defval: "",
+          raw: true
+        });
+        const headers = Object.keys(json[0] ?? {}).map((h) => String(h).trim()).filter(Boolean);
+        const score2 = scoreSheet(headers, json.length, json.slice(0, 40), kind);
+        if (!best || score2 > best.score) best = { name, json, headers, score: score2 };
+      }
+      if (!best) {
+        throw new ParseError("That sheet could not be read.", "No se pudo leer esa hoja.", "no_sheets");
+      }
+      table = {
+        headers: best.headers,
+        rows: best.json,
+        sheetName: best.name,
+        sheetNames: wb.SheetNames.slice()
+      };
     } else {
       const text = new TextDecoder("utf-8").decode(buffer).replace(/^﻿/, "");
       const res = import_papaparse.default.parse(text, {
@@ -2530,7 +2773,7 @@ var DF = (() => {
     const { matches, unmatched } = detectColumns(
       table.headers,
       sample,
-      ["sku", "stock", "onOrder", "leadTime", "cost", "moq", "casePack"]
+      ["sku", "stock", "onOrder", "leadTime", "cost", "moq", "casePack", "shelfLife"]
     );
     const issues = [];
     if (!matches.sku || !matches.stock) {
@@ -2567,7 +2810,8 @@ var DF = (() => {
         leadTimeDays: matches.leadTime ? parseNumberCell(r[matches.leadTime.header]) : null,
         unitCost: matches.cost ? parseNumberCell(r[matches.cost.header]) : null,
         moq: matches.moq ? parseNumberCell(r[matches.moq.header]) : null,
-        casePack: matches.casePack ? parseNumberCell(r[matches.casePack.header]) : null
+        casePack: matches.casePack ? parseNumberCell(r[matches.casePack.header]) : null,
+        shelfLifeDays: matches.shelfLife ? parseNumberCell(r[matches.shelfLife.header]) : null
       });
     }
     if (negativeStock) {
@@ -2616,8 +2860,264 @@ var DF = (() => {
     }
     return { ok: rows.length > 0, rows, issues, mapping: matches, unmatchedColumns: unmatched };
   }
+  function validateRecipes(table, knownSkus) {
+    const sample = table.rows.slice(0, 200);
+    const { matches, unmatched } = detectColumns(
+      table.headers,
+      sample,
+      ["sku", "product", "material", "materialName", "qtyPerUnit", "unit", "scrap"]
+    );
+    const issues = [];
+    const missing = ["sku", "material", "qtyPerUnit"].filter((f) => !matches[f]);
+    if (missing.length) {
+      issues.push({
+        code: "missing_required_columns",
+        severity: "error",
+        title: "A recipe file needs a product code, a material code and a quantity per unit",
+        titleEs: "Un archivo de recetas necesita c\xF3digo de producto, c\xF3digo de material y cantidad por unidad",
+        detail: `Your file has: ${table.headers.join(", ")}.`,
+        detailEs: `Tu archivo tiene: ${table.headers.join(", ")}.`
+      });
+      return { ok: false, rows: [], issues, mapping: matches, unmatchedColumns: unmatched, skuCount: 0, materialCount: 0 };
+    }
+    const rows = [];
+    const unknownSku = [];
+    let badQty = 0, zeroQty = 0, highScrap = 0;
+    const seen = /* @__PURE__ */ new Set();
+    let dupes = 0;
+    for (const r of table.rows) {
+      const sku = String(r[matches.sku.header] ?? "").trim();
+      const material = String(r[matches.material.header] ?? "").trim();
+      if (!sku || !material) continue;
+      const qty = parseNumberCell(r[matches.qtyPerUnit.header]);
+      if (qty === null) {
+        badQty++;
+        continue;
+      }
+      if (qty <= 0) {
+        zeroQty++;
+        continue;
+      }
+      const key = `${sku}|${material}`;
+      if (seen.has(key)) {
+        dupes++;
+        continue;
+      }
+      seen.add(key);
+      let scrap = matches.scrap ? parseNumberCell(r[matches.scrap.header]) ?? 0 : 0;
+      if (scrap > 0 && scrap < 1) scrap = scrap * 100;
+      if (scrap >= 60) highScrap++;
+      scrap = Math.min(95, Math.max(0, scrap));
+      if (knownSkus && !knownSkus.has(sku)) unknownSku.push(sku);
+      rows.push({
+        sku,
+        material,
+        materialName: matches.materialName ? String(r[matches.materialName.header] ?? "").trim() || null : null,
+        qtyPerUnit: qty,
+        unit: matches.unit ? String(r[matches.unit.header] ?? "").trim() || null : null,
+        scrapPct: scrap
+      });
+    }
+    if (badQty) {
+      issues.push({
+        code: "unparseable_qty",
+        severity: "warning",
+        count: badQty,
+        title: `${badQty} recipe lines have a quantity that is not a number`,
+        titleEs: `${badQty} l\xEDneas de receta tienen una cantidad que no es un n\xFAmero`,
+        detail: "Those lines were skipped.",
+        detailEs: "Esas l\xEDneas se omitieron."
+      });
+    }
+    if (zeroQty) {
+      issues.push({
+        code: "zero_qty",
+        severity: "warning",
+        count: zeroQty,
+        title: `${zeroQty} recipe lines have a quantity of zero or less`,
+        titleEs: `${zeroQty} l\xEDneas de receta tienen cantidad cero o negativa`,
+        detail: "A component that consumes nothing cannot be planned, so those lines were skipped.",
+        detailEs: "Un componente que no consume nada no se puede planificar, as\xED que esas l\xEDneas se omitieron."
+      });
+    }
+    if (dupes) {
+      issues.push({
+        code: "duplicate_bom_line",
+        severity: "warning",
+        count: dupes,
+        title: `${dupes} product/material combinations appear more than once`,
+        titleEs: `${dupes} combinaciones producto/material aparecen m\xE1s de una vez`,
+        detail: "We kept the first line of each. If a material genuinely enters a recipe twice, add the quantities into one line.",
+        detailEs: "Conservamos la primera l\xEDnea de cada una. Si un material entra dos veces en una receta, suma las cantidades en una sola l\xEDnea."
+      });
+    }
+    if (highScrap) {
+      issues.push({
+        code: "high_scrap",
+        severity: "info",
+        count: highScrap,
+        title: `${highScrap} recipe lines declare 60% scrap or more`,
+        titleEs: `${highScrap} l\xEDneas de receta declaran 60% de merma o m\xE1s`,
+        detail: "Check the units \u2014 scrap is read as a percentage, so 5 means 5%. A very high figure multiplies your purchases.",
+        detailEs: "Revisa las unidades \u2014 la merma se lee como porcentaje, as\xED que 5 significa 5%. Un valor muy alto multiplica tus compras."
+      });
+    }
+    if (unknownSku.length) {
+      const uniq = [...new Set(unknownSku)];
+      issues.push({
+        code: "recipe_unknown_sku",
+        severity: "warning",
+        count: uniq.length,
+        samples: uniq.slice(0, 8),
+        title: `${uniq.length} products in the recipes have no sales history`,
+        titleEs: `${uniq.length} productos de las recetas no tienen historial de ventas`,
+        detail: "We cannot forecast them, so their materials will not be planned. Add their sales history to include them.",
+        detailEs: "No podemos pronosticarlos, as\xED que sus materiales no se planificar\xE1n. Agrega su historial de ventas para incluirlos."
+      });
+    }
+    if (!rows.length) {
+      issues.push({
+        code: "no_recipe_rows",
+        severity: "error",
+        title: "No usable recipe lines",
+        titleEs: "Ninguna l\xEDnea de receta utilizable",
+        detail: "Every row was missing a product code, a material code or a valid quantity.",
+        detailEs: "A todas las filas les faltaba c\xF3digo de producto, c\xF3digo de material o una cantidad v\xE1lida."
+      });
+    }
+    return {
+      ok: rows.length > 0,
+      rows,
+      issues,
+      mapping: matches,
+      unmatchedColumns: unmatched,
+      skuCount: new Set(rows.map((r) => r.sku)).size,
+      materialCount: new Set(rows.map((r) => r.material)).size
+    };
+  }
+  function validateMaterials(table, usedMaterials) {
+    const sample = table.rows.slice(0, 200);
+    const { matches, unmatched } = detectColumns(
+      table.headers,
+      sample,
+      [
+        "material",
+        "materialName",
+        "unit",
+        "shelfLife",
+        "leadTime",
+        "leadTimeSd",
+        "moq",
+        "casePack",
+        "cost",
+        "stock"
+      ]
+    );
+    const issues = [];
+    if (!matches.material) {
+      issues.push({
+        code: "missing_required_columns",
+        severity: "error",
+        title: "A materials file needs a material code column",
+        titleEs: "Un archivo de materiales necesita una columna de c\xF3digo de material",
+        detail: `Your file has: ${table.headers.join(", ")}.`,
+        detailEs: `Tu archivo tiene: ${table.headers.join(", ")}.`
+      });
+      return { ok: false, rows: [], issues, mapping: matches, unmatchedColumns: unmatched };
+    }
+    const rows = [];
+    const seen = /* @__PURE__ */ new Set();
+    let dupes = 0, noShelf = 0, noLead = 0, negStock = 0;
+    for (const r of table.rows) {
+      const code = String(r[matches.material.header] ?? "").trim();
+      if (!code) continue;
+      if (seen.has(code)) {
+        dupes++;
+        continue;
+      }
+      seen.add(code);
+      const shelf = matches.shelfLife ? parseNumberCell(r[matches.shelfLife.header]) : null;
+      if (shelf === null || shelf <= 0) noShelf++;
+      const lead = matches.leadTime ? parseNumberCell(r[matches.leadTime.header]) : null;
+      if (lead === null) noLead++;
+      const stock = matches.stock ? parseNumberCell(r[matches.stock.header]) ?? 0 : 0;
+      if (stock < 0) negStock++;
+      rows.push({
+        code,
+        name: matches.materialName ? String(r[matches.materialName.header] ?? "").trim() || code : code,
+        unit: matches.unit ? String(r[matches.unit.header] ?? "").trim() || "u" : "u",
+        shelfLifeDays: shelf !== null && shelf > 0 ? shelf : null,
+        leadTimeDays: lead !== null && lead >= 0 ? lead : 7,
+        leadTimeSdDays: matches.leadTimeSd ? parseNumberCell(r[matches.leadTimeSd.header]) ?? 0 : 0,
+        moq: matches.moq ? parseNumberCell(r[matches.moq.header]) ?? 0 : 0,
+        packSize: matches.casePack ? parseNumberCell(r[matches.casePack.header]) ?? 0 : 0,
+        unitCost: matches.cost ? parseNumberCell(r[matches.cost.header]) ?? 0 : 0,
+        onHand: Math.max(0, stock)
+      });
+    }
+    if (dupes) {
+      issues.push({
+        code: "duplicate_material",
+        severity: "warning",
+        count: dupes,
+        title: `${dupes} duplicate material codes`,
+        titleEs: `${dupes} c\xF3digos de material duplicados`,
+        detail: "We kept the first row for each.",
+        detailEs: "Conservamos la primera fila de cada uno."
+      });
+    }
+    if (noShelf) {
+      issues.push({
+        code: "no_shelf_life",
+        severity: "info",
+        count: noShelf,
+        title: `${noShelf} materials have no shelf life`,
+        titleEs: `${noShelf} materiales no tienen vida \xFAtil`,
+        detail: "They are treated as non-perishable, so purchase quantities are not checked against expiry. Fill in shelf life for anything that spoils.",
+        detailEs: "Se tratan como no perecibles, as\xED que sus cantidades de compra no se contrastan contra el vencimiento. Llena la vida \xFAtil para todo lo que caduque."
+      });
+    }
+    if (noLead) {
+      issues.push({
+        code: "no_material_lead_time",
+        severity: "warning",
+        count: noLead,
+        title: `${noLead} materials have no lead time`,
+        titleEs: `${noLead} materiales no tienen lead time`,
+        detail: "We assumed 7 days. A wrong lead time moves every purchase date, so this is worth filling in.",
+        detailEs: "Asumimos 7 d\xEDas. Un lead time equivocado mueve todas las fechas de compra, as\xED que vale la pena llenarlo."
+      });
+    }
+    if (negStock) {
+      issues.push({
+        code: "negative_material_stock",
+        severity: "warning",
+        count: negStock,
+        title: `${negStock} materials show negative stock`,
+        titleEs: `${negStock} materiales muestran stock negativo`,
+        detail: "Clamped to zero.",
+        detailEs: "Se ajust\xF3 a cero."
+      });
+    }
+    if (usedMaterials) {
+      const orphan = rows.filter((r) => !usedMaterials.has(r.code));
+      if (orphan.length) {
+        issues.push({
+          code: "unused_material",
+          severity: "info",
+          count: orphan.length,
+          samples: orphan.slice(0, 8).map((o) => o.code),
+          title: `${orphan.length} materials are not used by any recipe`,
+          titleEs: `${orphan.length} materiales no son usados por ninguna receta`,
+          detail: "They are kept but no purchase is planned for them.",
+          detailEs: "Se conservan pero no se planifica ninguna compra para ellos."
+        });
+      }
+    }
+    return { ok: rows.length > 0, rows, issues, mapping: matches, unmatchedColumns: unmatched };
+  }
 
-  // src/lib/i18n/index.ts
+  // ../datanova-forecast/src/lib/i18n/index.ts
   var dict = {
     en: {
       brand: "Datanova Forecast",
@@ -2970,7 +3470,7 @@ var DF = (() => {
     lumpy_demand: { en: "Highly irregular demand", es: "Demanda muy irregular" }
   };
 
-  // src/lib/format.ts
+  // ../datanova-forecast/src/lib/format.ts
   var tag = (l) => l === "es" ? "es-419" : "en-CA";
   function num(v, l = "en", digits = 0) {
     if (v == null || !Number.isFinite(v)) return "\u2014";
@@ -3028,7 +3528,7 @@ var DF = (() => {
     return num(v, l, 0);
   }
 
-  // src/lib/plans.ts
+  // ../datanova-forecast/src/lib/plans.ts
   var PLANS = {
     free: {
       id: "free",
@@ -3098,6 +3598,501 @@ papaparse/papaparse.min.js:
 </script>
 <script>
 // ═══════════════════════════════════════════════════════════════════════════
+//  Material Requirements Planning
+//
+//  Turns a finished-goods demand plan into a time-phased material plan:
+//  recipe explosion, netting against stock, lot sizing, lead-time offsetting
+//  and — the part that actually matters for a small food business — a shelf
+//  life check on every planned purchase.
+//
+//  Two deliberate positions, both of which differ from naive MRP:
+//
+//  1. Materials get NO safety stock for demand uncertainty. That uncertainty
+//     is already buffered in the finished good. Buffering it again at every
+//     component level is the classic double-buffering mistake and it inflates
+//     working capital for no added service. Materials DO get a buffer for
+//     SUPPLY uncertainty (lead-time variability), which is a different risk
+//     the finished-goods buffer does not cover.
+//
+//  2. Order quantities are checked against shelf life. A supplier MOQ that
+//     forces 90 days of coverage on a 14-day ingredient is not a planning
+//     problem to be optimised — it is a sourcing problem, and the tool says so
+//     with the money attached.
+// ═══════════════════════════════════════════════════════════════════════════
+
+(function (root, factory) {
+  if (typeof module === "object" && module.exports) module.exports = factory();
+  else root.MRP = factory();
+})(typeof self !== "undefined" ? self : this, function () {
+"use strict";
+
+var DAY = 86400000;
+function parseISO(s) { return new Date(s + "T00:00:00Z"); }
+function toISO(d) { return d.toISOString().slice(0, 10); }
+function addDays(iso, n) { var d = parseISO(iso); d.setUTCDate(d.getUTCDate() + n); return toISO(d); }
+function daysBetween(a, b) { return Math.round((parseISO(b) - parseISO(a)) / DAY); }
+function round2(v) { return Math.round(v * 100) / 100; }
+
+// Acklam's inverse normal, same as the forecasting engine uses.
+function zScore(p) {
+  var pp = Math.min(0.999999, Math.max(0.000001, p));
+  var a = [-3.969683028665376e1, 2.209460984245205e2, -2.759285104469687e2,
+           1.383577518672690e2, -3.066479806614716e1, 2.506628277459239];
+  var b = [-5.447609879822406e1, 1.615858368580409e2, -1.556989798598866e2,
+           6.680131188771972e1, -1.328068155288572e1];
+  var c = [-7.784894002430293e-3, -3.223964580411365e-1, -2.400758277161838,
+           -2.549732539343734, 4.374664141464968, 2.938163982698783];
+  var d = [7.784695709041462e-3, 3.224671290700398e-1, 2.445134137142996, 3.754408661907416];
+  var pl = 0.02425, q, r;
+  if (pp < pl) {
+    q = Math.sqrt(-2 * Math.log(pp));
+    return (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);
+  }
+  if (pp > 1 - pl) {
+    q = Math.sqrt(-2 * Math.log(1 - pp));
+    return -(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);
+  }
+  q = pp - 0.5; r = q * q;
+  return (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q / (((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1);
+}
+
+// ───────────────────── 1. master production schedule ─────────────────────
+/**
+ * Derive the time-phased production (or replenishment) schedule for one SKU
+ * under a periodic-review, order-up-to policy — the policy a small business
+ * actually runs: "every Monday I look at stock and make a batch".
+ *
+ * MRP must explode the production schedule, not raw demand. Exploding demand
+ * directly ignores the stock you already hold and the lot sizes you actually
+ * produce in, which is how material plans end up asking you to buy things you
+ * do not need yet.
+ */
+function productionSchedule(plan, forecastPoints, reviewPeriodDays) {
+  var orders = [];
+  if (!forecastPoints || !forecastPoints.length) return orders;
+
+  var position = plan.hasInventoryData ? plan.inventoryPosition : 0;
+  var R = Math.max(1, Math.round(reviewPeriodDays));
+  var L = Math.max(1, Math.round(plan.leadTimeDays));
+  var target = plan.targetLevel;
+
+  // Open orders already in the pipeline arrive before anything we plan now.
+  for (var i = 0; i < forecastPoints.length; i++) {
+    var p = forecastPoints[i];
+    position -= p.value;
+
+    // Review day: raise the position back to the order-up-to level.
+    if (i % R === 0) {
+      var qty = target - position;
+      if (qty > 0.0001) {
+        qty = applyLotSize(qty, plan.moq, plan.casePack);
+        orders.push({
+          // The batch is produced on the review day and is available after the
+          // production lead time; materials must be on hand when it starts.
+          startDate: p.date,
+          availableDate: addDays(p.date, L),
+          qty: qty,
+        });
+        position += qty;
+      }
+    }
+  }
+  return orders;
+}
+
+function applyLotSize(qty, moq, packSize) {
+  if (qty <= 0) return 0;
+  var q = qty;
+  if (packSize && packSize > 1) q = Math.ceil(q / packSize) * packSize;
+  if (moq && q < moq) q = moq;
+  return q;
+}
+
+// ───────────────────── 2. explode the recipes ─────────────────────
+/**
+ * Gross material requirements by day.
+ *
+ * Scrap is applied as a yield divisor, not a multiplier: if 5% of the
+ * chocolate is lost in tempering, you must buy qty/(1−0.05), not qty×1.05.
+ * The two differ by more than people expect once scrap climbs.
+ */
+function explode(schedules, bomBySku) {
+  var gross = {};   // material -> { date -> qty }
+  var drivers = {}; // material -> { sku -> qty }  (what is pulling each material)
+
+  Object.keys(schedules).forEach(function (sku) {
+    var lines = bomBySku[sku];
+    if (!lines || !lines.length) return;
+    schedules[sku].forEach(function (order) {
+      lines.forEach(function (line) {
+        var scrap = Math.min(0.95, Math.max(0, (line.scrapPct || 0) / 100));
+        var need = (order.qty * line.qtyPerUnit) / (1 - scrap);
+        if (!gross[line.material]) gross[line.material] = {};
+        gross[line.material][order.startDate] = (gross[line.material][order.startDate] || 0) + need;
+        if (!drivers[line.material]) drivers[line.material] = {};
+        drivers[line.material][sku] = (drivers[line.material][sku] || 0) + need;
+      });
+    });
+  });
+  return { gross: gross, drivers: drivers };
+}
+
+// ───────────────────── 3. net, lot-size and offset ─────────────────────
+
+function planMaterial(mat, byDate, drivers, opts) {
+  var dates = Object.keys(byDate).sort();
+  var horizonStart = opts.startDate;
+  var horizonEnd = opts.endDate;
+  var totalGross = dates.reduce(function (s, d) { return s + byDate[d]; }, 0);
+  var horizonDays = Math.max(1, daysBetween(horizonStart, horizonEnd) + 1);
+  var avgDaily = totalGross / horizonDays;
+
+  var L = Math.max(0, Math.round(mat.leadTimeDays || 0));
+  var shelf = mat.shelfLifeDays && mat.shelfLifeDays > 0 ? mat.shelfLifeDays : null;
+
+  // Supply-side buffer only. Demand-side uncertainty is already carried by the
+  // finished good; adding it again here would double-buffer the same risk.
+  var ltSd = Math.max(0, mat.leadTimeSdDays || 0);
+  var safetyStock = ltSd > 0 ? round2(zScore(opts.serviceLevel) * avgDaily * ltSd) : 0;
+  if (shelf && safetyStock > avgDaily * shelf * 0.5) {
+    // Never buffer more than half a shelf life — beyond that the buffer spoils
+    // faster than it protects.
+    safetyStock = round2(avgDaily * shelf * 0.5);
+  }
+
+  // How much coverage one purchase should aim for, before MOQ distorts it.
+  var coverTarget = Math.max(1, Math.round(opts.purchaseCoverDays));
+  if (shelf) coverTarget = Math.min(coverTarget, Math.max(1, Math.floor(shelf * 0.8)));
+
+  var onHand = mat.onHand || 0;
+  var available = onHand;
+  var orders = [];
+  var runOutDate = null;
+  var firstShortfallDate = null;
+
+  // Walk the horizon day by day so coverage and spoilage are measured against
+  // the real consumption pattern rather than an average.
+  var cursor = horizonStart;
+  var dayIdx = 0;
+  var consumed = [];
+  while (dayIdx < horizonDays) {
+    var need = byDate[cursor] || 0;
+    consumed.push({ date: cursor, qty: need });
+    cursor = addDays(cursor, 1);
+    dayIdx++;
+  }
+
+  for (var i = 0; i < consumed.length; i++) {
+    var d = consumed[i].date, req = consumed[i].qty;
+    available -= req;
+
+    if (available < safetyStock - 1e-9 && req > 0) {
+      if (!firstShortfallDate) firstShortfallDate = d;
+      if (available < 0 && !runOutDate) runOutDate = d;
+
+      // Order enough to cover the next `coverTarget` days of real consumption,
+      // plus whatever is needed to climb back to the safety level.
+      var forward = 0;
+      for (var k = i; k < Math.min(consumed.length, i + coverTarget); k++) forward += consumed[k].qty;
+      var want = Math.max(req, forward) + safetyStock - available;
+      var qty = applyLotSize(want, mat.moq, mat.packSize);
+
+      // How many days of consumption does this quantity actually cover?
+      var cum = 0, coverDays = 0;
+      for (var j = i; j < consumed.length && cum < qty; j++) { cum += consumed[j].qty; coverDays++; }
+      if (cum < qty && avgDaily > 0) coverDays += Math.ceil((qty - cum) / avgDaily);
+
+      var releaseDate = addDays(d, -L);
+      orders.push({
+        needDate: d,
+        releaseDate: releaseDate,
+        qty: round2(qty),
+        coverageDays: coverDays,
+        // A release date already in the past means the order is overdue the
+        // moment the plan is produced — the single most actionable alert here.
+        late: daysBetween(horizonStart, releaseDate) < 0,
+        daysLate: Math.max(0, -daysBetween(horizonStart, releaseDate)),
+      });
+      available += qty;
+    }
+  }
+
+  // ── shelf life ──
+  var shelfRisk = null;
+  if (shelf && orders.length) {
+    var worst = orders.reduce(function (a, b) { return b.coverageDays > a.coverageDays ? b : a; });
+    if (worst.coverageDays > shelf) {
+      var usable = 0;
+      // Units actually consumed before the lot expires.
+      var startIdx = consumed.findIndex(function (c) { return c.date === worst.needDate; });
+      for (var m = Math.max(0, startIdx); m < Math.min(consumed.length, Math.max(0, startIdx) + shelf); m++) {
+        usable += consumed[m].qty;
+      }
+      if (usable < worst.qty) {
+        var waste = worst.qty - usable;
+        var forcedByMoq = mat.moq && worst.qty <= mat.moq + 1e-9;
+        shelfRisk = {
+          wasteUnits: round2(waste),
+          wasteValue: round2(waste * (mat.unitCost || 0)),
+          coverageDays: worst.coverageDays,
+          shelfLifeDays: shelf,
+          orderQty: worst.qty,
+          forcedByMoq: !!forcedByMoq,
+        };
+      }
+    }
+  }
+
+  var coverageDays = avgDaily > 1e-9 ? Math.round(onHand / avgDaily) : null;
+  var totalQty = orders.reduce(function (s, o) { return s + o.qty; }, 0);
+  var lateOrders = orders.filter(function (o) { return o.late; });
+
+  var risk = "healthy";
+  if (lateOrders.length) risk = "critical";
+  else if (shelfRisk) risk = "warning";
+  else if (orders.length && orders[0] && daysBetween(horizonStart, orders[0].releaseDate) <= 7) risk = "warning";
+
+  return {
+    code: mat.code,
+    name: mat.name || mat.code,
+    unit: mat.unit || "u",
+    shelfLifeDays: shelf,
+    leadTimeDays: L,
+    moq: mat.moq || 0,
+    packSize: mat.packSize || 0,
+    unitCost: mat.unitCost || 0,
+    onHand: round2(onHand),
+    grossRequirement: round2(totalGross),
+    avgDailyUse: round2(avgDaily),
+    safetyStock: safetyStock,
+    coverageDays: coverageDays,
+    runOutDate: runOutDate,
+    firstShortfallDate: firstShortfallDate,
+    orders: orders,
+    orderCount: orders.length,
+    totalOrderQty: round2(totalQty),
+    totalCost: round2(totalQty * (mat.unitCost || 0)),
+    lateOrders: lateOrders.length,
+    shelfRisk: shelfRisk,
+    risk: risk,
+    usedBy: Object.keys(drivers || {}).sort(function (a, b) {
+      return drivers[b] - drivers[a];
+    }).slice(0, 5),
+    consumption: consumed,
+  };
+}
+
+// ───────────────────── recommendations ─────────────────────
+
+function recommend(m, lang) {
+  var es = lang === "es";
+  var unit = m.unit;
+  var fmtQ = function (v) { return Math.round(v).toLocaleString(es ? "es-419" : "en-CA"); };
+  var fmtM = function (v) {
+    return new Intl.NumberFormat(es ? "es-419" : "en-CA",
+      { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(v);
+  };
+
+  // A material can be overdue AND structurally wasteful at the same time. The
+  // urgent action wins the headline, but the second problem is not dropped —
+  // it is attached as a note, because they call for different fixes: one is a
+  // purchase order today, the other is a conversation with the supplier.
+  var sourcingNote = null;
+  if (m.shelfRisk && m.shelfRisk.forcedByMoq) {
+    sourcingNote = es
+      ? "Aparte: el MOQ de " + fmtQ(m.moq) + " " + unit + " te obliga a comprar " +
+        m.shelfRisk.coverageDays + " días de cobertura sobre un material que vence a los " +
+        m.shelfRisk.shelfLifeDays + " días — " + fmtM(m.shelfRisk.wasteValue) +
+        " de merma por ciclo. Eso se arregla con el proveedor, no con el plan."
+      : "Separately: the " + fmtQ(m.moq) + " " + unit + " MOQ forces you to buy " +
+        m.shelfRisk.coverageDays + " days of coverage on a material that expires after " +
+        m.shelfRisk.shelfLifeDays + " days — " + fmtM(m.shelfRisk.wasteValue) +
+        " of waste per cycle. That is fixed with the supplier, not with the plan.";
+  }
+
+  if (m.lateOrders > 0) {
+    var o = m.orders.filter(function (x) { return x.late; })[0];
+    return {
+      action: "order_now",
+      headline: es ? "Ordena " + fmtQ(o.qty) + " " + unit + " hoy mismo"
+                   : "Order " + fmtQ(o.qty) + " " + unit + " today",
+      why: es
+        ? "Con un lead time de " + m.leadTimeDays + " días, esta compra debió haberse colocado hace " +
+          o.daysLate + " día(s) para llegar a tiempo a la producción del " + o.needDate + "."
+        : "With a " + m.leadTimeDays + "-day lead time, this purchase should have been placed " +
+          o.daysLate + " day(s) ago to arrive in time for the production run on " + o.needDate + ".",
+      impact: es
+        ? "Si no llega, esa producción no se puede hacer y el quiebre pasa al producto terminado."
+        : "If it does not arrive, that production run cannot happen and the shortage moves to the finished product.",
+      note: sourcingNote,
+    };
+  }
+
+  if (m.shelfRisk) {
+    var s = m.shelfRisk;
+    return {
+      action: s.forcedByMoq ? "sourcing" : "reduce",
+      headline: s.forcedByMoq
+        ? (es ? "El MOQ de este material te hace botar " + fmtQ(s.wasteUnits) + " " + unit
+              : "This material's MOQ makes you discard " + fmtQ(s.wasteUnits) + " " + unit)
+        : (es ? "Compra en lotes más pequeños y con más frecuencia"
+              : "Buy in smaller lots, more often"),
+      why: es
+        ? "Una compra de " + fmtQ(s.orderQty) + " " + unit + " te cubre " + s.coverageDays +
+          " días de consumo, pero el material vence a los " + s.shelfLifeDays + " días."
+        : "An order of " + fmtQ(s.orderQty) + " " + unit + " covers " + s.coverageDays +
+          " days of consumption, but the material expires after " + s.shelfLifeDays + " days.",
+      impact: s.forcedByMoq
+        ? (es ? "Son " + fmtM(s.wasteValue) + " de merma estructural por ciclo. No es un problema de planificación: necesitas un empaque menor o cambiar de proveedor."
+              : "That is " + fmtM(s.wasteValue) + " of structural waste per cycle. This is not a planning problem: you need a smaller pack or a different supplier.")
+        : (es ? "Evitas alrededor de " + fmtM(s.wasteValue) + " de producto vencido por ciclo."
+              : "You avoid roughly " + fmtM(s.wasteValue) + " of expired material per cycle."),
+    };
+  }
+
+  if (m.orders.length) {
+    var n = m.orders[0];
+    return {
+      action: "order_soon",
+      headline: es ? "Ordena " + fmtQ(n.qty) + " " + unit + " el " + n.releaseDate
+                   : "Order " + fmtQ(n.qty) + " " + unit + " on " + n.releaseDate,
+      why: es
+        ? "Tu stock actual de " + fmtQ(m.onHand) + " " + unit + " alcanza para " +
+          (m.coverageDays == null ? "—" : m.coverageDays) + " días al ritmo de consumo del plan, y el proveedor tarda " +
+          m.leadTimeDays + " días."
+        : "Your current stock of " + fmtQ(m.onHand) + " " + unit + " lasts " +
+          (m.coverageDays == null ? "—" : m.coverageDays) + " days at the plan's consumption rate, and the supplier takes " +
+          m.leadTimeDays + " days.",
+      impact: es
+        ? "Colocarla después de esa fecha corta la producción programada."
+        : "Placing it after that date interrupts the scheduled production run.",
+    };
+  }
+
+  return {
+    action: "no_action",
+    headline: es ? "No requiere compra en este horizonte" : "No purchase needed in this horizon",
+    why: es
+      ? "El stock actual de " + fmtQ(m.onHand) + " " + unit + " cubre todo el plan de producción."
+      : "Current stock of " + fmtQ(m.onHand) + " " + unit + " covers the whole production plan.",
+    impact: es ? "Revisa de nuevo cuando cambie el plan de demanda."
+               : "Check again when the demand plan changes.",
+  };
+}
+
+// ───────────────────── entry point ─────────────────────
+
+/**
+ * @param plans      finished-goods plans from the inventory engine
+ * @param seriesBySku  { sku: { forecast: [{date,value,...}] } }
+ * @param boms       [{ sku, material, qtyPerUnit, unit, scrapPct }]
+ * @param materials  [{ code, name, unit, shelfLifeDays, leadTimeDays, leadTimeSdDays,
+ *                      moq, packSize, unitCost, onHand }]
+ * @param opts       { reviewPeriodDays, purchaseCoverDays, serviceLevel, lang }
+ */
+function run(plans, seriesBySku, boms, materials, opts) {
+  opts = opts || {};
+  var reviewPeriodDays = opts.reviewPeriodDays || 7;
+  var purchaseCoverDays = opts.purchaseCoverDays || 30;
+  var serviceLevel = opts.serviceLevel || 0.95;
+  var lang = opts.lang || "es";
+
+  var bomBySku = {};
+  (boms || []).forEach(function (b) {
+    if (!b || !b.sku || !b.material) return;
+    (bomBySku[b.sku] = bomBySku[b.sku] || []).push(b);
+  });
+
+  var matByCode = {};
+  (materials || []).forEach(function (m) { if (m && m.code) matByCode[m.code] = m; });
+
+  // Only SKUs that actually have a recipe drive a material plan.
+  var schedules = {};
+  var planBySku = {};
+  var startDate = null, endDate = null;
+  plans.forEach(function (p) {
+    planBySku[p.sku] = p;
+    if (!bomBySku[p.sku]) return;
+    var s = seriesBySku[p.sku];
+    if (!s || !s.forecast || !s.forecast.length) return;
+    if (!startDate) startDate = s.forecast[0].date;
+    var last = s.forecast[s.forecast.length - 1].date;
+    if (!endDate || last > endDate) endDate = last;
+    schedules[p.sku] = productionSchedule(p, s.forecast, reviewPeriodDays);
+  });
+
+  var skusWithRecipe = Object.keys(schedules);
+  if (!skusWithRecipe.length) {
+    return {
+      ok: false, reason: "no_recipes", materials: [], summary: null,
+      skusWithRecipe: [], skusWithoutRecipe: plans.map(function (p) { return p.sku; }),
+    };
+  }
+
+  var ex = explode(schedules, bomBySku);
+  var out = [];
+  var unknownMaterials = [];
+
+  Object.keys(ex.gross).forEach(function (code) {
+    var mat = matByCode[code];
+    if (!mat) {
+      unknownMaterials.push(code);
+      // Still plan it, with neutral defaults, rather than dropping it silently.
+      mat = { code: code, name: code, unit: "u", shelfLifeDays: null,
+              leadTimeDays: 7, moq: 0, packSize: 0, unitCost: 0, onHand: 0 };
+    }
+    var m = planMaterial(mat, ex.gross[code], ex.drivers[code], {
+      startDate: startDate, endDate: endDate,
+      serviceLevel: serviceLevel, purchaseCoverDays: purchaseCoverDays,
+    });
+    m.recommendation = recommend(m, lang);
+    m.recommendationEn = recommend(m, "en");
+    m.recommendationEs = recommend(m, "es");
+    m.known = !!matByCode[code];
+    out.push(m);
+  });
+
+  var rank = { critical: 0, warning: 1, healthy: 2 };
+  out.sort(function (a, b) {
+    if (rank[a.risk] !== rank[b.risk]) return rank[a.risk] - rank[b.risk];
+    return b.totalCost - a.totalCost;
+  });
+
+  var sum = function (f) { return out.reduce(function (s, m) { return s + f(m); }, 0); };
+  var productionOrders = 0;
+  skusWithRecipe.forEach(function (s) { productionOrders += schedules[s].length; });
+
+  return {
+    ok: true,
+    materials: out,
+    schedules: schedules,
+    summary: {
+      materialCount: out.length,
+      materialsAtRisk: out.filter(function (m) { return m.risk !== "healthy"; }).length,
+      lateOrders: sum(function (m) { return m.lateOrders; }),
+      purchaseValue: round2(sum(function (m) { return m.totalCost; })),
+      wasteValue: round2(sum(function (m) { return m.shelfRisk ? m.shelfRisk.wasteValue : 0; })),
+      shelfRiskCount: out.filter(function (m) { return !!m.shelfRisk; }).length,
+      productionOrders: productionOrders,
+      skusWithRecipe: skusWithRecipe.length,
+      unknownMaterials: unknownMaterials,
+      startDate: startDate, endDate: endDate,
+    },
+    skusWithRecipe: skusWithRecipe,
+    skusWithoutRecipe: plans.filter(function (p) { return !bomBySku[p.sku]; })
+                            .map(function (p) { return p.sku; }),
+  };
+}
+
+return { run: run, productionSchedule: productionSchedule, applyLotSize: applyLotSize,
+         explode: explode, zScore: zScore, addDays: addDays, daysBetween: daysBetween };
+});
+</script>
+<script>
+var DATANOVA_STUDIO_LOGO = "data:image/png;base64,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";
+</script>
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
 //  Datanova Forecast — application layer
 //
 //  Everything runs in the browser. Sales data is parsed, forecast and planned
@@ -3107,25 +4102,38 @@ papaparse/papaparse.min.js:
 "use strict";
 
 var E = window.DF;                       // the bundled forecasting engine
+var MRP = window.MRP;                    // the material requirements planner
+
 var state = {
   lang: "es",
   view: "landing",
+  step: 1,                // 1 load · 2 parameters · 3 results
+  tab: "demand",          // results tab
+
+  // ── step 1 inputs ──
   sales: null,            // validated sales rows
   salesStats: null,
   inventory: null,        // validated inventory rows
-  issues: [],
-  invIssues: [],
-  mapping: {},
-  invMapping: {},
+  recipes: null,          // bill-of-material lines
+  materials: null,        // material master
+  issues: [], invIssues: [], recipeIssues: [], matIssues: [],
+  mapping: {}, invMapping: {}, unmatched: [],
+  uploadError: null,
+  sheetNotes: {},         // per upload: which sheet of a multi-tab workbook was read
   clean: { dropNegatives: false, aggregateDuplicates: true, dropIncomplete: true },
   lastFile: null,         // kept so cleaning options can re-validate
-  upStep: "sales",
+
+  // ── step 2 ──
   params: {
     horizonDays: 30, leadTimeDays: 7, leadTimeSdDays: 0, serviceLevel: 0.95,
     reviewPeriodDays: 7, overstockDays: 90,
+    purchaseCoverDays: 30,
     abcACut: 0.8, abcBCut: 0.95, abcCriterion: "revenue",
   },
+
+  // ── step 3 outputs ──
   run: null,              // { plans, series, summary, health, at, ms }
+  mrp: null,              // material plan, when recipes exist
   table: { q: "", risk: "all", abc: "all", sort: "risk", dir: 1, limit: 40 },
   skuOpen: null,
   busy: false,
@@ -3479,23 +4487,473 @@ function demandChart(hist, fc, h) {
     '<span><span style="display:inline-block;width:14px;height:2px;background:var(--warning);vertical-align:middle;margin-right:5px"></span>' + esc(t("forecast")) + "</span></div>";
   return legend + s;
 }
+// ───────── additional strings for the 1-2-3 layout, templates and MRP ─────────
+(function () {
+  var add = {
+    es: {
+      restart: "Empezar de nuevo",
+      railData: "Cargar datos", railParams: "Parámetros", railResults: "Resultados",
+      footBy: "Desarrollado por",
+
+      // ── step 1 ──
+      s1Title: "Carga tus datos",
+      s1Sub: "Solo el historial de ventas es obligatorio. Lo demás desbloquea más análisis: el inventario habilita qué ordenar y cuándo, y la receta habilita el plan de materiales.",
+      tmplTitle: "¿No sabes cómo organizar la información?",
+      tmplSub: "Descarga la plantilla, llénala con tus datos y súbela. Trae una hoja por archivo con las columnas correctas y ejemplos llenos.",
+      tmplXlsx: "Descargar plantilla Excel",
+      tmplCsvAll: "o descargar los CSV por separado:",
+      tmplBuilding: "Preparando…",
+
+      slotSales: "Historial de ventas",
+      slotSalesD: "Una fila por venta: fecha, código de producto y unidades. Mínimo 28 días; con 12+ meses detectamos estacionalidad.",
+      slotInv: "Inventario actual",
+      slotInvD: "Stock por producto. Sin esto pronosticamos la demanda pero no podemos decirte cuánto pedir.",
+      slotRecipe: "Recetas de tus productos",
+      slotRecipeD: "La lista de materiales: qué insumos consume cada producto y cuánto. Con esto, tu plan de demanda explota automáticamente a plan de materiales.",
+      slotMat: "Materiales e insumos",
+      slotMatD: "Vida útil, lead time, MOQ y costo de cada insumo. La vida útil es lo que evita que compres más de lo que alcanzas a usar.",
+      required: "OBLIGATORIO", optional: "OPCIONAL",
+      slotUpload: "Subir archivo", slotReplace: "Reemplazar", slotClear: "Quitar",
+      slotEdit: "Crear a mano", slotView: "Ver y editar",
+      slotEmpty: "Sin cargar",
+      rowsLoaded: "{n} filas", skusLoaded: "{n} productos", matsLoaded: "{n} materiales",
+      recipeLoaded: "{s} productos · {m} materiales",
+      s1Next: "Continuar a parámetros",
+      s1NeedSales: "Carga tu historial de ventas para continuar",
+      s1Demo: "Probar con datos de ejemplo",
+
+      // ── demo picker ──
+      demoTitle: "Elige un caso de ejemplo",
+      demoSub: "Dos modelos de negocio distintos, con datos completos para ver la herramienta funcionando.",
+      demoDistTitle: "Distribuidora / Retail",
+      demoDistD: "50 productos de consumo masivo, 24 meses de historial diario. Compra y revende: pronóstico de demanda, punto de reorden y alertas de quiebre.",
+      demoDistTag: "Sin producción",
+      demoMfgTitle: "Emprendimiento con producción",
+      demoMfgD: "Chocolatería artesanal: 8 productos, 14 meses de historial, recetas completas y 9 insumos con vida útil. Incluye el plan de materiales explotado.",
+      demoMfgTag: "Demanda + materiales",
+      demoLoad: "Cargar este caso", demoCancel: "Cancelar",
+
+      // ── step 2 ──
+      s2Title: "Define tus parámetros",
+      s2Sub: "Estos son los datos que te pediría un Demand Planner antes de calcular nada.",
+      cfDemandH: "Demanda e inventario de producto terminado",
+      cfDemandHd: "Cómo quieres planificar lo que vendes.",
+      cfMatH: "Compra de materiales",
+      cfMatHd: "Cómo quieres planificar lo que compras para producir. Solo aplica porque cargaste recetas.",
+      purchaseCover: "Cobertura por compra",
+      purchaseCoverHelp: "Cuántos días de consumo quieres cubrir con cada compra de material. La vida útil de cada insumo recorta este número automáticamente cuando hace falta.",
+      s2Back: "Volver a datos",
+
+      // ── step 3 ──
+      s3Title: "Tu plan",
+      tabDemand: "Demanda e inventario", tabMaterials: "Plan de materiales", tabAbc: "Análisis ABC",
+
+      // ── materials ──
+      matTitle: "Plan de materiales",
+      matSub: "Explotado desde tu plan de demanda. Cada compra tiene fecha de colocación, no solo cantidad.",
+      matNoRecipes: "Aún no hay recetas cargadas",
+      matNoRecipesSub: "El plan de materiales sale de explotar tu plan de demanda contra la receta de cada producto. Carga tus recetas e insumos en el paso 1, o créalos a mano.",
+      matGoLoad: "Ir a cargar recetas",
+      matCount: "Materiales planificados", matAtRisk: "Materiales en riesgo",
+      matLate: "Compras atrasadas", matPurchase: "Valor a comprar",
+      matWaste: "Merma por vida útil", matProdOrders: "Órdenes de producción",
+      matWhatBuy: "¿Qué debo comprar y cuándo?",
+      matWhatBuySub: "Ordenado por urgencia y luego por monto.",
+      matTblTitle: "Detalle por material",
+      cMaterial: "Material", cUnit: "Unidad", cShelf: "Vida útil",
+      cOnHand: "Stock", cNeed: "Necesidad", cCover: "Cobertura",
+      cFirstOrder: "1ra compra", cQty: "Cantidad", cCost: "Costo", cUsedBy: "Usado en",
+      matNoBuy: "No requiere compra",
+      matSsNote: "Sobre el stock de seguridad de materiales",
+      matSsBody: "No le agregamos colchón por incertidumbre de demanda a los materiales: esa incertidumbre ya está amortiguada en el producto terminado, y volver a amortiguarla aquí infla el inventario sin mejorar el servicio. Solo agregamos colchón cuando declaras variabilidad en el lead time del proveedor, que es un riesgo distinto y sí queda descubierto.",
+      matShelfNote: "Conflictos de vida útil",
+      noShelfData: "sin vida útil",
+      days30: "días", perCycle: "por ciclo",
+      prodPlan: "Plan de producción", prodPlanSub: "Lo que hay que fabricar, derivado del pronóstico y tu política de inventario.",
+      orderOn: "Colocar el", needOn: "Para producción del", late: "ATRASADA",
+      matUnknown: "no está en tu maestro de materiales",
+
+      // ── editors ──
+      edRecipeTitle: "Recetas de tus productos",
+      edRecipeSub: "Una línea por material que entra en cada producto. La merma es el porcentaje que se pierde en el proceso.",
+      edMatTitle: "Tus materiales e insumos",
+      edMatSub: "La vida útil y el MOQ son los dos campos que más cambian el resultado: juntos determinan si vas a botar producto.",
+      edAddLine: "Agregar línea", edAddMat: "Agregar material",
+      edSave: "Guardar", edCancel: "Cancelar", edEmpty: "Aún no hay líneas. Agrega la primera.",
+      edProduct: "Producto (SKU)", edMaterial: "Material", edQty: "Cantidad/unidad",
+      edUnit: "Unidad", edScrap: "Merma %",
+      edCode: "Código", edName: "Nombre", edShelf: "Vida útil (días)",
+      edLead: "Lead time (días)", edMoq: "MOQ", edPack: "Múltiplo", edCost: "Costo unit.",
+      edStock: "Stock actual", edLeadSd: "Variab. lead time",
+      edPickSku: "— elige —",
+      edNoSkus: "Primero carga tu historial de ventas: las recetas se asocian a productos que ya existen.",
+      edSavedRecipes: "{n} líneas de receta guardadas",
+      edSavedMats: "{n} materiales guardados",
+      shelfLifeFg: "Vida útil del producto",
+      overstockByShelf: "umbral por vida útil",
+      sheetUsed: "Tu archivo tiene {n} hojas; leímos «{s}», que es la que contiene los datos.",
+    },
+    en: {
+      restart: "Start over",
+      railData: "Load data", railParams: "Parameters", railResults: "Results",
+      footBy: "Built by",
+
+      s1Title: "Load your data",
+      s1Sub: "Only the sales history is required. The rest unlocks more: inventory enables what to order and when, and recipes enable the material plan.",
+      tmplTitle: "Not sure how to lay out your data?",
+      tmplSub: "Download the template, fill it with your data and upload it. One sheet per file, with the right columns and worked examples.",
+      tmplXlsx: "Download Excel template",
+      tmplCsvAll: "or download the CSVs separately:",
+      tmplBuilding: "Preparing…",
+
+      slotSales: "Sales history",
+      slotSalesD: "One row per sale: date, product code and units. 28 days minimum; with 12+ months we detect seasonality.",
+      slotInv: "Current inventory",
+      slotInvD: "Stock per product. Without it we forecast demand but cannot tell you how much to order.",
+      slotRecipe: "Your product recipes",
+      slotRecipeD: "The bill of materials: which inputs each product consumes and how much. With this, your demand plan explodes automatically into a material plan.",
+      slotMat: "Materials and ingredients",
+      slotMatD: "Shelf life, lead time, MOQ and cost per input. Shelf life is what stops you buying more than you can use.",
+      required: "REQUIRED", optional: "OPTIONAL",
+      slotUpload: "Upload file", slotReplace: "Replace", slotClear: "Remove",
+      slotEdit: "Create by hand", slotView: "View and edit",
+      slotEmpty: "Not loaded",
+      rowsLoaded: "{n} rows", skusLoaded: "{n} products", matsLoaded: "{n} materials",
+      recipeLoaded: "{s} products · {m} materials",
+      s1Next: "Continue to parameters",
+      s1NeedSales: "Load your sales history to continue",
+      s1Demo: "Try with sample data",
+
+      demoTitle: "Pick a sample case",
+      demoSub: "Two different business models, with complete data so you can see the tool working.",
+      demoDistTitle: "Distributor / Retail",
+      demoDistD: "50 consumer goods, 24 months of daily history. Buys and resells: demand forecast, reorder point and stockout alerts.",
+      demoDistTag: "No production",
+      demoMfgTitle: "Small producer",
+      demoMfgD: "Artisan chocolate maker: 8 products, 14 months of history, full recipes and 9 inputs with shelf life. Includes the exploded material plan.",
+      demoMfgTag: "Demand + materials",
+      demoLoad: "Load this case", demoCancel: "Cancel",
+
+      s2Title: "Set your parameters",
+      s2Sub: "These are the inputs a demand planner would ask you for before calculating anything.",
+      cfDemandH: "Finished-goods demand and inventory",
+      cfDemandHd: "How you want to plan what you sell.",
+      cfMatH: "Material purchasing",
+      cfMatHd: "How you want to plan what you buy to produce. Shown because you loaded recipes.",
+      purchaseCover: "Coverage per purchase",
+      purchaseCoverHelp: "How many days of consumption each material purchase should cover. Each input's shelf life trims this automatically when needed.",
+      s2Back: "Back to data",
+
+      s3Title: "Your plan",
+      tabDemand: "Demand and inventory", tabMaterials: "Material plan", tabAbc: "ABC analysis",
+
+      matTitle: "Material plan",
+      matSub: "Exploded from your demand plan. Every purchase carries a release date, not just a quantity.",
+      matNoRecipes: "No recipes loaded yet",
+      matNoRecipesSub: "The material plan comes from exploding your demand plan against each product's recipe. Load your recipes and inputs in step 1, or create them by hand.",
+      matGoLoad: "Go to load recipes",
+      matCount: "Materials planned", matAtRisk: "Materials at risk",
+      matLate: "Overdue purchases", matPurchase: "Value to purchase",
+      matWaste: "Shelf-life waste", matProdOrders: "Production orders",
+      matWhatBuy: "What should I buy, and when?",
+      matWhatBuySub: "Ordered by urgency, then by value.",
+      matTblTitle: "Detail by material",
+      cMaterial: "Material", cUnit: "Unit", cShelf: "Shelf life",
+      cOnHand: "Stock", cNeed: "Requirement", cCover: "Coverage",
+      cFirstOrder: "1st order", cQty: "Quantity", cCost: "Cost", cUsedBy: "Used in",
+      matNoBuy: "No purchase needed",
+      matSsNote: "On material safety stock",
+      matSsBody: "We do not add a demand-uncertainty buffer to materials: that uncertainty is already absorbed by the finished good, and buffering it again here inflates inventory without improving service. We only add a buffer when you declare supplier lead-time variability, which is a different risk and genuinely uncovered.",
+      matShelfNote: "Shelf-life conflicts",
+      noShelfData: "no shelf life",
+      days30: "days", perCycle: "per cycle",
+      prodPlan: "Production plan", prodPlanSub: "What has to be made, derived from the forecast and your inventory policy.",
+      orderOn: "Place on", needOn: "For production on", late: "OVERDUE",
+      matUnknown: "not in your material master",
+
+      edRecipeTitle: "Your product recipes",
+      edRecipeSub: "One line per material that goes into each product. Scrap is the percentage lost in the process.",
+      edMatTitle: "Your materials and ingredients",
+      edMatSub: "Shelf life and MOQ are the two fields that change the result most: together they decide whether you end up throwing product away.",
+      edAddLine: "Add line", edAddMat: "Add material",
+      edSave: "Save", edCancel: "Cancel", edEmpty: "No lines yet. Add the first one.",
+      edProduct: "Product (SKU)", edMaterial: "Material", edQty: "Qty per unit",
+      edUnit: "Unit", edScrap: "Scrap %",
+      edCode: "Code", edName: "Name", edShelf: "Shelf life (days)",
+      edLead: "Lead time (days)", edMoq: "MOQ", edPack: "Pack size", edCost: "Unit cost",
+      edStock: "Current stock", edLeadSd: "Lead time var.",
+      edPickSku: "— pick —",
+      edNoSkus: "Load your sales history first: recipes attach to products that already exist.",
+      edSavedRecipes: "{n} recipe lines saved",
+      edSavedMats: "{n} materials saved",
+      shelfLifeFg: "Product shelf life",
+      overstockByShelf: "threshold from shelf life",
+      sheetUsed: "Your file has {n} sheets; we read \u201c{s}\u201d, which is the one holding the data.",
+    },
+  };
+  ["es", "en"].forEach(function (L) {
+    for (var k in add[L]) EXTRA[L][k] = add[L][k];
+  });
+})();
+// ───────────────────────── data templates ─────────────────────────
+/**
+ * The canonical shape of each input file. This single definition drives the
+ * downloadable template, the on-screen column documentation and the worked
+ * example rows, so the three can never drift apart.
+ */
+var TEMPLATES = {
+  ventas: {
+    key: "ventas",
+    file: { es: "1-historial-ventas", en: "1-sales-history" },
+    title: { es: "Historial de ventas", en: "Sales history" },
+    cols: [
+      { h: { es: "Fecha", en: "Date" }, req: true,
+        d: { es: "Fecha de la venta. AAAA-MM-DD o DD/MM/AAAA.", en: "Date of the sale. YYYY-MM-DD or DD/MM/YYYY." } },
+      { h: { es: "SKU", en: "SKU" }, req: true,
+        d: { es: "Código del producto. Debe ser el mismo en todos los archivos.", en: "Product code. Must match across every file." } },
+      { h: { es: "Producto", en: "Product" }, req: false,
+        d: { es: "Nombre legible del producto.", en: "Readable product name." } },
+      { h: { es: "Categoria", en: "Category" }, req: false,
+        d: { es: "Familia o línea. Útil para filtrar.", en: "Family or line. Useful for filtering." } },
+      { h: { es: "Unidades", en: "Units Sold" }, req: true,
+        d: { es: "Cantidad vendida ese día. Una devolución va en negativo.", en: "Quantity sold that day. A return goes in as negative." } },
+      { h: { es: "Precio Unitario", en: "Unit Price" }, req: false,
+        d: { es: "Precio de venta. Sin esto no hay cifras de ingresos ni ABC por valor.", en: "Selling price. Without it there is no revenue figure and no ABC by value." } },
+    ],
+    rows: [
+      ["2026-01-05", "PRD-001", "Caja Bombones 12u", "Chocolatería", 14, 18.00],
+      ["2026-01-05", "PRD-002", "Trufa Individual", "Chocolatería", 52, 2.50],
+      ["2026-01-06", "PRD-001", "Caja Bombones 12u", "Chocolatería", 9, 18.00],
+      ["2026-01-06", "PRD-003", "Tableta 70% 100g", "Chocolatería", 21, 7.00],
+    ],
+    note: {
+      es: "Una fila por producto y día. Si tu sistema exporta a nivel de transacción (varias filas del mismo producto el mismo día) también sirve: las sumamos. Un día sin venta simplemente no aparece — lo leemos como demanda cero, no como dato faltante.",
+      en: "One row per product per day. If your system exports at transaction level (several rows for the same product on the same day) that works too: we add them up. A day with no sale simply does not appear — we read it as zero demand, not as missing data.",
+    },
+  },
+  inventario: {
+    key: "inventario",
+    file: { es: "2-inventario-actual", en: "2-current-inventory" },
+    title: { es: "Inventario actual", en: "Current inventory" },
+    cols: [
+      { h: { es: "SKU", en: "SKU" }, req: true,
+        d: { es: "Código del producto, igual que en ventas.", en: "Product code, same as in sales." } },
+      { h: { es: "Stock Actual", en: "Current Stock" }, req: true,
+        d: { es: "Unidades físicas que tienes hoy.", en: "Physical units you hold today." } },
+      { h: { es: "En Pedido", en: "On Order" }, req: false,
+        d: { es: "Unidades ya pedidas que aún no llegan. Si lo omites, podrías volver a pedir lo que ya viene en camino.", en: "Units already ordered but not yet received. Omit it and you may re-order what is already in transit." } },
+      { h: { es: "Lead Time Dias", en: "Lead Time Days" }, req: false,
+        d: { es: "Días entre pedir y recibir (o producir) este producto.", en: "Days between ordering and receiving (or producing) this product." } },
+      { h: { es: "Vida Util Dias", en: "Shelf Life Days" }, req: false,
+        d: { es: "Días que el producto se mantiene vendible. Si lo llenas, reemplaza el umbral genérico de sobreinventario.", en: "Days the product stays saleable. If filled, it replaces the generic overstock threshold." } },
+      { h: { es: "Costo Unitario", en: "Unit Cost" }, req: false,
+        d: { es: "Costo, no precio. Para valorizar el inventario.", en: "Cost, not price. Used to value inventory." } },
+      { h: { es: "MOQ", en: "MOQ" }, req: false,
+        d: { es: "Pedido mínimo del proveedor o lote mínimo de producción.", en: "Supplier minimum order or minimum production batch." } },
+      { h: { es: "Unidades por Caja", en: "Case Pack" }, req: false,
+        d: { es: "Múltiplo de compra. Redondeamos hacia arriba.", en: "Purchase multiple. We round up to it." } },
+    ],
+    rows: [
+      ["PRD-001", 84, 0, 2, 120, 8.10, 0, 0],
+      ["PRD-002", 310, 150, 2, 90, 1.05, 0, 0],
+      ["PRD-003", 46, 0, 2, 180, 3.15, 0, 0],
+    ],
+    note: {
+      es: "Sin este archivo la herramienta pronostica la demanda pero no puede decirte cuánto pedir ni cuándo, porque no sabe con qué cuentas. La columna de vida útil es la que convierte «tienes 120 días de cobertura» en «vas a botar producto».",
+      en: "Without this file the tool forecasts demand but cannot tell you how much to order or when, because it does not know what you hold. The shelf-life column is what turns “you have 120 days of coverage” into “you are going to throw product away”.",
+    },
+  },
+  recetas: {
+    key: "recetas",
+    file: { es: "3-recetas", en: "3-recipes" },
+    title: { es: "Recetas (lista de materiales)", en: "Recipes (bill of materials)" },
+    cols: [
+      { h: { es: "SKU", en: "SKU" }, req: true,
+        d: { es: "Producto terminado, igual que en ventas.", en: "Finished product, same as in sales." } },
+      { h: { es: "Producto", en: "Product" }, req: false,
+        d: { es: "Nombre, solo para que la lectura sea cómoda.", en: "Name, purely for readability." } },
+      { h: { es: "Material", en: "Material" }, req: true,
+        d: { es: "Código del insumo, igual que en el archivo de materiales.", en: "Input code, same as in the materials file." } },
+      { h: { es: "Nombre Material", en: "Material Name" }, req: false,
+        d: { es: "Nombre del insumo.", en: "Input name." } },
+      { h: { es: "Cantidad por Unidad", en: "Qty Per Unit" }, req: true,
+        d: { es: "Cuánto de ese insumo lleva UNA unidad del producto.", en: "How much of that input ONE unit of the product takes." } },
+      { h: { es: "Unidad", en: "Unit" }, req: false,
+        d: { es: "g, ml, u, kg… la misma del archivo de materiales.", en: "g, ml, u, kg… the same as in the materials file." } },
+      { h: { es: "Merma %", en: "Scrap %" }, req: false,
+        d: { es: "Porcentaje que se pierde en el proceso. 5 significa 5%.", en: "Percentage lost in the process. 5 means 5%." } },
+    ],
+    rows: [
+      ["PRD-001", "Caja Bombones 12u", "MAT-CHOC", "Chocolate cobertura 70%", 240, "g", 4],
+      ["PRD-001", "Caja Bombones 12u", "MAT-CREMA", "Crema de leche UHT", 60, "ml", 3],
+      ["PRD-001", "Caja Bombones 12u", "MAT-CAJA12", "Caja presentación 12u", 1, "u", 1],
+      ["PRD-002", "Trufa Individual", "MAT-CHOC", "Chocolate cobertura 70%", 22, "g", 4],
+      ["PRD-002", "Trufa Individual", "MAT-CREMA", "Crema de leche UHT", 6, "ml", 3],
+    ],
+    note: {
+      es: "La merma se aplica como pérdida de rendimiento, no como recargo: si la receta pide 100 g y declaras 5% de merma, compramos 100 ÷ 0.95 = 105.3 g, no 105 g. La diferencia parece menor pero se nota cuando la merma sube.",
+      en: "Scrap is applied as a yield loss, not as a surcharge: if the recipe calls for 100 g and you declare 5% scrap, we buy 100 ÷ 0.95 = 105.3 g, not 105 g. The difference looks small until scrap climbs.",
+    },
+  },
+  materiales: {
+    key: "materiales",
+    file: { es: "4-materiales", en: "4-materials" },
+    title: { es: "Materiales e insumos", en: "Materials and inputs" },
+    cols: [
+      { h: { es: "Material", en: "Material" }, req: true,
+        d: { es: "Código del insumo, igual que en recetas.", en: "Input code, same as in recipes." } },
+      { h: { es: "Nombre", en: "Name" }, req: false,
+        d: { es: "Nombre legible.", en: "Readable name." } },
+      { h: { es: "Unidad", en: "Unit" }, req: false,
+        d: { es: "Unidad de medida de compra y consumo.", en: "Unit of purchase and consumption." } },
+      { h: { es: "Vida Util Dias", en: "Shelf Life Days" }, req: false,
+        d: { es: "Días que el insumo dura. Déjalo vacío si no caduca.", en: "Days the input lasts. Leave empty if it does not expire." } },
+      { h: { es: "Lead Time Dias", en: "Lead Time Days" }, req: false,
+        d: { es: "Días que tarda el proveedor. Si falta, asumimos 7.", en: "Days the supplier takes. If missing we assume 7." } },
+      { h: { es: "Variabilidad Lead Time", en: "Lead Time Variability" }, req: false,
+        d: { es: "Cuántos días suele adelantarse o atrasarse. Solo esto genera colchón de material.", en: "How many days it typically runs early or late. Only this generates a material buffer." } },
+      { h: { es: "MOQ", en: "MOQ" }, req: false,
+        d: { es: "Compra mínima. Es lo que suele chocar con la vida útil.", en: "Minimum purchase. This is what usually collides with shelf life." } },
+      { h: { es: "Multiplo Compra", en: "Pack Size" }, req: false,
+        d: { es: "Se compra de a tantos. Redondeamos hacia arriba.", en: "Bought in multiples of this. We round up." } },
+      { h: { es: "Costo Unitario", en: "Unit Cost" }, req: false,
+        d: { es: "Costo por unidad de medida.", en: "Cost per unit of measure." } },
+      { h: { es: "Stock Actual", en: "Current Stock" }, req: false,
+        d: { es: "Cuánto tienes hoy de ese insumo.", en: "How much of that input you hold today." } },
+    ],
+    rows: [
+      ["MAT-CHOC", "Chocolate cobertura 70%", "g", 365, 14, 3, 10000, 5000, 0.016, 18000],
+      ["MAT-CREMA", "Crema de leche UHT", "ml", 21, 3, 0, 24000, 1000, 0.0045, 6000],
+      ["MAT-CAJA12", "Caja presentación 12u", "u", "", 20, 0, 500, 100, 0.78, 240],
+    ],
+    note: {
+      es: "La vida útil y el MOQ juntos son el par más caro del archivo. Un MOQ de 24 litros sobre una crema que vence en 21 días significa comprar más de lo que alcanzas a usar: la herramienta te lo dice con el monto, y te dice que eso se arregla con el proveedor, no con el plan.",
+      en: "Shelf life and MOQ together are the most expensive pair in this file. A 24-litre MOQ on a cream that expires in 21 days means buying more than you can use: the tool tells you so with the money attached, and tells you that is fixed with the supplier, not with the plan.",
+    },
+  },
+};
+var TEMPLATE_ORDER = ["ventas", "inventario", "recetas", "materiales"];
+
+function tmplHeaders(key) {
+  return TEMPLATES[key].cols.map(function (c) { return c.h[state.lang] || c.h.en; });
+}
+function csvCell(v) {
+  var s = v == null ? "" : String(v);
+  return /[",\n;]/.test(s) ? '"' + s.split('"').join('""') + '"' : s;
+}
+function templateCsv(key) {
+  var T = TEMPLATES[key];
+  var lines = [tmplHeaders(key).map(csvCell).join(",")];
+  T.rows.forEach(function (r) { lines.push(r.map(csvCell).join(",")); });
+  return "﻿" + lines.join("\n");
+}
+function download(filename, content, mime) {
+  var blob = content instanceof Blob ? content : new Blob([content], { type: mime || "text/plain" });
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  document.body.appendChild(a); a.click();
+  setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 120);
+}
+window.downloadTemplateCsv = function (key) {
+  download("datanova-" + (TEMPLATES[key].file[state.lang] || TEMPLATES[key].file.en) + ".csv",
+    templateCsv(key), "text/csv;charset=utf-8");
+};
+
+// One workbook with every sheet plus a readable instructions tab — far easier
+// to hand to someone than four separate files.
+window.downloadTemplateXlsx = function (btn) {
+  var original = btn ? btn.textContent : "";
+  if (btn) { btn.disabled = true; btn.textContent = t("tmplBuilding"); }
+  loadSheetJs().then(function () {
+    var XLSX = window.XLSX;
+    var wb = XLSX.utils.book_new();
+    var es = esNow();
+
+    var intro = [
+      [es ? "DATANOVA FORECAST — PLANTILLA DE CARGA" : "DATANOVA FORECAST — DATA TEMPLATE"],
+      [es ? "Desarrollado por Datanova Studio" : "Built by Datanova Studio"],
+      [""],
+      [es ? "Llena las hojas con tus datos y sube cada una a la herramienta."
+          : "Fill the sheets with your data and upload each one to the tool."],
+      [es ? "Las filas de ejemplo están para mostrarte el formato: bórralas antes de subir."
+          : "The example rows are there to show the format: delete them before uploading."],
+      [es ? "Solo la hoja de ventas es obligatoria." : "Only the sales sheet is required."],
+      [""],
+      [es ? "HOJA" : "SHEET", es ? "COLUMNA" : "COLUMN", es ? "¿OBLIGATORIA?" : "REQUIRED?",
+       es ? "QUÉ VA AQUÍ" : "WHAT GOES HERE"],
+    ];
+    TEMPLATE_ORDER.forEach(function (k) {
+      var T = TEMPLATES[k];
+      T.cols.forEach(function (c, i) {
+        intro.push([i === 0 ? (T.title[state.lang] || T.title.en) : "",
+                    c.h[state.lang] || c.h.en,
+                    c.req ? (es ? "Sí" : "Yes") : (es ? "No" : "No"),
+                    c.d[state.lang] || c.d.en]);
+      });
+      intro.push(["", "", "", ""]);
+      intro.push([es ? "Nota:" : "Note:", T.note[state.lang] || T.note.en]);
+      intro.push(["", "", "", ""]);
+    });
+    var ws0 = XLSX.utils.aoa_to_sheet(intro);
+    ws0["!cols"] = [{ wch: 26 }, { wch: 24 }, { wch: 13 }, { wch: 92 }];
+    XLSX.utils.book_append_sheet(wb, ws0, es ? "Instrucciones" : "Instructions");
+
+    TEMPLATE_ORDER.forEach(function (k) {
+      var T = TEMPLATES[k];
+      var aoa = [tmplHeaders(k)].concat(T.rows.map(function (r) { return r.slice(); }));
+      var ws = XLSX.utils.aoa_to_sheet(aoa);
+      ws["!cols"] = tmplHeaders(k).map(function (h) { return { wch: Math.max(12, h.length + 4) }; });
+      var name = (T.title[state.lang] || T.title.en).slice(0, 28).replace(/[\\/?*[\]:]/g, "");
+      XLSX.utils.book_append_sheet(wb, ws, name);
+    });
+
+    var out = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    download("datanova-forecast-" + (es ? "plantilla" : "template") + ".xlsx",
+      new Blob([out], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }));
+  }).catch(function () {
+    // Offline: fall back to the CSVs, which need no library at all.
+    TEMPLATE_ORDER.forEach(function (k) { window.downloadTemplateCsv(k); });
+  }).then(function () {
+    if (btn) { btn.disabled = false; btn.textContent = original; }
+  });
+};
+
 // ───────────────────────────── routing ─────────────────────────────
-var VIEWS = ["landing", "upload", "configure", "dashboard", "sku", "abc"];
+var VIEWS = ["landing", "work", "sku"];
 
 function go(v, arg) {
   state.view = v;
   if (v === "sku") state.skuOpen = arg;
   VIEWS.forEach(function (n) { $("v-" + n).classList.toggle("hidden", n !== v); });
-  $("nav").classList.toggle("hidden", !state.run);
-  var navMap = { dashboard: "dashboard", abc: "abc", upload: "upload", sku: "dashboard" };
-  Array.prototype.forEach.call($("nav").children, function (b) {
-    if (navMap[v] === b.dataset.view) b.setAttribute("aria-current", "page");
-    else b.removeAttribute("aria-current");
-  });
+  $("btnRestart").classList.toggle("hidden", v === "landing" || !state.sales);
   render();
   window.scrollTo(0, 0);
 }
 window.go = go;
+
+function gotoStep(n) {
+  if (n === 2 && !state.sales) return;
+  if (n === 3 && !state.run) return;
+  state.step = n;
+  state.view = "work";
+  VIEWS.forEach(function (x) { $("v-" + x).classList.toggle("hidden", x !== "work"); });
+  [1, 2, 3].forEach(function (i) { $("step-" + i).classList.toggle("hidden", i !== n); });
+  $("btnRestart").classList.remove("hidden");
+  render();
+  window.scrollTo(0, 0);
+}
+window.gotoStep = gotoStep;
+
+window.restart = function () {
+  if (!confirm(esNow() ? "¿Borrar los datos cargados y empezar de nuevo?"
+                       : "Clear the loaded data and start over?")) return;
+  state.sales = null; state.salesStats = null; state.inventory = null;
+  state.recipes = null; state.materials = null; state.run = null; state.mrp = null;
+  state.issues = []; state.invIssues = []; state.recipeIssues = []; state.matIssues = [];
+  state.lastFile = null; state.step = 1; state.openSlot = null;
+  go("landing");
+};
 
 function setLang(l) {
   state.lang = l;
@@ -3509,15 +4967,34 @@ function render() {
   Array.prototype.forEach.call($("langGroup").querySelectorAll("button"), function (b) {
     b.setAttribute("aria-pressed", String(b.getAttribute("lang") === state.lang));
   });
-  var nav = $("nav").children;
-  nav[0].textContent = t("navDash"); nav[1].textContent = t("navAbc"); nav[2].textContent = t("navData");
+  var rl = $("btnRestart").querySelector(".rl");
+  if (rl) rl.textContent = t("restart");
+  $("btnRestart").setAttribute("title", t("restart"));
   $("footTag").textContent = t("footTag");
-  if (state.view === "landing") renderLanding();
-  if (state.view === "upload") renderUpload();
-  if (state.view === "configure") renderConfigure();
-  if (state.view === "dashboard") renderDashboard();
-  if (state.view === "sku") renderSku();
-  if (state.view === "abc") renderAbc();
+  $("footBy").textContent = t("footBy");
+  $("footLogo").src = DATANOVA_STUDIO_LOGO;
+
+  if (state.view === "landing") { renderLanding(); return; }
+  if (state.view === "sku") { renderSku(); return; }
+
+  renderRail();
+  if (state.step === 1) renderStep1();
+  if (state.step === 2) renderStep2();
+  if (state.step === 3) renderStep3();
+}
+
+function renderRail() {
+  var steps = [
+    { n: 1, label: t("railData"), ok: !!state.sales, enabled: true },
+    { n: 2, label: t("railParams"), ok: !!state.run, enabled: !!state.sales },
+    { n: 3, label: t("railResults"), ok: false, enabled: !!state.run },
+  ];
+  $("rail").innerHTML = steps.map(function (s) {
+    var cls = "rail-step" + (s.n === state.step ? " on" : (s.ok ? " done" : ""));
+    return '<button class="' + cls + '"' + (s.enabled ? "" : " disabled") +
+      ' onclick="gotoStep(' + s.n + ')"><span class="rn">' +
+      (s.ok && s.n !== state.step ? "✓" : s.n) + "</span>" + esc(s.label) + "</button>";
+  }).join("");
 }
 
 // ───────────────────────────── landing ─────────────────────────────
@@ -3538,15 +5015,13 @@ function renderLanding() {
   $("ctaBtn").textContent = t("heroCta");
 
   var steps = esNow() ? [
-    ["Carga tus ventas", "Un CSV o Excel con una fila por venta. Detectamos las columnas aunque tus encabezados estén en español, inglés o una mezcla."],
-    ["Revisa lo que encontramos", "Te decimos cuántos productos hay, qué historial cubren y qué está roto en el archivo antes de calcular nada."],
-    ["Define tus parámetros", "Horizonte, lead time, nivel de servicio y frecuencia de pedido. Los mismos que te pediría un Demand Planner."],
-    ["Recibe qué ordenar hoy", "Cantidad sugerida por producto, con el porqué y qué pasa si no actúas."],
+    ["Carga tus datos", "Historial de ventas, y opcionalmente inventario y recetas. Si no sabes cómo organizarlo, descarga la plantilla."],
+    ["Define los parámetros", "Horizonte, lead time, nivel de servicio y frecuencia de pedido. Los mismos que te pediría un Demand Planner."],
+    ["Recibe tu plan", "Qué ordenar hoy, cuánto y por qué. Si cargaste recetas, también qué insumos comprar y en qué fecha colocarlos."],
   ] : [
-    ["Upload your sales", "A CSV or Excel file with one row per sale. We detect the columns whether your headers are in English, Spanish or a mix."],
-    ["Review what we found", "We tell you how many products you have, how much history they cover and what is broken in the file before we calculate anything."],
-    ["Set your parameters", "Horizon, lead time, service level and order frequency. The same four a demand planner would ask you for."],
-    ["Get what to order today", "A suggested quantity per product, with the reasoning and what happens if you do nothing."],
+    ["Load your data", "Sales history, and optionally inventory and recipes. If you are not sure how to lay it out, download the template."],
+    ["Set the parameters", "Horizon, lead time, service level and order frequency. The same ones a demand planner would ask you for."],
+    ["Get your plan", "What to order today, how much and why. If you loaded recipes, also which inputs to buy and when to place them."],
   ];
   $("howList").innerHTML = steps.map(function (s, i) {
     return '<li class="tick"><div style="font-size:13px;font-weight:600;color:var(--ink-600)">' +
@@ -3556,13 +5031,13 @@ function renderLanding() {
 
   var meth = esNow() ? [
     ["Un modelo por producto, no uno para todos", "Probamos hasta trece métodos contra tu propio historial reservado y elegimos el mejor para cada SKU. Un producto estacional y un repuesto que se vende seis veces al año no se pronostican igual."],
-    ["Stock de seguridad sobre error de pronóstico", "La fórmula de libro protege contra la variabilidad de la demanda. Lo que realmente causa un quiebre es el error del pronóstico sobre el lead time, y eso es lo que medimos."],
-    ["Demanda intermitente tratada como tal", "Para productos que pasan días sin venderse usamos métodos de Croston y un stock de seguridad empírico, porque la campana de Gauss subestima la cola."],
+    ["Del plan de demanda al plan de materiales", "Un emprendimiento no puede pagar un Demand Planner y además un planificador de materiales. Carga la receta de cada producto y tu pronóstico se explota solo: qué insumo comprar, cuánto y en qué fecha colocar la orden."],
+    ["La vida útil entra en la decisión", "Si el MOQ de tu proveedor te obliga a comprar 90 días de un insumo que vence en 21, eso no es un plan: es merma programada. Te decimos cuánta, cuánto cuesta y que se arregla con el proveedor."],
     ["Cada número explica de dónde sale", "Qué recomendamos, por qué, y qué pasa si no actúas. Sin caja negra."],
   ] : [
     ["One model per product, not one for all", "We test up to thirteen methods against your own held-out history and pick the best for each SKU. A seasonal product and a spare part that sells six times a year do not get the same forecast."],
-    ["Safety stock built on forecast error", "The textbook formula protects against demand variability. What actually causes a stockout is forecast error over the lead time, and that is what we measure."],
-    ["Intermittent demand treated as intermittent", "For products that go days without selling we use Croston-family methods and an empirical safety stock, because the normal curve understates the tail."],
+    ["From the demand plan to the material plan", "A small business cannot pay for a demand planner and a materials planner. Load each product's recipe and your forecast explodes on its own: which input to buy, how much, and when to place the order."],
+    ["Shelf life is part of the decision", "If your supplier's MOQ forces you to buy 90 days of an input that expires in 21, that is not a plan: it is scheduled waste. We tell you how much, what it costs, and that it is fixed with the supplier."],
     ["Every number shows its work", "What we recommend, why, and what happens if you do nothing. No black box."],
   ];
   $("methList").innerHTML = meth.map(function (m) {
@@ -3571,104 +5046,146 @@ function renderLanding() {
   }).join("");
 }
 
-// ───────────────────────────── upload ─────────────────────────────
-function renderUpload() {
-  $("upTitle").textContent = state.upStep === "inventory" ? t("invDrop") : t("upTitle");
-  $("upSub").textContent = state.upStep === "inventory" ? t("invHint") : t("upSub");
+// ───────────────────────── step 1 · data ─────────────────────────
+function renderStep1() {
+  $("s1Title").textContent = t("s1Title");
+  $("s1Sub").textContent = t("s1Sub");
+  $("s1Demo").textContent = t("s1Demo");
 
-  var done = { sales: !!state.sales, inventory: !!state.inventory };
-  var st = [["sales", t("stepSales")], ["inventory", t("stepInv")], ["cfg", t("stepCfg")]];
-  $("upSteps").innerHTML = st.map(function (s, i) {
-    var cls = s[0] === state.upStep ? "s on" : (done[s[0]] ? "s done" : "s");
-    return '<span class="' + cls + '">' + esc(s[1]) + "</span>" +
-      (i < 2 ? '<span class="sep">/</span>' : "");
+  var next = $("s1Next");
+  next.textContent = state.sales ? t("s1Next") : t("s1NeedSales");
+  next.disabled = !state.sales;
+
+  // ── templates ──
+  $("tmplCard").innerHTML =
+    '<div style="padding:18px 20px">' +
+    '<h3 style="font-size:15px">' + esc(t("tmplTitle")) + "</h3>" +
+    '<p style="margin-top:5px;font-size:13.5px;line-height:1.5;color:var(--g-500);max-width:76ch">' +
+    esc(t("tmplSub")) + "</p>" +
+    '<div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center">' +
+    '<button class="btn btn-p" onclick="downloadTemplateXlsx(this)">' + esc(t("tmplXlsx")) + "</button>" +
+    "</div>" +
+    '<div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center">' +
+    '<span style="font-size:12.5px;color:var(--g-500)">' + esc(t("tmplCsvAll")) + "</span>" +
+    TEMPLATE_ORDER.map(function (k, i) {
+      return '<button class="chip" style="border:0;cursor:pointer" onclick="downloadTemplateCsv(\'' + k + '\')">' +
+        (i + 1) + ". " + esc(TEMPLATES[k].title[state.lang] || TEMPLATES[k].title.en) + "</button>";
+    }).join("") + "</div></div>";
+
+  // ── the four slots ──
+  var slots = [
+    { key: "ventas", req: true, title: t("slotSales"), desc: t("slotSalesD"),
+      filled: !!state.sales,
+      summary: state.salesStats ? t("rowsLoaded", { n: N(state.salesStats.recordCount) }) + " · " +
+        t("skusLoaded", { n: state.salesStats.skuCount }) : "",
+      editable: false },
+    { key: "inventario", req: false, title: t("slotInv"), desc: t("slotInvD"),
+      filled: !!state.inventory,
+      summary: (state.inventory ? t("skusLoaded", { n: state.inventory.length }) : "") +
+        (state.sheetNotes.inventario ? " · " + state.sheetNotes.inventario.used : ""),
+      editable: false },
+    { key: "recetas", req: false, title: t("slotRecipe"), desc: t("slotRecipeD"),
+      filled: !!(state.recipes && state.recipes.length),
+      summary: state.recipes ? t("recipeLoaded", {
+        s: new Set(state.recipes.map(function (r) { return r.sku; })).size,
+        m: new Set(state.recipes.map(function (r) { return r.material; })).size }) +
+        (state.sheetNotes.recetas ? " · " + state.sheetNotes.recetas.used : "") : "",
+      editable: true, editor: "recipes" },
+    { key: "materiales", req: false, title: t("slotMat"), desc: t("slotMatD"),
+      filled: !!(state.materials && state.materials.length),
+      summary: (state.materials ? t("matsLoaded", { n: state.materials.length }) : "") +
+        (state.sheetNotes.materiales ? " · " + state.sheetNotes.materiales.used : ""),
+      editable: true, editor: "materials" },
+  ];
+
+  $("dataSlots").innerHTML = slots.map(function (s) {
+    var ic = s.filled
+      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+      : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    return '<div class="slot' + (s.filled ? " filled" : "") + '" id="slot-' + s.key + '"' +
+      ' ondragover="slotOver(event,\'' + s.key + '\',1)" ondragleave="slotOver(event,\'' + s.key + '\',0)"' +
+      ' ondrop="slotDrop(event,\'' + s.key + '\')">' +
+      '<div class="slot-ic">' + ic + '</div><div class="slot-b">' +
+      '<div class="slot-t">' + esc(s.title) +
+      (s.req ? '<span class="req">' + esc(t("required")) + "</span>"
+             : '<span class="opt">' + esc(t("optional")) + "</span>") + "</div>" +
+      '<p class="slot-d">' + esc(s.desc) + "</p>" +
+      '<p style="margin-top:7px;font-size:12.5px;font-weight:600;color:' +
+        (s.filled ? "var(--ink-700)" : "var(--g-300)") + '">' +
+        esc(s.filled ? s.summary : t("slotEmpty")) + "</p>" +
+      '<input type="file" class="sr" id="fi-' + s.key + '" accept=".csv,.tsv,.txt,.xlsx,.xls"' +
+      ' onchange="pickFile(event,\'' + s.key + '\')">' +
+      '<div class="slot-a">' +
+      '<button class="btn btn-s btn-sm" onclick="document.getElementById(\'fi-' + s.key + '\').click()">' +
+        esc(s.filled ? t("slotReplace") : t("slotUpload")) + "</button>" +
+      (s.editable ? '<button class="btn btn-g btn-sm" onclick="openEditor(\'' + s.editor + '\')">' +
+        esc(s.filled ? t("slotView") : t("slotEdit")) + "</button>" : "") +
+      (s.filled ? '<button class="btn btn-g btn-sm" onclick="clearSlot(\'' + s.key + '\')">' +
+        esc(t("slotClear")) + "</button>" : "") +
+      "</div></div></div>";
   }).join("");
 
-  var h = "";
-  if (state.upStep === "sales") {
-    if (!state.sales) {
-      h += dropzone(t("drop"), t("formats"), "sales");
-      h += '<div class="card" style="margin-top:12px;padding:14px;text-align:center">' +
-        '<button class="btn btn-g btn-sm" onclick="loadDemo()">' + esc(t("useDemo")) + "</button></div>";
-    } else {
-      h += salesReview();
-      h += cleanOptions();
-      h += '<div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">' +
-        '<button class="btn btn-p btn-lg" onclick="state.upStep=\'inventory\';render()">' + esc(t("cont")) + "</button>" +
-        '<button class="btn btn-g" onclick="resetSales()">' + esc(t("another")) + "</button></div>";
-    }
-  } else {
-    if (!state.inventory) {
-      h += dropzone(t("invDrop"), t("invHint"), "inventory");
-    } else {
-      h += '<div class="card"><div style="padding:16px 20px"><p style="font-size:14px;font-weight:600">' +
-        esc(t("invLoaded", { n: state.inventory.length })) + "</p>" + mappingList(state.invMapping) + "</div>";
-      if (state.invIssues.length) {
-        h += '<div style="padding:16px 20px;border-top:1px solid var(--g-100)">' +
-          state.invIssues.map(issueRow).join("") + "</div>";
-      }
-      h += "</div>";
-    }
-    h += '<div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">' +
-      '<button class="btn btn-p btn-lg" onclick="go(\'configure\')">' + esc(t("cont")) + "</button>" +
-      (!state.inventory ? '<button class="btn btn-g" onclick="go(\'configure\')">' + esc(t("skipInv")) + "</button>" : "") +
-      '<button class="btn btn-g" onclick="state.upStep=\'sales\';render()">' + esc(t("back")) + "</button></div>";
-  }
-  $("upStage").innerHTML = h;
+  // ── notices and the validation detail of whatever was loaded last ──
+  var allIssues = []
+    .concat((state.issues || []).map(function (i) { return { i: i, src: t("slotSales") }; }))
+    .concat((state.invIssues || []).map(function (i) { return { i: i, src: t("slotInv") }; }))
+    .concat((state.recipeIssues || []).map(function (i) { return { i: i, src: t("slotRecipe") }; }))
+    .concat((state.matIssues || []).map(function (i) { return { i: i, src: t("slotMat") }; }));
+
+  $("dataNotices").innerHTML = state.uploadError
+    ? notice("error", state.uploadError) : "";
+
+  $("dataDetail").innerHTML = (state.sales && state.salesStats ? salesSummaryCard() : "") +
+    (allIssues.length
+      ? '<div style="margin-top:16px">' + allIssues.map(function (x) {
+          return issueRow(x.i, x.src);
+        }).join("") + "</div>"
+      : "");
 }
 
-function dropzone(title, sub, kind) {
-  return '<div class="card"><div class="drop" id="dz-' + kind + '"' +
-    ' ondragover="dzOver(event,\'' + kind + '\',1)" ondragleave="dzOver(event,\'' + kind + '\',0)"' +
-    ' ondrop="dzDrop(event,\'' + kind + '\')">' +
-    '<input type="file" id="fi-' + kind + '" class="sr" accept=".csv,.tsv,.txt,.xlsx,.xls"' +
-    ' onchange="pickFile(event,\'' + kind + '\')">' +
-    '<button class="btn btn-g" style="font-size:15px;font-weight:600;color:var(--ink-800)"' +
-    ' onclick="document.getElementById(\'fi-' + kind + '\').click()">' + esc(title) + "</button>" +
-    '<p style="margin-top:8px;font-size:13px;color:var(--g-500)">' + esc(sub) + "</p></div></div>";
-}
-window.dzOver = function (e, kind, on) {
-  e.preventDefault();
-  $("dz-" + kind).classList.toggle("over", !!on);
-};
-window.dzDrop = function (e, kind) {
-  e.preventDefault();
-  $("dz-" + kind).classList.remove("over");
-  var f = e.dataTransfer.files && e.dataTransfer.files[0];
-  if (f) handleFile(f, kind);
-};
-window.pickFile = function (e, kind) {
-  var f = e.target.files && e.target.files[0];
-  e.target.value = "";
-  if (f) handleFile(f, kind);
-};
-window.resetSales = function () {
-  state.sales = null; state.salesStats = null; state.issues = []; state.lastFile = null;
-  render();
-};
-
-function salesReview() {
+function salesSummaryCard() {
   var s = state.salesStats;
   var cell = function (l, v, small) {
     return '<div><dt style="font-size:12.5px;color:var(--g-500)">' + esc(l) +
       '</dt><dd class="tnum" style="margin:4px 0 0;font-weight:600;font-size:' +
       (small ? "14px" : "19px") + '">' + esc(v) + "</dd></div>";
   };
-  var h = '<div class="card"><div style="padding:16px 20px 4px"><h3 style="font-size:15px">' +
+  return '<div class="card"><div style="padding:16px 20px 4px"><h3 style="font-size:15px">' +
     esc(t("foundTitle")) + "</h3></div>" +
-    '<dl class="grid" style="padding:16px 20px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:16px 24px;margin:0">' +
+    '<dl class="grid" style="padding:14px 20px 18px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:16px 24px;margin:0">' +
     cell(t("records"), N(s.recordCount)) + cell(t("skus"), N(s.skuCount)) +
     cell(t("range"), (s.startDate || "—") + " → " + (s.endDate || "—"), true) +
     cell(t("history"), s.monthsSpanned + " " + t("months")) + "</dl>" +
-    '<div style="padding:16px 20px;border-top:1px solid var(--g-100)">' + mappingList(state.mapping);
-  if (state.unmatched && state.unmatched.length) {
-    h += '<p style="margin-top:12px;font-size:12.5px;color:var(--g-500)">' + esc(t("unmatched")) +
-      ": " + esc(state.unmatched.join(", ")) + "</p>";
-  }
-  h += "</div><div style=\"padding:16px 20px;border-top:1px solid var(--g-100)\">";
-  h += state.issues.length ? state.issues.map(issueRow).join("")
-                           : notice("ok", t("noIssues"));
-  return h + "</div></div>";
+    (state.sheetNotes.ventas
+      ? '<div style="padding:12px 20px;border-top:1px solid var(--g-100);font-size:12.5px;color:var(--g-500)">' +
+        esc(t("sheetUsed", { s: state.sheetNotes.ventas.used, n: state.sheetNotes.ventas.all.length })) + "</div>"
+      : "") +
+    (Object.keys(state.mapping || {}).length
+      ? '<div style="padding:14px 20px;border-top:1px solid var(--g-100)">' + mappingList(state.mapping) + "</div>"
+      : "") +
+    cleanOptionsInline() + "</div>";
+}
+
+function cleanOptionsInline() {
+  if (!state.lastFile) return "";
+  var sw = function (id, on, label, help) {
+    return '<div style="display:flex;gap:11px;align-items:flex-start;margin-bottom:13px">' +
+      '<button role="switch" aria-checked="' + on + '" onclick="toggleClean(\'' + id + '\')" ' +
+      'style="margin-top:2px;flex-shrink:0;width:38px;height:22px;border:0;border-radius:99px;padding:0;' +
+      'background:' + (on ? "var(--ink-800)" : "var(--g-200)") + '">' +
+      '<span style="display:block;width:18px;height:18px;border-radius:99px;background:#fff;' +
+      'transform:translateX(' + (on ? 18 : 2) + 'px)"></span></button>' +
+      '<label style="cursor:pointer" onclick="toggleClean(\'' + id + '\')">' +
+      '<span style="display:block;font-size:13.5px;font-weight:500">' + esc(label) + "</span>" +
+      (help ? '<span style="display:block;margin-top:2px;font-size:12.5px;line-height:1.35;color:var(--g-500)">' +
+        esc(help) + "</span>" : "") + "</label></div>";
+  };
+  return '<details style="border-top:1px solid var(--g-100)"><summary style="cursor:pointer;list-style:none;' +
+    'padding:13px 20px;font-size:13.5px;font-weight:500;color:var(--g-700)">' + esc(t("fixTitle")) + "</summary>" +
+    '<div style="padding:4px 20px 14px">' +
+    sw("dropNegatives", state.clean.dropNegatives, t("dropNeg"), t("dropNegHelp")) +
+    sw("aggregateDuplicates", state.clean.aggregateDuplicates, t("aggDup"), t("aggDupHelp")) +
+    sw("dropIncomplete", state.clean.dropIncomplete, t("dropInc")) + "</div></details>";
 }
 
 function mappingList(map) {
@@ -3686,51 +5203,45 @@ function mappingList(map) {
     }).join("") + "</ul>";
 }
 
-function issueRow(i) {
+function issueRow(i, src) {
   var kind = i.severity === "error" ? "error" : i.severity === "warning" ? "warn" : "info";
   var d = esc(esNow() ? i.detailEs : i.detail);
   if (i.samples && i.samples.length) {
     d += '<p style="margin-top:4px;font-size:12.5px;color:var(--g-500)">' +
       esc(i.samples.slice(0, 4).join(" · ")) + "</p>";
   }
-  return notice(kind, esNow() ? i.titleEs : i.title, d);
+  var title = (src ? src + " — " : "") + (esNow() ? i.titleEs : i.title);
+  return notice(kind, title, d);
 }
 
-function cleanOptions() {
-  var sw = function (id, on, label, help) {
-    return '<div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:16px">' +
-      '<button role="switch" aria-checked="' + on + '" onclick="toggleClean(\'' + id + '\')" ' +
-      'style="margin-top:2px;flex-shrink:0;width:38px;height:22px;border:0;border-radius:99px;padding:0;' +
-      'background:' + (on ? "var(--ink-800)" : "var(--g-200)") + '">' +
-      '<span style="display:block;width:18px;height:18px;border-radius:99px;background:#fff;' +
-      'transform:translateX(' + (on ? 18 : 2) + 'px)"></span></button>' +
-      '<label style="cursor:pointer" onclick="toggleClean(\'' + id + '\')">' +
-      '<span style="display:block;font-size:13.5px;font-weight:500">' + esc(label) + "</span>" +
-      (help ? '<span style="display:block;margin-top:2px;font-size:12.5px;line-height:1.35;color:var(--g-500)">' +
-        esc(help) + "</span>" : "") + "</label></div>";
-  };
-  return '<div class="card" style="margin-top:16px"><div style="padding:16px 20px 4px">' +
-    '<h3 style="font-size:15px">' + esc(t("fixTitle")) + "</h3></div>" +
-    '<div style="padding:16px 20px 4px">' +
-    sw("dropNegatives", state.clean.dropNegatives, t("dropNeg"), t("dropNegHelp")) +
-    sw("aggregateDuplicates", state.clean.aggregateDuplicates, t("aggDup"), t("aggDupHelp")) +
-    sw("dropIncomplete", state.clean.dropIncomplete, t("dropInc")) + "</div></div>";
-}
 window.toggleClean = function (k) {
   state.clean[k] = !state.clean[k];
-  if (state.lastFile) revalidate();
-  else render();
+  if (state.lastFile) { applySalesValidation(); }
+  render();
+};
+window.clearSlot = function (key) {
+  if (key === "ventas") { state.sales = null; state.salesStats = null; state.issues = []; state.lastFile = null; }
+  if (key === "inventario") { state.inventory = null; state.invIssues = []; }
+  if (key === "recetas") { state.recipes = null; state.recipeIssues = []; }
+  if (key === "materiales") { state.materials = null; state.matIssues = []; }
+  state.run = null; state.mrp = null; state.uploadError = null;
+  render();
 };
 
-// ───────────────────────────── configure ─────────────────────────────
-function renderConfigure() {
-  $("cfTitle").textContent = t("cfTitle");
-  $("cfSub").textContent = t("cfSub");
+// ───────────────────────── step 2 · parameters ─────────────────────────
+function renderStep2() {
+  $("s2Title").textContent = t("s2Title");
+  $("s2Sub").textContent = t("s2Sub");
+  $("s2Back").textContent = t("s2Back");
   $("cfRun").textContent = state.busy ? t("cfRunning") : t("cfRun");
   $("cfRun").disabled = state.busy;
+
   var s = state.salesStats || {};
   $("cfUsing").textContent = t("cfUsing", { n: s.skuCount || 0, a: s.startDate || "—", b: s.endDate || "—" });
   $("cfNotice").innerHTML = state.inventory ? "" : notice("info", t("cfNoInv"));
+
+  $("cfDemandH").innerHTML = "<h3>" + esc(t("cfDemandH")) + "</h3><p>" + esc(t("cfDemandHd")) + "</p>";
+  $("cfMatH").innerHTML = "<h3>" + esc(t("cfMatH")) + "</h3><p>" + esc(t("cfMatHd")) + "</p>";
 
   var p = state.params;
   var sel = function (id, label, help, opts, val) {
@@ -3748,6 +5259,7 @@ function renderConfigure() {
       '" onchange="setParam(\'' + id + '\',this.value)">' +
       (help ? '<p class="help">' + esc(help) + "</p>" : "") + "</div>";
   };
+
   $("cfGrid").innerHTML =
     sel("horizonDays", t("horizon"), t("horizonHelp"),
       [[7, "7 " + t("days")], [30, "30 " + t("days")], [60, "60 " + t("days")], [90, "90 " + t("days")]], p.horizonDays) +
@@ -3758,17 +5270,60 @@ function renderConfigure() {
     sel("reviewPeriodDays", t("review"), t("reviewHelp"),
       [[1, t("daily")], [7, t("weekly")], [14, t("biweekly")], [30, t("monthly")]], p.reviewPeriodDays) +
     inp("overstockDays", t("overstock"), t("overstockHelp"), p.overstockDays, 7, 1000);
+
+  var hasRecipes = !!(state.recipes && state.recipes.length);
+  $("cfMatCard").classList.toggle("hidden", !hasRecipes);
+  if (hasRecipes) {
+    $("cfMatGrid").innerHTML =
+      sel("purchaseCoverDays", t("purchaseCover"), t("purchaseCoverHelp"),
+        [[7, "7 " + t("days")], [14, "14 " + t("days")], [30, "30 " + t("days")],
+         [60, "60 " + t("days")], [90, "90 " + t("days")]], p.purchaseCoverDays);
+  }
 }
 window.setParam = function (k, v) {
   var n = Number(v);
   state.params[k] = Number.isFinite(n) ? n : v;
 };
 // ───────────────────────────── dashboard ─────────────────────────────
-function renderDashboard() {
+function renderStep3() {
   var r = state.run;
-  if (!r) { go("upload"); return; }
+  if (!r) { gotoStep(state.sales ? 2 : 1); return; }
+  $("s3Title").textContent = t("s3Title");
+  $("dashRecalc").textContent = t("recalc");
+
+  var hasRecipes = !!(state.recipes && state.recipes.length);
+  var mrpAlerts = state.mrp && state.mrp.ok ? state.mrp.summary.materialsAtRisk : 0;
+  var tabs = [
+    { id: "demand", label: t("tabDemand"), count: r.summary.skusAtRisk, show: true },
+    { id: "materials", label: t("tabMaterials"), count: mrpAlerts, show: hasRecipes },
+    { id: "abc", label: t("tabAbc"), count: 0, show: true },
+  ].filter(function (x) { return x.show; });
+
+  if (!hasRecipes && state.tab === "materials") state.tab = "demand";
+
+  $("resTabs").innerHTML = tabs.map(function (x) {
+    return '<button role="tab" aria-selected="' + (state.tab === x.id) +
+      '" onclick="setTab(\'' + x.id + '\')">' + esc(x.label) +
+      (x.count > 0 ? '<span class="cnt">' + x.count + "</span>" : "") + "</button>";
+  }).join("");
+  ["demand", "materials", "abc"].forEach(function (id) {
+    var el = $("tab-" + id);
+    if (el) el.classList.toggle("hidden", state.tab !== id);
+  });
+
+  if (state.tab === "demand") renderDemandTab();
+  else if (state.tab === "materials") renderMaterialsTab();
+  else if (state.tab === "abc") renderAbc();
+}
+window.setTab = function (id) {
+  state.tab = id;
+  renderStep3();
+  window.scrollTo(0, 0);
+};
+
+function renderDemandTab() {
+  var r = state.run;
   var sm = r.summary;
-  $("dashTitle").textContent = t("dashTitle");
   $("dashMeta").textContent = t("dashMeta", {
     d: LD(r.at), n: sm.skusAnalysed, h: state.params.horizonDays,
     s: Math.round(state.params.serviceLevel * 100), ms: (r.ms / 1000).toFixed(1),
@@ -4047,11 +5602,11 @@ window.exportCsv = function () {
 // ───────────────────────────── SKU detail ─────────────────────────────
 function renderSku() {
   var r = state.run;
-  if (!r) { go("upload"); return; }
+  if (!r) { gotoStep(1); return; }
   var p = null, i;
   for (i = 0; i < r.plans.length; i++) if (r.plans[i].sku === state.skuOpen) p = r.plans[i];
   var sr = r.series[state.skuOpen];
-  if (!p || !sr) { go("dashboard"); return; }
+  if (!p || !sr) { gotoStep(3); return; }
 
   var PL = E.PATTERN_LABEL[p.pattern];
   var patLabel = PL ? (esNow() ? PL.es : PL.en) : p.pattern;
@@ -4189,7 +5744,7 @@ function renderSku() {
 // ───────────────────────────── ABC ─────────────────────────────
 function renderAbc() {
   var r = state.run;
-  if (!r) { go("upload"); return; }
+  if (!r) { gotoStep(1); return; }
   var plans = r.plans;
   var total = plans.reduce(function (s, p) { return s + p.demandValue; }, 0) || 1;
   var classes = ["A", "B", "C"].map(function (c) {
@@ -4204,11 +5759,11 @@ function renderAbc() {
   var cols = ["var(--ink-800)", "var(--ink-600)", "var(--g-300)"];
   var label = { A: t("classA"), B: t("classB"), C: t("classC") };
 
-  var h = '<h1 style="font-size:24px;letter-spacing:-.025em">' + esc(t("abcTitle")) + "</h1>" +
-    '<p style="margin-top:6px;max-width:66ch;font-size:14px;color:var(--g-500)">' + esc(t("abcSub")) + "</p>" +
+  var h = '<div style="margin-top:16px"><h3 style="font-size:16px">' + esc(t("abcTitle")) + "</h3>" +
+    '<p style="margin-top:4px;max-width:72ch;font-size:13.5px;color:var(--g-500)">' + esc(t("abcSub")) + "</p>" +
     '<p style="margin-top:4px;font-size:13px;color:var(--g-500)">' + esc(t("abcCrit")) + ": " +
     esc(state.params.abcCriterion === "revenue" ? t("abcRev") : t("abcVol")) + " · A ≤ " +
-    Math.round(state.params.abcACut * 100) + "% · B ≤ " + Math.round(state.params.abcBCut * 100) + "%</p>";
+    Math.round(state.params.abcACut * 100) + "% · B ≤ " + Math.round(state.params.abcBCut * 100) + "%</p></div>";
 
   // A single stacked bar reads the Pareto split faster than three cards.
   h += '<div class="card" style="margin-top:20px;padding:20px"><div style="display:flex;height:36px;border-radius:6px;overflow:hidden">' +
@@ -4256,10 +5811,223 @@ function renderAbc() {
   });
   $("abcBody").innerHTML = h;
 }
+// ───────────────────────── materials tab ─────────────────────────
+function renderMaterialsTab() {
+  var m = state.mrp;
+
+  if (!m || !m.ok) {
+    $("matBody").innerHTML = '<div class="card" style="margin-top:16px">' +
+      '<div style="padding:56px 24px;text-align:center">' +
+      '<h3 style="font-size:16px">' + esc(t("matNoRecipes")) + "</h3>" +
+      '<p style="margin:8px auto 0;max-width:52ch;font-size:13.5px;line-height:1.55;color:var(--g-500)">' +
+      esc(t("matNoRecipesSub")) + "</p>" +
+      '<button class="btn btn-p" style="margin-top:20px" onclick="gotoStep(1)">' +
+      esc(t("matGoLoad")) + "</button></div></div>";
+    return;
+  }
+
+  var sm = m.summary;
+  var h = '<div style="margin-top:16px"><h3 style="font-size:16px">' + esc(t("matTitle")) + "</h3>" +
+    '<p style="margin-top:4px;font-size:13.5px;color:var(--g-500);max-width:72ch">' + esc(t("matSub")) + "</p></div>";
+
+  // ── KPIs ──
+  var tile = function (lbl, val, hint, col) {
+    return '<div class="card"><div class="stat"><div class="lbl">' + esc(lbl) + "</div>" +
+      '<div class="stat-v"' + (col ? ' style="color:' + col + '"' : "") + ">" + esc(val) + "</div>" +
+      (hint ? '<div class="hint">' + esc(hint) + "</div>" : "") + "</div></div>";
+  };
+  h += '<div class="grid" style="margin-top:16px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">' +
+    tile(t("matCount"), N(sm.materialCount), t("ofN", { n: sm.materialCount })) +
+    tile(t("matAtRisk"), N(sm.materialsAtRisk), "", sm.materialsAtRisk > 0 ? "var(--critical)" : null) +
+    tile(t("matLate"), N(sm.lateOrders), "", sm.lateOrders > 0 ? "var(--critical)" : null) +
+    tile(t("matPurchase"), C(sm.purchaseValue, true), "") +
+    tile(t("matWaste"), C(sm.wasteValue, true), t("perCycle"), sm.wasteValue > 0 ? "var(--excess)" : null) +
+    tile(t("matProdOrders"), N(sm.productionOrders), "") + "</div>";
+
+  if (sm.unknownMaterials && sm.unknownMaterials.length) {
+    h += '<div style="margin-top:16px">' + notice("warn",
+      sm.unknownMaterials.length + " " + (esNow()
+        ? "materiales de tus recetas no están en el maestro de materiales"
+        : "materials in your recipes are not in the material master"),
+      esc(sm.unknownMaterials.slice(0, 10).join(", ")) + ". " + esc(esNow()
+        ? "Los planificamos igual, pero sin vida útil, lead time ni costo las fechas y los montos son estimaciones gruesas."
+        : "We plan them anyway, but without shelf life, lead time or cost the dates and amounts are rough estimates.")) + "</div>";
+  }
+
+  // ── triage: what to buy, in order of urgency then money ──
+  var triage = m.materials.filter(function (x) { return x.risk !== "healthy" || x.orderCount > 0; }).slice(0, 8);
+  h += '<div class="card settle" style="margin-top:16px"><div style="padding:16px 20px 12px">' +
+    '<h3 style="font-size:15px">' + esc(t("matWhatBuy")) + "</h3>" +
+    '<p style="margin-top:2px;font-size:13px;color:var(--g-500)">' + esc(t("matWhatBuySub")) + "</p></div>";
+
+  if (!triage.length) {
+    h += '<div style="padding:40px 20px;text-align:center;border-top:1px solid var(--g-100)">' +
+      '<p style="font-size:14px;font-weight:600">' + esc(t("matNoBuy")) + "</p></div>";
+  } else {
+    h += '<ul style="margin:0;padding:0;list-style:none;border-top:1px solid var(--g-100)">' +
+      triage.map(function (x) {
+        var rec = esNow() ? x.recommendationEs : x.recommendationEn;
+        var riskCls = x.risk === "critical" ? "critical" : x.risk === "warning" ? "warning" : "healthy";
+        return '<li style="padding:16px 20px;border-bottom:1px solid var(--g-100)">' +
+          '<div style="display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center">' +
+          '<span class="risk risk-' + riskCls + '"><i></i>' +
+          esc(x.risk === "critical" ? t("rCritical") : x.risk === "warning" ? t("rWarning") : t("rHealthy")) +
+          "</span>" +
+          '<span style="font-size:14px;font-weight:600;color:var(--ink-800)">' + esc(x.name) + "</span>" +
+          '<span style="font-size:12.5px;color:var(--g-500)">' + esc(x.code) + "</span>" +
+          (x.shelfLifeDays
+            ? '<span class="chip">' + esc(t("cShelf")) + " " + x.shelfLifeDays + " " + esc(t("days")) + "</span>"
+            : "") +
+          (!x.known ? '<span class="tag tag-n">' + esc(t("matUnknown")) + "</span>" : "") +
+          (x.totalCost > 0 ? '<span class="tnum" style="margin-left:auto;font-size:13px;font-weight:600">' +
+            esc(M(x.totalCost)) + "</span>" : "") + "</div>" +
+          '<p style="margin-top:8px;font-size:14.5px;font-weight:600">' + esc(rec.headline) + "</p>" +
+          '<p class="reasoning" style="margin-top:6px">' + esc(rec.why) + "</p>" +
+          '<p class="reasoning" style="margin-top:4px;font-style:italic">' + esc(rec.impact) + "</p>" +
+          (rec.note ? '<p class="reasoning" style="margin-top:8px;padding-left:11px;' +
+            'border-left:2px solid var(--excess)">' + esc(rec.note) + "</p>" : "") +
+          "</li>";
+      }).join("") + "</ul>";
+  }
+  h += "</div>";
+
+  // ── shelf life conflicts, called out on their own ──
+  var conflicts = m.materials.filter(function (x) { return !!x.shelfRisk; });
+  if (conflicts.length) {
+    h += '<div class="card" style="margin-top:16px"><div style="padding:16px 20px 12px">' +
+      '<h3 style="font-size:15px">' + esc(t("matShelfNote")) + "</h3></div>" +
+      '<div class="tbl-scroll"><table class="data" style="min-width:680px"><thead><tr>' +
+      ["cMaterial", "cShelf", "cQty", "cCover", "matWaste"].map(function (k, i) {
+        return '<th style="cursor:default"' + (i >= 1 ? ' class="num"' : "") + ">" + esc(t(k)) + "</th>";
+      }).join("") + "</tr></thead><tbody>" +
+      conflicts.map(function (x) {
+        var s = x.shelfRisk;
+        return "<tr><td>" + esc(x.name) +
+          '<span style="display:block;font-size:11.5px;color:var(--g-500)">' + esc(x.code) + "</span></td>" +
+          '<td class="num tnum">' + s.shelfLifeDays + " " + esc(t("days")) + "</td>" +
+          '<td class="num tnum">' + esc(N(s.orderQty)) + " " + esc(x.unit) + "</td>" +
+          '<td class="num tnum" style="color:var(--excess);font-weight:600">' + s.coverageDays + " " + esc(t("days")) + "</td>" +
+          '<td class="num tnum" style="font-weight:600">' + esc(M(s.wasteValue)) +
+          '<span style="display:block;font-size:11.5px;font-weight:400;color:var(--g-500)">' +
+          esc(N(s.wasteUnits)) + " " + esc(x.unit) + "</span></td></tr>";
+      }).join("") + "</tbody></table></div></div>";
+  }
+
+  // ── full material table ──
+  h += '<div class="card" style="margin-top:16px"><div style="padding:16px 20px 12px;display:flex;' +
+    'flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between">' +
+    '<h3 style="font-size:15px">' + esc(t("matTblTitle")) + "</h3>" +
+    '<button class="btn btn-s btn-sm" onclick="exportMaterialsCsv()">' + esc(t("exportCsv")) + "</button></div>" +
+    '<div class="tbl-scroll"><table class="data" style="min-width:1000px"><thead><tr>' +
+    '<th style="cursor:default">' + esc(t("cRisk")) + "</th>" +
+    '<th style="cursor:default">' + esc(t("cMaterial")) + "</th>" +
+    '<th class="num" style="cursor:default">' + esc(t("cShelf")) + "</th>" +
+    '<th class="num" style="cursor:default">' + esc(t("cOnHand")) + "</th>" +
+    '<th class="num" style="cursor:default">' + esc(t("cNeed")) + "</th>" +
+    '<th class="num" style="cursor:default">' + esc(t("cCover")) + "</th>" +
+    '<th style="cursor:default">' + esc(t("cFirstOrder")) + "</th>" +
+    '<th class="num" style="cursor:default">' + esc(t("cQty")) + "</th>" +
+    '<th class="num" style="cursor:default">' + esc(t("cCost")) + "</th>" +
+    '<th style="cursor:default">' + esc(t("cUsedBy")) + "</th>" +
+    "</tr></thead><tbody>" +
+    m.materials.map(function (x) {
+      var first = x.orders[0];
+      var riskCls = x.risk === "critical" ? "critical" : x.risk === "warning" ? "warning" : "healthy";
+      return "<tr>" +
+        '<td><span class="risk risk-' + riskCls + '"><i></i>' +
+        esc(x.risk === "critical" ? t("rCritical") : x.risk === "warning" ? t("rWarning") : t("rHealthy")) +
+        "</span></td>" +
+        "<td>" + esc(x.name) +
+        '<span style="display:block;font-size:11.5px;color:var(--g-500)">' + esc(x.code) + " · " + esc(x.unit) + "</span></td>" +
+        '<td class="num tnum">' + (x.shelfLifeDays ? x.shelfLifeDays + " " + esc(t("days")) :
+          '<span style="color:var(--g-300)">—</span>') + "</td>" +
+        '<td class="num tnum">' + esc(N(x.onHand)) + "</td>" +
+        '<td class="num tnum">' + esc(N(x.grossRequirement)) + "</td>" +
+        '<td class="num tnum">' + (x.coverageDays == null ? "—" : x.coverageDays + " " + esc(t("days"))) + "</td>" +
+        "<td>" + (first
+          ? (first.late
+              ? '<span style="color:var(--critical);font-weight:600">' + esc(t("late")) + "</span>"
+              : esc(first.releaseDate))
+          : '<span style="color:var(--g-300)">—</span>') + "</td>" +
+        '<td class="num tnum" style="font-weight:600">' +
+          (x.totalOrderQty > 0 ? esc(N(x.totalOrderQty)) : "—") + "</td>" +
+        '<td class="num tnum">' + (x.totalCost > 0 ? esc(M(x.totalCost)) : "—") + "</td>" +
+        '<td style="font-size:12px;color:var(--g-500);max-width:180px;overflow:hidden;' +
+        'text-overflow:ellipsis;white-space:nowrap">' + esc(x.usedBy.join(", ")) + "</td></tr>";
+    }).join("") + "</tbody></table></div></div>";
+
+  // ── production plan ──
+  var prod = [];
+  Object.keys(m.schedules).forEach(function (sku) {
+    var plan = null;
+    for (var i = 0; i < state.run.plans.length; i++) {
+      if (state.run.plans[i].sku === sku) plan = state.run.plans[i];
+    }
+    m.schedules[sku].forEach(function (o) {
+      prod.push({ sku: sku, name: plan ? plan.product : sku, date: o.startDate, qty: o.qty });
+    });
+  });
+  prod.sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+
+  if (prod.length) {
+    h += '<div class="card" style="margin-top:16px"><div style="padding:16px 20px 12px">' +
+      '<h3 style="font-size:15px">' + esc(t("prodPlan")) + "</h3>" +
+      '<p style="margin-top:2px;font-size:13px;color:var(--g-500)">' + esc(t("prodPlanSub")) + "</p></div>" +
+      '<div class="tbl-scroll" style="max-height:320px;overflow-y:auto">' +
+      '<table class="data" style="min-width:460px"><tbody>' +
+      prod.slice(0, 40).map(function (o) {
+        return '<tr><td style="white-space:nowrap">' + esc(LD(o.date)) + "</td>" +
+          "<td>" + esc(o.name) +
+          '<span style="display:block;font-size:11.5px;color:var(--g-500)">' + esc(o.sku) + "</span></td>" +
+          '<td class="num tnum" style="font-weight:600">' + esc(N(o.qty)) + " " + esc(t("units")) + "</td></tr>";
+      }).join("") + "</tbody></table></div></div>";
+  }
+
+  // ── the methodology position, stated plainly ──
+  h += '<div class="card" style="margin-top:16px"><div style="padding:18px 20px">' +
+    '<h3 style="font-size:14.5px">' + esc(t("matSsNote")) + "</h3>" +
+    '<p class="reasoning" style="margin-top:8px">' + esc(t("matSsBody")) + "</p></div></div>";
+
+  $("matBody").innerHTML = h;
+}
+
+window.exportMaterialsCsv = function () {
+  var m = state.mrp;
+  if (!m || !m.ok) return;
+  var es = esNow();
+  var H = es
+    ? ["Material", "Nombre", "Unidad", "Vida util dias", "Lead time dias", "MOQ", "Multiplo",
+       "Costo unitario", "Stock actual", "Necesidad bruta", "Consumo diario", "Stock de seguridad",
+       "Dias de cobertura", "Fecha de agotamiento", "Compras", "Cantidad total", "Costo total",
+       "Primera colocacion", "Atrasada", "Merma por vida util", "Valor merma", "Riesgo",
+       "Usado en", "Recomendacion", "Por que"]
+    : ["Material", "Name", "Unit", "Shelf life days", "Lead time days", "MOQ", "Pack size",
+       "Unit cost", "Current stock", "Gross requirement", "Daily use", "Safety stock",
+       "Coverage days", "Run-out date", "Orders", "Total quantity", "Total cost",
+       "First release", "Late", "Shelf-life waste", "Waste value", "Risk",
+       "Used in", "Recommendation", "Why"];
+  var q = function (v) {
+    var s = v == null ? "" : String(v);
+    return /[",\n]/.test(s) ? '"' + s.split('"').join('""') + '"' : s;
+  };
+  var lines = [H.join(",")];
+  m.materials.forEach(function (x) {
+    var rec = es ? x.recommendationEs : x.recommendationEn;
+    var first = x.orders[0];
+    lines.push([x.code, x.name, x.unit, x.shelfLifeDays == null ? "" : x.shelfLifeDays,
+      x.leadTimeDays, x.moq, x.packSize, x.unitCost, x.onHand, x.grossRequirement,
+      x.avgDailyUse, x.safetyStock, x.coverageDays == null ? "" : x.coverageDays,
+      x.runOutDate || "", x.orderCount, x.totalOrderQty, x.totalCost,
+      first ? first.releaseDate : "", x.lateOrders > 0 ? (es ? "SI" : "YES") : "",
+      x.shelfRisk ? x.shelfRisk.wasteUnits : "", x.shelfRisk ? x.shelfRisk.wasteValue : "",
+      x.risk, x.usedBy.join(" / "), rec.headline, rec.why].map(q).join(","));
+  });
+  download("datanova-plan-materiales.csv", "﻿" + lines.join("\n"), "text/csv;charset=utf-8");
+};
 // ───────────────────────── file handling ─────────────────────────
 
-// SheetJS is only fetched when an actual spreadsheet is opened, so a CSV-only
-// user never pays for 800 KB of parser — and the app still works offline.
+// SheetJS is fetched only when a real spreadsheet is opened or an Excel
+// template is requested, so a CSV-only user never pays for it.
 var sheetJsPromise = null;
 function loadSheetJs() {
   if (window.XLSX) return Promise.resolve();
@@ -4274,38 +6042,23 @@ function loadSheetJs() {
   return sheetJsPromise;
 }
 
-function showUploadError(msg) {
-  $("upNotices").innerHTML = notice("error", msg);
-}
-
-function handleFile(file, kind) {
-  $("upNotices").innerHTML = "";
-  var isExcel = /\.(xlsx|xls)$/i.test(file.name);
-  var step = isExcel ? loadSheetJs() : Promise.resolve();
-  step.then(function () {
-    return file.arrayBuffer();
-  }).then(function (buf) {
-    return E.readTable(buf, file.name);
-  }).then(function (table) {
-    if (kind === "sales") {
-      state.lastFile = { table: table, name: file.name };
-      applySalesValidation();
-    } else {
-      var known = state.sales ? new Set(state.sales.map(function (r) { return r.sku; })) : undefined;
-      var v = E.validateInventory(table, known);
-      state.invIssues = v.issues;
-      state.invMapping = v.mapping;
-      if (!v.ok) { state.inventory = null; showUploadError(firstErrorText(v.issues)); }
-      else state.inventory = v.rows;
-    }
-    render();
-  }).catch(function (err) {
-    if (err && err.message === "SHEETJS_NOT_LOADED") showUploadError(t("errXlsx"));
-    else if (err && err.messageEs) showUploadError(esNow() ? err.messageEs : err.message);
-    else showUploadError(t("errRead") + (err && err.message ? " " + err.message : ""));
-    render();
-  });
-}
+window.slotOver = function (e, key, on) {
+  e.preventDefault();
+  var el = $("slot-" + key);
+  if (el) el.classList.toggle("over", !!on);
+};
+window.slotDrop = function (e, key) {
+  e.preventDefault();
+  var el = $("slot-" + key);
+  if (el) el.classList.remove("over");
+  var f = e.dataTransfer.files && e.dataTransfer.files[0];
+  if (f) handleFile(f, key);
+};
+window.pickFile = function (e, key) {
+  var f = e.target.files && e.target.files[0];
+  e.target.value = "";
+  if (f) handleFile(f, key);
+};
 
 function firstErrorText(issues) {
   for (var i = 0; i < issues.length; i++) {
@@ -4314,28 +6067,267 @@ function firstErrorText(issues) {
   return t("errRead");
 }
 
+var READ_KIND = { ventas: "sales", inventario: "inventory", recetas: "recipes", materiales: "materials" };
+
+function handleFile(file, kind) {
+  state.uploadError = null;
+  var isExcel = /\.(xlsx|xls)$/i.test(file.name);
+  (isExcel ? loadSheetJs() : Promise.resolve())
+    .then(function () { return file.arrayBuffer(); })
+    .then(function (buf) { return E.readTable(buf, file.name, { kind: READ_KIND[kind] }); })
+    .then(function (table) {
+      if (table.sheetNames && table.sheetNames.length > 1) {
+        state.sheetNotes[kind] = { used: table.sheetName, all: table.sheetNames };
+      } else {
+        delete state.sheetNotes[kind];
+      }
+      if (kind === "ventas") {
+        state.lastFile = { table: table, name: file.name };
+        applySalesValidation();
+      } else if (kind === "inventario") {
+        var known = state.sales ? new Set(state.sales.map(function (r) { return r.sku; })) : undefined;
+        var v = E.validateInventory(table, known);
+        state.invIssues = v.issues; state.invMapping = v.mapping;
+        if (!v.ok) { state.inventory = null; state.uploadError = firstErrorText(v.issues); }
+        else state.inventory = v.rows;
+      } else if (kind === "recetas") {
+        var knownSkus = state.sales ? new Set(state.sales.map(function (r) { return r.sku; })) : undefined;
+        var rv = E.validateRecipes(table, knownSkus);
+        state.recipeIssues = rv.issues;
+        if (!rv.ok) { state.recipes = null; state.uploadError = firstErrorText(rv.issues); }
+        else state.recipes = rv.rows;
+      } else if (kind === "materiales") {
+        var used = state.recipes
+          ? new Set(state.recipes.map(function (r) { return r.material; })) : undefined;
+        var mv = E.validateMaterials(table, used);
+        state.matIssues = mv.issues;
+        if (!mv.ok) { state.materials = null; state.uploadError = firstErrorText(mv.issues); }
+        else state.materials = mv.rows;
+      }
+      state.run = null; state.mrp = null;
+      render();
+    })
+    .catch(function (err) {
+      if (err && err.message === "SHEETJS_NOT_LOADED") state.uploadError = t("errXlsx");
+      else if (err && err.messageEs) state.uploadError = esNow() ? err.messageEs : err.message;
+      else state.uploadError = t("errRead") + (err && err.message ? " " + err.message : "");
+      render();
+    });
+}
+
 function applySalesValidation() {
   var v = E.validateSales(state.lastFile.table, state.clean);
   state.issues = v.issues;
   state.mapping = v.mapping;
   state.unmatched = v.unmatchedColumns;
   state.salesStats = v.stats;
+  state.run = null; state.mrp = null;
   if (!v.ok) {
     state.sales = null;
-    // Keep the review visible so the user can see what went wrong and adjust,
-    // rather than being thrown back to an empty dropzone.
-    state.salesStats = v.stats;
-    showUploadError(firstErrorText(v.issues));
+    state.uploadError = firstErrorText(v.issues);
     if (!v.stats.recordCount) { state.lastFile = null; state.salesStats = null; }
   } else {
     state.sales = v.rows;
+    state.uploadError = null;
   }
 }
-function revalidate() { applySalesValidation(); render(); }
 
-// ───────────────────────── demo dataset ─────────────────────────
-// Generated in the browser from a fixed seed, so it is identical every time
-// and the app needs no network and no companion data file.
+// ───────────────────────── modal + editors ─────────────────────────
+
+function openModal(html) {
+  $("modalBox").innerHTML = html;
+  $("modal").classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+}
+window.closeModal = function () {
+  $("modal").classList.add("hidden");
+  $("modalBox").innerHTML = "";
+  document.body.style.overflow = "";
+};
+window.modalBackdrop = function (e) { if (e.target === $("modal")) window.closeModal(); };
+
+var draft = { recipes: [], materials: [] };
+
+window.openEditor = function (which) {
+  if (which === "recipes") {
+    draft.recipes = (state.recipes || []).map(function (r) { return Object.assign({}, r); });
+    if (!draft.recipes.length) draft.recipes = [blankRecipeLine()];
+    renderRecipeEditor();
+  } else {
+    draft.materials = (state.materials || []).map(function (m) { return Object.assign({}, m); });
+    if (!draft.materials.length) draft.materials = [blankMaterial()];
+    renderMaterialEditor();
+  }
+};
+
+function blankRecipeLine() {
+  return { sku: "", material: "", materialName: "", qtyPerUnit: "", unit: "g", scrapPct: 0 };
+}
+function blankMaterial() {
+  return { code: "", name: "", unit: "g", shelfLifeDays: "", leadTimeDays: 7,
+           leadTimeSdDays: 0, moq: 0, packSize: 0, unitCost: 0, onHand: 0 };
+}
+
+function skuOptions(selected) {
+  var skus = [];
+  if (state.sales) {
+    var seen = {};
+    state.sales.forEach(function (r) {
+      if (!seen[r.sku]) { seen[r.sku] = 1; skus.push({ sku: r.sku, product: r.product }); }
+    });
+  }
+  return '<option value="">' + esc(t("edPickSku")) + "</option>" +
+    skus.map(function (s) {
+      return '<option value="' + esc(s.sku) + '"' + (s.sku === selected ? " selected" : "") + ">" +
+        esc(s.sku + (s.product && s.product !== s.sku ? " · " + s.product : "")) + "</option>";
+    }).join("");
+}
+
+function renderRecipeEditor() {
+  var hasSkus = state.sales && state.sales.length;
+  var rows = draft.recipes.map(function (r, i) {
+    return "<tr>" +
+      '<td style="min-width:150px"><select onchange="editRecipe(' + i + ',\'sku\',this.value)">' +
+        skuOptions(r.sku) + "</select></td>" +
+      '<td style="min-width:110px"><input value="' + esc(r.material) + '" placeholder="MAT-001"' +
+        ' oninput="editRecipe(' + i + ',\'material\',this.value)"></td>' +
+      '<td style="min-width:130px"><input value="' + esc(r.materialName || "") + '" placeholder="' +
+        esc(esNow() ? "Chocolate" : "Chocolate") + '" oninput="editRecipe(' + i + ',\'materialName\',this.value)"></td>' +
+      '<td style="width:96px"><input type="number" step="any" min="0" value="' + esc(r.qtyPerUnit) +
+        '" oninput="editRecipe(' + i + ',\'qtyPerUnit\',this.value)"></td>' +
+      '<td style="width:72px"><input value="' + esc(r.unit || "") + '" placeholder="g"' +
+        ' oninput="editRecipe(' + i + ',\'unit\',this.value)"></td>' +
+      '<td style="width:74px"><input type="number" step="any" min="0" max="95" value="' + esc(r.scrapPct) +
+        '" oninput="editRecipe(' + i + ',\'scrapPct\',this.value)"></td>' +
+      '<td style="width:34px"><button class="rm" title="' + esc(t("slotClear")) +
+        '" onclick="removeRecipe(' + i + ')">×</button></td></tr>';
+  }).join("");
+
+  openModal(
+    '<div style="padding:20px 22px 14px;border-bottom:1px solid var(--g-100)">' +
+    '<h3 style="font-size:16px">' + esc(t("edRecipeTitle")) + "</h3>" +
+    '<p style="margin-top:5px;font-size:13px;line-height:1.5;color:var(--g-500)">' + esc(t("edRecipeSub")) + "</p></div>" +
+    (!hasSkus ? '<div style="padding:16px 22px">' + notice("warn", t("edNoSkus")) + "</div>" : "") +
+    '<div style="padding:12px 16px;max-height:52vh;overflow:auto">' +
+    '<table class="edit"><thead><tr>' +
+    ["edProduct", "edMaterial", "edName", "edQty", "edUnit", "edScrap"].map(function (k) {
+      return "<th>" + esc(t(k)) + "</th>";
+    }).join("") + "<th></th></tr></thead><tbody>" + rows + "</tbody></table>" +
+    (draft.recipes.length ? "" : '<p style="padding:20px;text-align:center;font-size:13px;color:var(--g-500)">' +
+      esc(t("edEmpty")) + "</p>") +
+    '<button class="btn btn-g btn-sm" style="margin-top:10px" onclick="addRecipe()">+ ' +
+      esc(t("edAddLine")) + "</button></div>" +
+    '<div style="padding:14px 22px;border-top:1px solid var(--g-100);display:flex;gap:10px;justify-content:flex-end">' +
+    '<button class="btn btn-g" onclick="closeModal()">' + esc(t("edCancel")) + "</button>" +
+    '<button class="btn btn-p" onclick="saveRecipes()">' + esc(t("edSave")) + "</button></div>");
+}
+
+window.editRecipe = function (i, k, v) { draft.recipes[i][k] = v; };
+window.addRecipe = function () {
+  var last = draft.recipes[draft.recipes.length - 1];
+  var seed = blankRecipeLine();
+  // Carry the product forward: a recipe is normally entered one product at a time.
+  if (last && last.sku) seed.sku = last.sku;
+  draft.recipes.push(seed);
+  renderRecipeEditor();
+};
+window.removeRecipe = function (i) { draft.recipes.splice(i, 1); renderRecipeEditor(); };
+window.saveRecipes = function () {
+  var rows = draft.recipes.map(function (r) {
+    var scrap = Number(r.scrapPct) || 0;
+    if (scrap > 0 && scrap < 1) scrap *= 100;
+    return {
+      sku: String(r.sku || "").trim(),
+      material: String(r.material || "").trim(),
+      materialName: String(r.materialName || "").trim() || null,
+      qtyPerUnit: Number(r.qtyPerUnit) || 0,
+      unit: String(r.unit || "").trim() || null,
+      scrapPct: Math.min(95, Math.max(0, scrap)),
+    };
+  }).filter(function (r) { return r.sku && r.material && r.qtyPerUnit > 0; });
+
+  state.recipes = rows.length ? rows : null;
+  state.recipeIssues = [];
+  state.run = null; state.mrp = null;
+
+  // Any material named in a recipe but missing from the master gets a stub, so
+  // the user is never silently planning something with no shelf life or cost.
+  if (rows.length) {
+    var known = {};
+    (state.materials || []).forEach(function (m) { known[m.code] = 1; });
+    var added = [];
+    rows.forEach(function (r) {
+      if (!known[r.material]) {
+        known[r.material] = 1;
+        added.push({ code: r.material, name: r.materialName || r.material, unit: r.unit || "u",
+          shelfLifeDays: null, leadTimeDays: 7, leadTimeSdDays: 0, moq: 0, packSize: 0,
+          unitCost: 0, onHand: 0 });
+      }
+    });
+    if (added.length) state.materials = (state.materials || []).concat(added);
+  }
+  window.closeModal();
+  render();
+};
+
+function renderMaterialEditor() {
+  var rows = draft.materials.map(function (m, i) {
+    var f = function (k, type, w, ph) {
+      return '<td style="' + (w ? "width:" + w : "min-width:110px") + '"><input' +
+        (type === "n" ? ' type="number" step="any" min="0"' : "") +
+        ' value="' + esc(m[k] == null ? "" : m[k]) + '"' +
+        (ph ? ' placeholder="' + esc(ph) + '"' : "") +
+        ' oninput="editMat(' + i + ',\'' + k + '\',this.value)"></td>';
+    };
+    return "<tr>" + f("code", "s", "104px", "MAT-001") + f("name", "s", null, "Chocolate") +
+      f("unit", "s", "62px", "g") + f("shelfLifeDays", "n", "80px", "—") +
+      f("leadTimeDays", "n", "74px") + f("moq", "n", "84px") + f("packSize", "n", "84px") +
+      f("unitCost", "n", "86px") + f("onHand", "n", "92px") +
+      '<td style="width:34px"><button class="rm" onclick="removeMat(' + i + ')">×</button></td></tr>';
+  }).join("");
+
+  openModal(
+    '<div style="padding:20px 22px 14px;border-bottom:1px solid var(--g-100)">' +
+    '<h3 style="font-size:16px">' + esc(t("edMatTitle")) + "</h3>" +
+    '<p style="margin-top:5px;font-size:13px;line-height:1.5;color:var(--g-500)">' + esc(t("edMatSub")) + "</p></div>" +
+    '<div style="padding:12px 16px;max-height:52vh;overflow:auto">' +
+    '<table class="edit"><thead><tr>' +
+    ["edCode", "edName", "edUnit", "edShelf", "edLead", "edMoq", "edPack", "edCost", "edStock"]
+      .map(function (k) { return "<th>" + esc(t(k)) + "</th>"; }).join("") +
+    "<th></th></tr></thead><tbody>" + rows + "</tbody></table>" +
+    '<button class="btn btn-g btn-sm" style="margin-top:10px" onclick="addMat()">+ ' +
+      esc(t("edAddMat")) + "</button></div>" +
+    '<div style="padding:14px 22px;border-top:1px solid var(--g-100);display:flex;gap:10px;justify-content:flex-end">' +
+    '<button class="btn btn-g" onclick="closeModal()">' + esc(t("edCancel")) + "</button>" +
+    '<button class="btn btn-p" onclick="saveMats()">' + esc(t("edSave")) + "</button></div>");
+}
+
+window.editMat = function (i, k, v) { draft.materials[i][k] = v; };
+window.addMat = function () { draft.materials.push(blankMaterial()); renderMaterialEditor(); };
+window.removeMat = function (i) { draft.materials.splice(i, 1); renderMaterialEditor(); };
+window.saveMats = function () {
+  var num = function (v, d) { var n = Number(v); return Number.isFinite(n) && n >= 0 ? n : d; };
+  var rows = draft.materials.map(function (m) {
+    var shelf = Number(m.shelfLifeDays);
+    return {
+      code: String(m.code || "").trim(),
+      name: String(m.name || "").trim() || String(m.code || "").trim(),
+      unit: String(m.unit || "").trim() || "u",
+      shelfLifeDays: Number.isFinite(shelf) && shelf > 0 ? shelf : null,
+      leadTimeDays: num(m.leadTimeDays, 7),
+      leadTimeSdDays: num(m.leadTimeSdDays, 0),
+      moq: num(m.moq, 0), packSize: num(m.packSize, 0),
+      unitCost: num(m.unitCost, 0), onHand: num(m.onHand, 0),
+    };
+  }).filter(function (m) { return m.code; });
+  state.materials = rows.length ? rows : null;
+  state.matIssues = [];
+  state.run = null; state.mrp = null;
+  window.closeModal();
+  render();
+};
+
+// ───────────────────────── demo datasets ─────────────────────────
 
 function mulberry32(a) {
   return function () {
@@ -4346,49 +6338,102 @@ function mulberry32(a) {
   };
 }
 
-function buildDemo() {
+window.openDemoPicker = function () {
+  var card = function (id, title, desc, tag) {
+    return '<button onclick="loadDemo(\'' + id + '\')" style="display:block;width:100%;text-align:left;' +
+      'border:1px solid var(--g-200);background:#fff;border-radius:10px;padding:16px 18px;margin-bottom:12px">' +
+      '<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">' +
+      '<span style="font-size:15px;font-weight:600;color:var(--ink-800)">' + esc(title) + "</span>" +
+      '<span class="chip">' + esc(tag) + "</span></div>" +
+      '<p style="margin-top:6px;font-size:13px;line-height:1.5;color:var(--g-500)">' + esc(desc) + "</p></button>";
+  };
+  openModal('<div style="padding:20px 22px 12px;border-bottom:1px solid var(--g-100)">' +
+    '<h3 style="font-size:16px">' + esc(t("demoTitle")) + "</h3>" +
+    '<p style="margin-top:5px;font-size:13px;color:var(--g-500)">' + esc(t("demoSub")) + "</p></div>" +
+    '<div style="padding:16px 22px">' +
+    card("manufacturer", t("demoMfgTitle"), t("demoMfgD"), t("demoMfgTag")) +
+    card("distributor", t("demoDistTitle"), t("demoDistD"), t("demoDistTag")) +
+    "</div>" +
+    '<div style="padding:12px 22px;border-top:1px solid var(--g-100);text-align:right">' +
+    '<button class="btn btn-g" onclick="closeModal()">' + esc(t("demoCancel")) + "</button></div>");
+};
+
+window.loadDemo = function (which) {
+  window.closeModal();
+  var d = which === "manufacturer" ? buildChocolateDemo() : buildDistributorDemo();
+  state.sales = d.sales;
+  state.inventory = d.inventory;
+  state.recipes = d.recipes || null;
+  state.materials = d.materials || null;
+  state.issues = []; state.invIssues = []; state.recipeIssues = []; state.matIssues = [];
+  state.lastFile = null; state.uploadError = null; state.run = null; state.mrp = null;
+  state.mapping = {
+    date: { header: "Fecha" }, sku: { header: "SKU" }, product: { header: "Producto" },
+    category: { header: "Categoria" }, quantity: { header: "Unidades" }, price: { header: "Precio Unitario" },
+  };
+  state.unmatched = [];
+  state.params.leadTimeDays = d.defaultLeadTime || 7;
+  state.salesStats = statsFor(d.sales);
+  gotoStep(2);
+};
+
+function statsFor(sales) {
+  var skus = {}, days = {};
+  sales.forEach(function (r) { skus[r.sku] = 1; days[r.date] = 1; });
+  var first = sales[0].date, last = sales[sales.length - 1].date;
+  var span = Math.round((Date.parse(last) - Date.parse(first)) / 86400000) + 1;
+  return {
+    recordCount: sales.length, skuCount: Object.keys(skus).length,
+    startDate: first, endDate: last, daysSpanned: span,
+    monthsSpanned: Math.round((span / 30.44) * 10) / 10,
+    missingCalendarDays: Math.max(0, span - Object.keys(days).length),
+    skusWithShortHistory: [], skusWithSparseDemand: [], totalUnits: 0, totalRevenue: 0,
+  };
+}
+
+// ── demo A: distributor, 50 SKUs, 24 months, no production ──
+function buildDistributorDemo() {
   var rand = mulberry32(20260622);
   var normal = function () {
     var u = Math.max(1e-9, rand()), v = Math.max(1e-9, rand());
     return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
   };
   var pick = function (a) { return a[Math.floor(rand() * a.length)]; };
-
-  var CATS = ["Beverages", "Snacks", "Dairy", "Cleaning", "Personal Care", "Frozen"];
+  var CATS = ["Bebidas", "Snacks", "Lácteos", "Limpieza", "Cuidado Personal", "Congelados"];
   var NAMES = {
-    Beverages: ["Orange Juice 1L", "Sparkling Water 500ml", "Iced Tea 1.5L", "Energy Drink 250ml", "Cola 2L", "Coconut Water 330ml"],
-    Snacks: ["Potato Chips 150g", "Granola Bar 6pk", "Salted Peanuts 200g", "Corn Tortillas 400g", "Chocolate Cookies 300g", "Rice Crackers 120g"],
-    Dairy: ["Whole Milk 1L", "Greek Yogurt 500g", "Butter 250g", "Cheddar Block 400g", "Cream Cheese 200g", "Drinkable Yogurt 200ml"],
-    Cleaning: ["Dish Soap 750ml", "Floor Cleaner 1L", "Bleach 2L", "Laundry Pods 20u", "Glass Cleaner 500ml", "Sponges 5pk"],
-    "Personal Care": ["Shampoo 400ml", "Toothpaste 100ml", "Bar Soap 3pk", "Deodorant 150ml", "Hand Cream 75ml", "Razor Blades 4u"],
-    Frozen: ["Frozen Peas 1kg", "Ice Cream 1L", "Frozen Pizza 400g", "Fish Fillets 500g", "French Fries 1kg", "Berry Mix 500g"],
+    "Bebidas": ["Jugo de Naranja 1L", "Agua con Gas 500ml", "Té Frío 1.5L", "Bebida Energética 250ml", "Cola 2L", "Agua de Coco 330ml"],
+    "Snacks": ["Papas Fritas 150g", "Barra de Granola 6u", "Maní Salado 200g", "Tortillas de Maíz 400g", "Galletas de Chocolate 300g", "Galletas de Arroz 120g"],
+    "Lácteos": ["Leche Entera 1L", "Yogur Griego 500g", "Mantequilla 250g", "Queso Cheddar 400g", "Queso Crema 200g", "Yogur Bebible 200ml"],
+    "Limpieza": ["Lavavajillas 750ml", "Limpiapisos 1L", "Cloro 2L", "Cápsulas de Lavado 20u", "Limpiavidrios 500ml", "Esponjas 5u"],
+    "Cuidado Personal": ["Shampoo 400ml", "Pasta Dental 100ml", "Jabón en Barra 3u", "Desodorante 150ml", "Crema de Manos 75ml", "Hojas de Afeitar 4u"],
+    "Congelados": ["Arvejas Congeladas 1kg", "Helado 1L", "Pizza Congelada 400g", "Filetes de Pescado 500g", "Papas Fritas 1kg", "Mix de Berries 500g"],
   };
   var rep = function (v, n) { var a = []; for (var i = 0; i < n; i++) a.push(v); return a; };
   var PLAN = [].concat(rep("stable", 10), rep("trend_up", 6), rep("trend_down", 4),
     rep("weekly_seasonal", 7), rep("annual_seasonal", 6), rep("intermittent", 4),
     rep("intermittent_declining", 2), rep("intermittent_growing", 1), rep("lumpy", 5),
     rep("volatile", 3), rep("new_product", 2));
-  var STOCK = [].concat(rep("critical", 7), rep("reorder", 12), rep("healthy", 23), rep("overstock", 8));
+  var STOCK = [].concat(rep("critical", 6), rep("reorder", 11), rep("healthy", 25), rep("overstock", 8));
 
   var defs = [], used = {};
   for (var i = 0; i < 50; i++) {
     var cat = CATS[i % CATS.length], prod = pick(NAMES[cat]), guard = 0;
     while (used[prod] && guard++ < 20) prod = pick(NAMES[cat]);
     used[prod] = 1;
-    var pat = PLAN[i], sparse = pat === "intermittent" || pat === "lumpy" || pat.indexOf("intermittent") === 0;
-    defs.push({
-      sku: "SKU" + ("00" + (i + 1)).slice(-3), product: prod, category: cat, pattern: pat,
+    var pat = PLAN[i], sparse = pat.indexOf("intermittent") === 0 || pat === "lumpy";
+    defs.push({ sku: "SKU" + ("00" + (i + 1)).slice(-3), product: prod, category: cat, pattern: pat,
       base: sparse ? 4 + rand() * 10 : 8 + rand() * 60,
       price: Math.round((1.2 + rand() * 18) * 100) / 100,
-      leadTime: pick([3, 5, 7, 7, 10, 14, 21]),
-      situation: STOCK[i],
-    });
+      leadTime: pick([3, 5, 7, 7, 10, 14, 21]), situation: STOCK[i],
+      // Perishables carry a real shelf life so the overstock test is honest.
+      shelfLife: (cat === "Lácteos" ? pick([14, 21, 30]) :
+                  cat === "Congelados" ? pick([180, 270]) :
+                  cat === "Bebidas" ? pick([120, 180, 365]) : null) });
   }
 
   var DOW = [.75, .85, .9, 1, 1.25, 1.55, 1.1];
   var MON = [.75, .75, .85, .95, 1.1, 1.35, 1.5, 1.45, 1.1, .9, .85, 1.2];
-  var DAYS = 730;
-  var END = Date.UTC(2026, 8, 30), START = END - (DAYS - 1) * 86400000;
+  var DAYS = 730, END = Date.UTC(2026, 8, 30), START = END - (DAYS - 1) * 86400000;
 
   var demandOn = function (def, tt, n, date) {
     var mu = def.base, dow = date.getUTCDay(), mo = date.getUTCMonth();
@@ -4404,15 +6449,12 @@ function buildDemo() {
       return Math.max(1, Math.round(def.base * (.6 + rand() * .9)));
     }
     if (def.pattern === "intermittent_declining") {
-      // Obsolescence: the demand probability decays — the regime TSB handles
-      // and classic Croston structurally cannot.
       var pd = .3 * Math.max(.05, 1 - (.6 * tt) / n);
       if (rand() > pd) return 0;
       return Math.max(1, Math.round(def.base * (.6 + rand() * .9)));
     }
     if (def.pattern === "intermittent_growing") {
-      var pg = .06 + (.18 * tt) / n;
-      if (rand() > pg) return 0;
+      if (rand() > .06 + (.18 * tt) / n) return 0;
       return Math.max(1, Math.round(def.base * (.6 + rand() * .9)));
     }
     if (def.pattern === "lumpy") {
@@ -4427,15 +6469,13 @@ function buildDemo() {
   defs.forEach(function (def) {
     demandBy[def.sku] = [];
     for (var tt = 0; tt < DAYS; tt++) {
-      var d = new Date(START + tt * 86400000);
-      var q = demandOn(def, tt, DAYS, d);
+      var dt = new Date(START + tt * 86400000);
+      var q = demandOn(def, tt, DAYS, dt);
       demandBy[def.sku].push(q);
-      if (q <= 0) continue;   // a zero-sales day produces no transaction, like a real POS export
-      sales.push({
-        date: d.toISOString().slice(0, 10), sku: def.sku, product: def.product,
+      if (q <= 0) continue;
+      sales.push({ date: dt.toISOString().slice(0, 10), sku: def.sku, product: def.product,
         category: def.category, qty: q,
-        price: Math.round(def.price * (1 + normal() * .02) * 100) / 100,
-      });
+        price: Math.round(def.price * (1 + normal() * .02) * 100) / 100 });
     }
   });
 
@@ -4447,62 +6487,159 @@ function buildDemo() {
     else if (def.situation === "reorder") stock = Math.round(lt * (1 + rand() * .4));
     else if (def.situation === "overstock") stock = Math.round(avg * (110 + rand() * 120));
     else { stock = Math.round(avg * (25 + rand() * 30)); if (rand() > .7) onOrder = Math.round(avg * 10); }
-    return {
-      sku: def.sku, onHand: Math.max(0, stock), onOrder: onOrder,
-      leadTimeDays: def.leadTime, unitCost: Math.round(def.price * (.55 + rand() * .15) * 100) / 100,
-      moq: null, casePack: null,
-    };
+    return { sku: def.sku, onHand: Math.max(0, stock), onOrder: onOrder,
+      leadTimeDays: def.leadTime, shelfLifeDays: def.shelfLife,
+      unitCost: Math.round(def.price * (.55 + rand() * .15) * 100) / 100,
+      moq: null, casePack: null };
   });
 
   sales.sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : (a.sku < b.sku ? -1 : 1); });
-  return { sales: sales, inventory: inventory };
+  return { sales: sales, inventory: inventory, defaultLeadTime: 7 };
 }
 
-function loadDemo() {
-  $("heroCta").disabled = true;
-  $("heroCta").textContent = t("genDemo");
-  setTimeout(function () {
-    var d = buildDemo();
-    state.sales = d.sales;
-    state.inventory = d.inventory;
-    state.issues = []; state.invIssues = []; state.lastFile = null;
-    state.mapping = {
-      date: { header: "Date" }, sku: { header: "SKU" }, product: { header: "Product" },
-      category: { header: "Category" }, quantity: { header: "Units Sold" }, price: { header: "Unit Price" },
-    };
-    state.unmatched = [];
-    var skus = {}, firstD = d.sales[0].date, lastD = d.sales[d.sales.length - 1].date, days = {};
-    d.sales.forEach(function (r) { skus[r.sku] = 1; days[r.date] = 1; });
-    var span = Math.round((Date.parse(lastD) - Date.parse(firstD)) / 86400000) + 1;
-    state.salesStats = {
-      recordCount: d.sales.length, skuCount: Object.keys(skus).length,
-      startDate: firstD, endDate: lastD, daysSpanned: span,
-      monthsSpanned: Math.round((span / 30.44) * 10) / 10,
-      missingCalendarDays: Math.max(0, span - Object.keys(days).length),
-      skusWithShortHistory: [], skusWithSparseDemand: [], totalUnits: 0, totalRevenue: 0,
-    };
-    $("heroCta").disabled = false;
-    $("heroCta").textContent = t("heroCta");
-    go("configure");
-  }, 30);
+// ── demo B: artisan chocolate maker, 8 SKUs, recipes and perishable inputs ──
+function buildChocolateDemo() {
+  var rand = mulberry32(19990622);
+  var normal = function () {
+    var u = Math.max(1e-9, rand()), v = Math.max(1e-9, rand());
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  };
+
+  // Sized like a real Instagram-scale maker: roughly $15k/month, one person
+  // producing in batches. Big enough for the maths to matter, small enough
+  // that the numbers stay recognisable to someone running that business.
+  var defs = [
+    { sku: "PRD-001", product: "Caja Bombones 12u", base: 7, price: 18.00, pattern: "weekly_gift", shelf: 90 },
+    { sku: "PRD-002", product: "Trufa Individual", base: 26, price: 2.50, pattern: "weekly", shelf: 45 },
+    { sku: "PRD-003", product: "Tableta 70% 100g", base: 13, price: 7.00, pattern: "stable", shelf: 365 },
+    { sku: "PRD-004", product: "Caja Regalo 24u", base: 2.4, price: 34.00, pattern: "weekly_gift", shelf: 90 },
+    { sku: "PRD-005", product: "Bombón Relleno x6", base: 5.5, price: 11.00, pattern: "weekly", shelf: 45 },
+    { sku: "PRD-006", product: "Barra Blanca 80g", base: 4.5, price: 6.00, pattern: "stable", shelf: 240 },
+    { sku: "PRD-007", product: "Chocolate Caliente 250g", base: 3.2, price: 9.50, pattern: "winter", shelf: 300 },
+    { sku: "PRD-008", product: "Bombón Edición Especial", base: 1.3, price: 15.00, pattern: "lumpy", shelf: 30 },
+  ];
+
+  // A direct-to-consumer maker sells on a weekly rhythm with a hard gifting
+  // peak — the shape that makes a seasonal model earn its keep.
+  var DOW_GIFT = [.5, .55, .7, .95, 1.5, 2.1, 1.2];
+  var DOW_REG = [.6, .85, .95, 1.0, 1.25, 1.6, .95];
+  var MON_GIFT = [1.0, 2.3, .85, .95, 1.5, .9, .8, .85, .95, 1.0, 1.1, 2.0];
+  var MON_WINTER = [1.3, 1.2, 1.0, .8, .7, .6, .6, .65, .8, 1.0, 1.3, 1.5];
+
+  var DAYS = 430, END = Date.UTC(2026, 9, 5), START = END - (DAYS - 1) * 86400000;
+  var sales = [], demandBy = {};
+
+  defs.forEach(function (def) {
+    demandBy[def.sku] = [];
+    for (var tt = 0; tt < DAYS; tt++) {
+      var dt = new Date(START + tt * 86400000);
+      var dow = dt.getUTCDay(), mo = dt.getUTCMonth();
+      var mu = def.base;
+      if (def.pattern === "weekly_gift") mu *= DOW_GIFT[dow] * MON_GIFT[mo];
+      else if (def.pattern === "weekly") mu *= DOW_REG[dow] * (1 + (MON_GIFT[mo] - 1) * .35);
+      else if (def.pattern === "winter") mu *= DOW_REG[dow] * MON_WINTER[mo];
+      else if (def.pattern === "stable") mu *= DOW_REG[dow];
+      // The business grows slowly over the period, as a real one does.
+      mu *= 0.82 + (0.36 * tt) / DAYS;
+
+      var q;
+      if (def.pattern === "lumpy") {
+        q = rand() > .13 ? 0 : Math.max(1, Math.round(def.base * (1 + rand() * 6)));
+      } else {
+        q = Math.max(0, Math.round(mu + normal() * mu * .3));
+      }
+      demandBy[def.sku].push(q);
+      if (q <= 0) continue;
+      sales.push({ date: dt.toISOString().slice(0, 10), sku: def.sku, product: def.product,
+        category: "Chocolatería", qty: q,
+        price: Math.round(def.price * (1 + normal() * .015) * 100) / 100 });
+    }
+  });
+
+  // Finished-goods stock: a mix, so the dashboard is not uniformly on fire.
+  var situation = ["critical", "reorder", "healthy", "healthy", "reorder", "healthy", "overstock", "healthy"];
+  var inventory = defs.map(function (def, i) {
+    var recent = demandBy[def.sku].slice(-45);
+    var avg = recent.reduce(function (s, v) { return s + v; }, 0) / recent.length;
+    var s = situation[i], stock;
+    if (s === "critical") stock = Math.round(avg * (0.6 + rand()));
+    else if (s === "reorder") stock = Math.round(avg * (3 + rand() * 2));
+    else if (s === "overstock") stock = Math.round(avg * (def.shelf * 1.4));
+    else stock = Math.round(avg * (9 + rand() * 7));
+    return { sku: def.sku, onHand: Math.max(0, stock), onOrder: 0,
+      leadTimeDays: 2, shelfLifeDays: def.shelf,
+      unitCost: Math.round(def.price * 0.42 * 100) / 100, moq: null, casePack: null };
+  });
+
+  var recipes = [
+    ["PRD-001", "MAT-CHOC70", 240, "g", 4], ["PRD-001", "MAT-CREMA", 60, "ml", 3],
+    ["PRD-001", "MAT-MANT", 24, "g", 2], ["PRD-001", "MAT-CAJA12", 1, "u", 1],
+    ["PRD-001", "MAT-LAZO", 1, "u", 2],
+    ["PRD-002", "MAT-CHOC70", 22, "g", 4], ["PRD-002", "MAT-CREMA", 6, "ml", 3],
+    ["PRD-002", "MAT-CACAO", 2, "g", 5],
+    ["PRD-003", "MAT-CHOC70", 105, "g", 3], ["PRD-003", "MAT-ENVOL", 1, "u", 1],
+    ["PRD-004", "MAT-CHOC70", 470, "g", 4], ["PRD-004", "MAT-CREMA", 118, "ml", 3],
+    ["PRD-004", "MAT-MANT", 48, "g", 2], ["PRD-004", "MAT-CAJA24", 1, "u", 1],
+    ["PRD-004", "MAT-LAZO", 1, "u", 2],
+    ["PRD-005", "MAT-CHOC70", 120, "g", 4], ["PRD-005", "MAT-CREMA", 30, "ml", 3],
+    ["PRD-005", "MAT-CAJA12", 1, "u", 1],
+    ["PRD-006", "MAT-CHOCB", 84, "g", 3], ["PRD-006", "MAT-ENVOL", 1, "u", 1],
+    ["PRD-007", "MAT-CACAO", 180, "g", 2], ["PRD-007", "MAT-AZUCAR", 70, "g", 1],
+    ["PRD-007", "MAT-ENVOL", 1, "u", 1],
+    ["PRD-008", "MAT-CHOC70", 150, "g", 6], ["PRD-008", "MAT-CREMA", 40, "ml", 4],
+    ["PRD-008", "MAT-CAJA12", 1, "u", 1],
+  ].map(function (r) {
+    return { sku: r[0], material: r[1], materialName: null, qtyPerUnit: r[2], unit: r[3], scrapPct: r[4] };
+  });
+
+  var materials = [
+    { code: "MAT-CHOC70", name: "Chocolate cobertura 70%", unit: "g", shelfLifeDays: 365,
+      leadTimeDays: 14, leadTimeSdDays: 3, moq: 10000, packSize: 5000, unitCost: 0.016, onHand: 128000 },
+    { code: "MAT-CHOCB", name: "Chocolate blanco cobertura", unit: "g", shelfLifeDays: 240,
+      leadTimeDays: 14, leadTimeSdDays: 2, moq: 5000, packSize: 1000, unitCost: 0.019, onHand: 11000 },
+    // The headline conflict: 21-day shelf life against a 24-litre minimum.
+    // Stock sits just under the reorder point so the purchase is due now and
+    // the MOQ problem surfaces with it.
+    { code: "MAT-CREMA", name: "Crema de leche fresca", unit: "ml", shelfLifeDays: 14,
+      leadTimeDays: 3, leadTimeSdDays: 1, moq: 24000, packSize: 1000, unitCost: 0.0045, onHand: 5200 },
+    // Butter wholesales in 25 kg blocks. A maker using a few hundred grams a
+    // day cannot finish one before it turns — the single most expensive line
+    // in this file, and nothing in the plan can fix it.
+    { code: "MAT-MANT", name: "Mantequilla sin sal", unit: "g", shelfLifeDays: 45,
+      leadTimeDays: 4, leadTimeSdDays: 0, moq: 25000, packSize: 2500, unitCost: 0.011, onHand: 7200 },
+    { code: "MAT-CACAO", name: "Cacao en polvo", unit: "g", shelfLifeDays: 540,
+      leadTimeDays: 12, leadTimeSdDays: 0, moq: 5000, packSize: 1000, unitCost: 0.009, onHand: 16000 },
+    { code: "MAT-AZUCAR", name: "Azúcar impalpable", unit: "g", shelfLifeDays: 720,
+      leadTimeDays: 5, leadTimeSdDays: 0, moq: 10000, packSize: 1000, unitCost: 0.002, onHand: 22000 },
+    // Packaging with a three-week lead time is the classic thing a small maker
+    // forgets until the boxes run out: left genuinely overdue on purpose.
+    { code: "MAT-CAJA12", name: "Caja presentación 12u", unit: "u", shelfLifeDays: null,
+      leadTimeDays: 21, leadTimeSdDays: 5, moq: 500, packSize: 100, unitCost: 0.78, onHand: 190 },
+    { code: "MAT-CAJA24", name: "Caja regalo 24u", unit: "u", shelfLifeDays: null,
+      leadTimeDays: 25, leadTimeSdDays: 6, moq: 250, packSize: 50, unitCost: 1.40, onHand: 340 },
+    { code: "MAT-LAZO", name: "Lazo satinado", unit: "u", shelfLifeDays: null,
+      leadTimeDays: 10, leadTimeSdDays: 0, moq: 1000, packSize: 500, unitCost: 0.12, onHand: 2200 },
+    { code: "MAT-ENVOL", name: "Envoltura metalizada", unit: "u", shelfLifeDays: null,
+      leadTimeDays: 12, leadTimeSdDays: 2, moq: 2000, packSize: 1000, unitCost: 0.07, onHand: 3400 },
+  ];
+
+  sales.sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : (a.sku < b.sku ? -1 : 1); });
+  return { sales: sales, inventory: inventory, recipes: recipes, materials: materials, defaultLeadTime: 2 };
 }
-window.loadDemo = loadDemo;
 
 // ───────────────────────── run the analysis ─────────────────────────
 
 function runAnalysis() {
-  if (state.busy) return;
+  if (state.busy || !state.sales) return;
   state.busy = true;
-  renderConfigure();
+  renderStep2();
   var t0 = Date.now();
 
-  // Group by SKU
   var bySku = {}, order = [];
   state.sales.forEach(function (r) {
     var e = bySku[r.sku];
-    if (!e) { e = bySku[r.sku] = { product: r.product, category: r.category, txns: [], ps: 0, pn: 0, units: 0 }; order.push(r.sku); }
+    if (!e) { e = bySku[r.sku] = { product: r.product, category: r.category, txns: [], ps: 0, pn: 0 }; order.push(r.sku); }
     e.txns.push({ date: r.date, qty: r.qty });
-    e.units += r.qty;
     if (r.price != null && isFinite(r.price)) { e.ps += r.price; e.pn++; }
   });
   var invBy = {};
@@ -4517,8 +6654,6 @@ function runAnalysis() {
 
   var plans = [], series = {}, models = {}, patterns = {}, idx = 0;
 
-  // Yield to the browser between SKUs so the page stays responsive and the
-  // progress counter actually paints.
   function step() {
     var deadline = Date.now() + 120;
     while (idx < order.length && Date.now() < deadline) {
@@ -4537,33 +6672,29 @@ function runAnalysis() {
           leadTimeDays: inv.leadTimeDays || p.leadTimeDays,
           moq: inv.moq || undefined, casePack: inv.casePack || undefined,
           unitCost: inv.unitCost == null ? undefined : inv.unitCost,
+          shelfLifeDays: inv.shelfLifeDays == null ? undefined : inv.shelfLifeDays,
         } : undefined, planning, p.horizonDays);
         plans.push(plan);
         models[fc.selectedModel] = (models[fc.selectedModel] || 0) + 1;
         patterns[fc.profile.pattern] = (patterns[fc.profile.pattern] || 0) + 1;
         series[sku] = {
-          history: fc.history.slice(-180),
-          forecast: fc.points,
+          history: fc.history.slice(-180), forecast: fc.points,
           candidates: fc.candidates.slice(0, 6).map(function (c) {
             return { modelId: c.modelId, wape: c.metrics.wape,
                      leadTimeWape: c.metrics.leadTimeWape, score: c.score };
           }),
-          selectionReason: fc.selectionReason,
-          selectionReasonEs: fc.selectionReasonEs,
+          selectionReason: fc.selectionReason, selectionReasonEs: fc.selectionReasonEs,
           profile: { pattern: fc.profile.pattern, adi: fc.profile.adi, cv2: fc.profile.cv2,
                      zeroShare: fc.profile.zeroShare, caveats: fc.profile.caveats },
           metrics: { wape: fc.metrics.wape, mase: fc.metrics.mase, mape: fc.metrics.mape,
                      rmse: fc.metrics.rmse, mae: fc.metrics.mae, bias: fc.metrics.bias },
         };
       } catch (err) {
-        // One pathological SKU must never take down the whole run.
-        if (window.console) console.warn("SKU skipped:", sku, err);
+        if (window.console) console.warn("SKU omitido:", sku, err);
       }
     }
 
-    $("cfProgress").innerHTML = '<span class="spin"></span> ' +
-      idx + " / " + order.length;
-
+    $("cfProgress").innerHTML = '<span class="spin"></span> ' + idx + " / " + order.length;
     if (idx < order.length) { setTimeout(step, 0); return; }
 
     E.classifyAbc(plans, { aCut: p.abcACut, bCut: p.abcBCut, criterion: p.abcCriterion });
@@ -4571,8 +6702,7 @@ function runAnalysis() {
     var sum = function (f) { return plans.reduce(function (s, x) { return s + f(x); }, 0); };
     state.run = {
       plans: plans, series: series, health: health,
-      at: new Date().toISOString().slice(0, 10),
-      ms: Date.now() - t0,
+      at: new Date().toISOString().slice(0, 10), ms: Date.now() - t0,
       summary: {
         totalSkus: order.length, skusAnalysed: plans.length,
         forecastedDemand: sum(function (x) { return x.horizonDemand; }),
@@ -4586,10 +6716,27 @@ function runAnalysis() {
         modelDistribution: models, patternDistribution: patterns,
       },
     };
+
+    // Explode the finished-goods plan into materials, when recipes exist.
+    state.mrp = null;
+    if (state.recipes && state.recipes.length) {
+      try {
+        state.mrp = MRP.run(plans, series, state.recipes, state.materials || [], {
+          reviewPeriodDays: p.reviewPeriodDays,
+          purchaseCoverDays: p.purchaseCoverDays,
+          serviceLevel: p.serviceLevel,
+          lang: state.lang,
+        });
+      } catch (err) {
+        if (window.console) console.warn("MRP falló:", err);
+      }
+    }
+
     state.busy = false;
     $("cfProgress").textContent = "";
     state.table.limit = 40;
-    go("dashboard");
+    state.tab = "demand";
+    gotoStep(3);
   }
   setTimeout(step, 30);
 }
@@ -4603,11 +6750,15 @@ try {
 } catch (e) {}
 document.documentElement.lang = state.lang;
 
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && !$("modal").classList.contains("hidden")) window.closeModal();
+});
+
 var resizeTimer;
 window.addEventListener("resize", function () {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(function () {
-    if (state.view === "landing" || state.view === "dashboard") render();
+    if (state.view === "landing" || (state.view === "work" && state.step === 3)) render();
   }, 180);
 });
 
